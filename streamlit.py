@@ -48,12 +48,6 @@ st.write("---")
 
 monto_credito = monto_credito.strip()
 
-# Error por si coloca un STR
-try:
-    int(monto_credito) 
-except :
-    print("El monto debe de ser numérico")
-
 monto_credito = int(monto_credito)    
 
 
