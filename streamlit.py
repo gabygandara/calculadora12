@@ -40,10 +40,10 @@ st.write("---")
 # Realizamos el input del monto
 
 monto_input = st.text_input("Ingrese el monto sin puntos ni comas", value="$")
-monto_credito = "0"
-monto_credito = monto_input.strip()
-monto_credito = monto_credito.replace("$", "")
-
+if monto_input != "$":
+    monto_credito = monto_input.strip()
+    monto_credito = monto_credito.replace("$", "")
+    monto_credito = int(monto_credito)
 
 
 st.write("---")
@@ -59,8 +59,7 @@ tipo_inscripcion = st.selectbox("Seleccione el tipo de inscripción",inscripcion
 
 st.write("---")
 
-                # monto credito
-monto_credito = int(monto_credito)
+
 
                 # programa seleccionado
 tasas_interes = tasas_cft[programa_seleccionado]
