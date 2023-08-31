@@ -49,46 +49,31 @@ tipo_inscripcion = st.selectbox("Seleccione el tipo de inscripción",inscripcion
 
 st.write("---")
 
-#    # Estilos CSS para el botón
-button_style = """
+   # Estilos CSS para el contenedor centrado
+st.markdown(
+        """
         <style>
         .center {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             height: 100vh;
         }
-        .styled-button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .styled-button:hover {
-            background-color: #45a049;
-        }
         </style>
-    """
+        """,
+        unsafe_allow_html=True,
+    )
 
-    # Insertar estilos CSS en el encabezado de la página
-st.markdown(button_style, unsafe_allow_html=True)
-
-    # Diseño centrado con clase "center"
+    # Contenedor centrado
 st.write('<div class="center">', unsafe_allow_html=True)
     
-    # Botón estilizado con clase "styled-button"
+    # Botón estilizado
 if st.button("Mi Botón", key="my_button"):
     st.write("¡Botón pulsado!")
+
+    # Finalizar el contenedor centrado
 st.write('</div>', unsafe_allow_html=True)
-
-
 st.write("---")
 
 st.write("Desarrollado por el departamento de Estadísticas y Bases de datos de CAME")
