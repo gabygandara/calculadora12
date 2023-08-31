@@ -127,12 +127,12 @@ with colB:
          st.write("")    
 
 
-st.write()
-st.write(f"Monto actual: ${monto_credito}")
-st.write(f"Monto a cobrar: ${monto_final}")
-st.write(f"Total de descuentos: {total_descuentos_en_porcentaje}%")
-st.write(f"Total de descuentos ($): ${total_descuentos_pesos}")
-st.write(f"Neto a percibir: ${monto_a_cobrar - total_descuentos_pesos}")
+if aux == True : 
+    st.write(f"Monto actual: ${monto_credito}")
+    st.write(f"Monto a cobrar: ${monto_final}")
+    st.write(f"Total de descuentos: {total_descuentos_en_porcentaje}%")
+    st.write(f"Total de descuentos ($): ${total_descuentos_pesos}")
+    st.write(f"Neto a percibir: ${monto_a_cobrar - total_descuentos_pesos}")
 
 
 
