@@ -33,6 +33,5 @@ with col2 :
 
 
     
-
 with col3 :
-    st.image("imgs/comercio@4x.png", use_column_width=True, width=600, height = 600 )
+    st.image("imgs/comercio@4x.png", use_column_width=True, width=600)
