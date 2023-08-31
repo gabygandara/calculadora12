@@ -22,16 +22,16 @@ cuota = st.selectbox("Cantidad de cuotas",cuotas)
 col1, col2, col3 = st.columns(3)
 
 with col1 :
-    st.image("imgs/CAME-Transparente.png", width=600 )
+    st.image("imgs/CAME-Transparente.png" )
 
 with col2 : 
     colA, colB = st.columns(2) 
     with colA:
-        st.image("imgs/logo_ahora12.png", width=600 )
+        st.image("imgs/logo_ahora12.png" )
     with colB:
         st.title("Calculadora Ahora 12")
 
 
     
 with col3 :
-    st.image("imgs/comercio@4x.png", use_column_width=True, width=600)
+    st.image("imgs/comercio@4x.png")
