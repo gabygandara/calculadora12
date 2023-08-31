@@ -19,13 +19,13 @@ cuota = st.selectbox("Cantidad de cuotas",cuotas)
 
 
 # Columnas superiores
-col1, col2, col3 = st.columns([1,2,1])
+col1, col2, col3 = st.columns(3)
 
 with col1 :
     st.image("imgs/CAME-Transparente.png", use_column_width=True, width=600 )
 
 with col2 : 
-    colA, colB = st.columns([1,2]) 
+    colA, colB = st.columns(2) 
     with colA:
         st.image("imgs/logo_ahora12.png", use_column_width=True, width=600 )
     with colB:
