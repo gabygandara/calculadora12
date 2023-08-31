@@ -15,7 +15,7 @@ st.set_page_config(
 # Aplicar estilos de formato CSS para agrandar el título
 st.markdown("<h1 style='text-align: center; font-size: 60px;'>Calculadora Ahora 12</h1>", unsafe_allow_html=True)
 
-
+st.write("---")
 
 # Columnas inferiores
 col1, col2, col3 = st.columns([1,2,1])
@@ -40,4 +40,8 @@ cuota = st.selectbox("Programa",cuotas)
 
 # Realizamos el input del monto
 monto_credito = st.number_input("Ingrese el monto")
+
+st.write("---")
+
+st.write("Desarrollado por el departamento de Estadísticas y Bases de datos de CAME")
 
