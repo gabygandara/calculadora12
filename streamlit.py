@@ -97,6 +97,7 @@ if st.button("Mi Botón"):
 
     # monto a cobrar
     monto_a_cobrar = ( 1 / (1-total_descuentos_2) * monto_credito )
+    st.write(monto_a_cobrar)
 
     # reintegro a percibir
     #reintegro = iva_arancel + iva_programa + iva3
