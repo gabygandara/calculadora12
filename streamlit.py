@@ -126,22 +126,22 @@ with colB:
 
 
 if aux == True : 
-    st.write(f"Monto actual: ${monto_credito}")
-    st.write(f"Monto a cobrar: ${monto_final}")
-    st.write(f"Total de descuentos: {total_descuentos_en_porcentaje}%")
-    st.write(f"Total de descuentos ($): ${total_descuentos_pesos}")
-    st.write(f"Neto a percibir: ${monto_a_cobrar - total_descuentos_pesos}")
+    st.write(f"+ #### Monto actual: ${monto_credito}")
+    st.write(f"+ #### Monto a cobrar: ${monto_final}")
+    st.write(f"+ #### Total de descuentos: {round(total_descuentos_en_porcentaje,2)*100}%")
+    st.write(f"+ #### Total de descuentos ($): ${round(total_descuentos_pesos,2)}")
+    st.write(f"+ #### Neto a percibir: ${round((monto_a_cobrar - total_descuentos_pesos),2)}")
 
 
 
 if aux == True : 
-    st.write("##### **Detalle de descuentos:**")
-    st.write(f"+ ##### Tasa del programa {programa_seleccionado} ({tasas_cft[programa_seleccionado]*100}%): **${base_tasa_programa}**")
-    st.write(f"+ ##### Arancel T.Cred (1.8%): **${base_arancel}**")
-    st.write(f"+ ##### IVA (21%): **${iva_arancel}**")
-    st.write(f"+ ##### IVA (10.5%) ley 25.063: **${iva_programa}**")
-    st.write(f"+ ##### II.BB (2.5%): **${iibb}**")
-    st.write(f"+ ##### IVA RG2408 (1.5%): **${iva3}**")
+    st.write("**Detalle de descuentos:**")
+    st.write(f"+ Tasa del programa {programa_seleccionado} ({tasas_cft[programa_seleccionado]*100}%): **${base_tasa_programa}**")
+    st.write(f"+ Arancel T.Cred (1.8%): **${base_arancel}**")
+    st.write(f"+ IVA (21%): **${iva_arancel}**")
+    st.write(f"+ IVA (10.5%) ley 25.063: **${iva_programa}**")
+    st.write(f"+ II.BB (2.5%): **${iibb}**")
+    st.write(f"+ IVA RG2408 (1.5%): **${iva3}**")
     
 
     if (tipo_inscripcion != "Monotributista"):
