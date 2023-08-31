@@ -11,7 +11,10 @@ st.set_page_config(
 
 # Titulo centrado con columnas
 
-st.markdown("#   **Calculadora Ahora 12**")
+
+# Aplicar estilos de formato CSS para agrandar el título
+st.markdown("<h1 style='text-align: center; font-size: 36px;'>Calculadora Ahora 12</h1>", unsafe_allow_html=True)
+
 
 
 # Columnas inferiores
