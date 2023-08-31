@@ -13,7 +13,7 @@ st.set_page_config(
 
 
 # Aplicar estilos de formato CSS para agrandar el título
-st.markdown("<h1 style='text-align: center; font-size: 36px;'>Calculadora Ahora 12</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; font-size: 72px;'>Calculadora Ahora 12</h1>", unsafe_allow_html=True)
 
 
 
