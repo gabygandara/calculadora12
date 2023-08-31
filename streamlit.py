@@ -54,7 +54,7 @@ inscripciones = ["Monotributista", "Responsable Inscripto", "Sociedad"]
 tipo_inscripcion = st.selectbox("Seleccione el tipo de inscripción",inscripciones)
 
 st.write("---")
-
+aux = False
 
 colA, colB = st.columns([1,2])
 with colA : 
