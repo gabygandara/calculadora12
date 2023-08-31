@@ -30,16 +30,22 @@ with col3 :
     st.write("")
 
 
-
-# Inputo de la cuota
-cuotas = ["Ahora 3","Ahora 6","Ahora 12","Ahora 18","Ahora 24"]
-cuota = st.selectbox("Programa",cuotas)    
-
-# Que seleccione 
-
-
+st.write("---")
 # Realizamos el input del monto
-monto_credito = st.number_input("Ingrese el monto")
+monto_credito = st.text_input("Ingrese el monto")
+
+st.write("---")
+# Inputo de la cuota
+programas = ["Ahora 3","Ahora 6","Ahora 12","Ahora 18","Ahora 24"]
+programa_seleccionado = st.selectbox("Seleccione el programa",programas)    
+
+st.write("---")
+# Que seleccione 
+inscripciones = ["Monotributista", "Responsable Inscripto", "Sociedad"]
+tipo_inscripcion = st.selectbox("Seleccione el tipo de inscripción",inscripciones)
+
+
+
 
 st.write("---")
 
