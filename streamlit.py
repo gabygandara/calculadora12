@@ -7,7 +7,6 @@ import pandas as pd
 st.set_page_config(
     page_title="Calculadora Ahora 12",
     page_icon="📊",
-    layout="centered",
     )
 
 # Columnas superiores
