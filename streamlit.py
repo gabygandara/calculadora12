@@ -105,8 +105,6 @@ monto_final = monto_final.replace(" ",".")
 # reintegro a percibir
 reintegro = iva_arancel + iva_programa + iva3
 
-# sumas para el total de descuentos
-total_descuentos_1
 
 #descuentos %
 total_descuentos_en_porcentaje = (total_descuentos_1 / monto_credito ) 
