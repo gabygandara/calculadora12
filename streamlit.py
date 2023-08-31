@@ -9,21 +9,23 @@ st.set_page_config(
     page_icon="📊",
     )
 
+# Titulo
+st.markdown("# **Calculadora Ahora 12**")
 
 # Columnas superiores
 col1, col2, col3 = st.columns(3)
 
 with col1 :
-    st.image("imgs/CAME-Transparente.png")
+    st.write("")
 
 with col2 : 
-    st.image("imgs/comercio@4x.png")
+    st.image("imgs/Diseño sin título (9).png")
     
 with col3 :
-    st.image("imgs/logo_ahora12.png")
+    st.write("")
 
-# Titulo
-st.title("Calculadora papa")
+
+
 
 # Realizamos el input del monto
 monto_credito = st.number_input("Ingrese el monto")
