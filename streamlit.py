@@ -105,6 +105,14 @@ monto_final = monto_final.replace(" ",".")
 # reintegro a percibir
 reintegro = iva_arancel + iva_programa + iva3
 
+# sumas para el total de descuentos
+total_descuentos_1
+
+#descuentos %
+total_descuentos_en_porcentaje = (total_descuentos_1 / monto_credito ) 
+
+total_descuentos_pesos = monto_a_cobrar * total_descuentos_en_porcentaje
+
 colA, colB = st.columns([1,2])
 with colA : 
     if st.button("Calcular"):
@@ -118,16 +126,24 @@ with colB:
     else:
          st.write("")    
 
+
+st.write()
+st.write(f"Monto actual: ${monto_credito}")
+st.write(f"Monto a cobrar: ${monto_final}")
+st.write(f"Total de descuentos: {total_descuentos_en_porcentaje}%")
+st.write(f"Total de descuentos ($): ${total_descuentos_pesos}")
+st.write(f"Neto a percibir: ${monto_a_cobrar - total_descuentos_pesos}")
+
+
+
 if aux == True : 
-    st.write("Composición del precio sugerido:")
-    st.write(f"+ Tasa del programa {programa_seleccionado} ({tasas_cft[programa_seleccionado]*100}%): **${base_tasa_programa}**")
-    st.write(f"+ Arancel T.Cred (1.8%): **${base_arancel}**")
-    st.write("Impuestos:")
-    st.write(f"+ IVA (21%): **${iva_arancel}**")
-    st.write(f"+ IVA (10.5%) ley 25.063: **${iva_programa}**")
-    st.write("Percepciones:")
-    st.write(f"+ II.BB (2.5%): **${iibb}**")
-    st.write(f"+ IVA RG2408 (1.5%): **${iva3}**")
+    st.write("##### **Detalle de descuentos:**")
+    st.write(f"+ ##### Tasa del programa {programa_seleccionado} ({tasas_cft[programa_seleccionado]*100}%): **${base_tasa_programa}**")
+    st.write(f"+ ##### Arancel T.Cred (1.8%): **${base_arancel}**")
+    st.write(f"+ ##### IVA (21%): **${iva_arancel}**")
+    st.write(f"+ ##### IVA (10.5%) ley 25.063: **${iva_programa}**")
+    st.write(f"+ ##### II.BB (2.5%): **${iibb}**")
+    st.write(f"+ ##### IVA RG2408 (1.5%): **${iva3}**")
     
 
     if (tipo_inscripcion != "Monotributista"):
