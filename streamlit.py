@@ -11,7 +11,7 @@ st.set_page_config(
     )
 
 # Realizamos el input del monto
-monto_credito = st.number_input()
+monto_credito = st.number_input("Ingrese el monto")
 
 # Inputo de la cuota
 cuotas = ["3","6","12","18","24"]
