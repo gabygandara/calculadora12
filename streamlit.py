@@ -107,11 +107,12 @@ with colB:
 
         # reintegro a percibir
         #reintegro = iva_arancel + iva_programa + iva3
-
+        
+        st.write(f"## El precio sugerido es: $**{monto_a_cobrar}**")
 with colC :
     st.write("")
 
-st.write(f"## El precio sugerido es: $**{monto_a_cobrar}**")
+
 
 st.write("---")
 
