@@ -124,15 +124,17 @@ with colB:
     else:
          st.write("")    
 
+st.write("---")
 
 if aux == True : 
     st.write(f"+ ##### Monto actual: ${monto_credito}")
     st.write(f"+ ##### Monto a cobrar: ${monto_final}")
     st.write(f"+ ##### Total de descuentos: {round(total_descuentos_en_porcentaje,1)*100}%")
     st.write(f"+ ##### Total de descuentos en pesos: ${round(total_descuentos_pesos,1)}")
-    st.write(f"+ ##### Neto a percibir: ${(round(monto_a_cobrar - total_descuentos_pesos),1)}")
+    st.write(f"+ ##### Neto a percibir: ${round((monto_a_cobrar - total_descuentos_pesos),1)}")
 
 
+st.write("---")
 
 if aux == True : 
     st.write("**Detalle de descuentos:**")
