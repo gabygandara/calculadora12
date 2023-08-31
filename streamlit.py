@@ -10,14 +10,6 @@ st.set_page_config(
     layout="centered",
     )
 
-# Realizamos el input del monto
-monto_credito = st.number_input("Ingrese el monto")
-
-# Inputo de la cuota
-cuotas = ["3","6","12","18","24"]
-cuota = st.selectbox("Cantidad de cuotas",cuotas)
-
-
 # Columnas superiores
 col1, col2, col3 = st.columns(3)
 
@@ -30,6 +22,13 @@ with col2 :
         st.image("imgs/logo_ahora12.png" )
     with colB:
         st.title("Calculadora Ahora 12")
+        # Realizamos el input del monto
+        monto_credito = st.number_input("Ingrese el monto")
+        
+        # Inputo de la cuota
+        cuotas = ["3","6","12","18","24"]
+        cuota = st.selectbox("Cantidad de cuotas",cuotas)
+
 
 
     
