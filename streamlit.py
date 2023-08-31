@@ -54,65 +54,58 @@ inscripciones = ["Monotributista", "Responsable Inscripto", "Sociedad"]
 tipo_inscripcion = st.selectbox("Seleccione el tipo de inscripción",inscripciones)
 
 st.write("---")
-colA, colB, colC = st.columns(3)
-
-with colA :
-    st.write("")
-
-with colB:    
-    if st.button("Calcular"):
+ 
+if st.button("Calcular"):
         # monto credito
-        monto_credito = int(monto_credito)
-        st.write(f"{monto_credito}")
+    monto_credito = int(monto_credito)
+    st.write(f"{monto_credito}")
 
         # programa seleccionado
-        tasas_interes = tasas_cft[programa_seleccionado]
-        st.write(f"{tasas_interes}")
+    tasas_interes = tasas_cft[programa_seleccionado]
+    st.write(f"{tasas_interes}")
 
-        # Arancel de la tarjeta de credito
-        arancel_tarjeta = 0.018
+    # Arancel de la tarjeta de credito
+    arancel_tarjeta = 0.018
 
-        # Calculamos la tasa del probrama
-        base_tasa_programa = monto_credito * tasas_interes
+    # Calculamos la tasa del probrama
+    base_tasa_programa = monto_credito * tasas_interes
 
-        # Calculamos la base 2
-        base_arancel = monto_credito * arancel_tarjeta
+    # Calculamos la base 2
+    base_arancel = monto_credito * arancel_tarjeta
 
-        # Iva arancel
-        iva_arancel = 0.21 * base_arancel
+    # Iva arancel
+    iva_arancel = 0.21 * base_arancel
 
-        # Iva del programa
-        iva_programa = 0.105 * base_tasa_programa
+    # Iva del programa
+    iva_programa = 0.105 * base_tasa_programa
 
-        # ingreso bruto
-        iibb = 0.025 * base_tasa_programa
+    # ingreso bruto
+    iibb = 0.025 * base_tasa_programa
 
-        # otro iva
-        iva3 = 0.015 * base_tasa_programa
+    # otro iva
+    iva3 = 0.015 * base_tasa_programa
 
-        # total de descuentos
-        total_descuentos_1 = base_tasa_programa + iva_arancel + iva_programa + iibb + iva3 + base_arancel
+    # total de descuentos
+    total_descuentos_1 = base_tasa_programa + iva_arancel + iva_programa + iibb + iva3 + base_arancel
 
-        # neto_percibido
-        neto_percibido = monto_credito - total_descuentos_1
+    # neto_percibido
+    neto_percibido = monto_credito - total_descuentos_1
 
-        # descuento en %
-        total_descuentos_2 = (total_descuentos_1 / monto_credito )
+    # descuento en %
+    total_descuentos_2 = (total_descuentos_1 / monto_credito )
 
-        # monto a cobrar
-        monto_a_cobrar = ( 1 / (1-total_descuentos_2) * monto_credito )
-        monto_final = '{:,.2f}'.format(monto_a_cobrar).replace(',', ' ')
-        monto_final = monto_final.replace(".",",")
-        monto_final = monto_final.replace(" ",".")
+    # monto a cobrar
+    monto_a_cobrar = ( 1 / (1-total_descuentos_2) * monto_credito )
+    monto_a_cobrar = round(monto_a_cobrar,2)
+    monto_final = '{:,.2f}'.format(monto_a_cobrar).replace(',', ' ')
+    monto_final = monto_final.replace(".",",")
+    monto_final = monto_final.replace(" ",".")
 
-        # reintegro a percibir
-        #reintegro = iva_arancel + iva_programa + iva3
-        
-        st.write(f"## El precio sugerido es: $**{monto_a_cobrar}**")
-with colC :
-    st.write("")
+    # reintegro a percibir
+    #reintegro = iva_arancel + iva_programa + iva3
 
 
+    st.write(f"## El precio sugerido es: $**{monto_a_cobrar}**")
 
 st.write("---")
 
