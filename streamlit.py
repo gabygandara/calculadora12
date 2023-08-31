@@ -15,7 +15,7 @@ tasas_cft = {"Ahora 3" : 0.1024 ,
          "Ahora 12" : 0.3297 , 
          "Ahora 18" : 0.4380 ,
          "Ahora 24"  : 0.5221}
-
+aux = False
 
 
 # Aplicar estilos de formato CSS para agrandar el título
@@ -54,7 +54,7 @@ inscripciones = ["Monotributista", "Responsable Inscripto", "Sociedad"]
 tipo_inscripcion = st.selectbox("Seleccione el tipo de inscripción",inscripciones)
 
 st.write("---")
-aux = False
+
 
 colA, colB = st.columns([1,2])
 with colA : 
