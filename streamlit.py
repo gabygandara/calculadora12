@@ -124,9 +124,10 @@ with colB:
     else:
          st.write("")    
 
-st.write("---")
+
 
 if aux == True : 
+    st.write("---")
     st.write(f"+ ##### Monto actual: ${monto_credito}")
     st.write(f"+ ##### Monto a cobrar: ${monto_final}")
     st.write(f"+ ##### Total de descuentos: {round(total_descuentos_en_porcentaje,1)*100}%")
@@ -134,9 +135,10 @@ if aux == True :
     st.write(f"+ ##### Neto a percibir: ${round((monto_a_cobrar - total_descuentos_pesos),1)}")
 
 
-st.write("---")
+
 
 if aux == True : 
+    st.write("---")
     st.write("**Detalle de descuentos:**")
     st.write(f"+ Tasa del programa {programa_seleccionado} ({tasas_cft[programa_seleccionado]*100}%): **${round(base_tasa_programa,1)}**")
     st.write(f"+ Arancel T.Cred (1.8%): **${round(base_arancel,1)}**")
