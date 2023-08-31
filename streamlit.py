@@ -49,8 +49,44 @@ tipo_inscripcion = st.selectbox("Seleccione el tipo de inscripción",inscripcion
 
 st.write("---")
 
+#    # Estilos CSS para el botón
+button_style = """
+        <style>
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .styled-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .styled-button:hover {
+            background-color: #45a049;
+        }
+        </style>
+    """
 
+    # Insertar estilos CSS en el encabezado de la página
+st.markdown(button_style, unsafe_allow_html=True)
+
+    # Diseño centrado con clase "center"
+st.write('<div class="center">', unsafe_allow_html=True)
     
+    # Botón estilizado con clase "styled-button"
+if st.button("Mi Botón"):
+    st.write("¡Botón pulsado!")
+st.write('</div>', unsafe_allow_html=True)
 
 
 st.write("---")
