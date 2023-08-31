@@ -35,6 +35,11 @@ st.write("---")
 monto_credito = st.text_input("Ingrese el monto sin puntos ni comas", value="$0")
 monto_credito = monto_credito.replace("$", "")
 
+try:
+    monto_credito = int(monto_credito)
+except ValueError:
+    st.write("Por favor, ingrese un monto válido.")
+
 st.write("---")
 # Inputo de la cuota
 programas = ["Ahora 3","Ahora 6","Ahora 12","Ahora 18","Ahora 24"]
@@ -54,3 +59,5 @@ monto_credito = monto_credito.strip()
 st.write("---")
 
 st.write("Desarrollado por el departamento de Estadísticas y Bases de datos de CAME")
+
+
