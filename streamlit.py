@@ -45,7 +45,7 @@ if monto_input != "$":
     monto_credito = monto_credito.replace("$", "")
     monto_credito = int(monto_credito)
 else:
-    monto_credito = 0
+    monto_credito = 1
 
 st.write("---")
 # Inputo de la cuota
