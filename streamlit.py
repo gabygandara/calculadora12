@@ -54,3 +54,11 @@ st.write("---")
 
 st.write("Desarrollado por el departamento de Estadísticas y Bases de datos de CAME")
 
+monto_str = st.text_input("Ingrese un monto:", value="$0")
+monto_str = monto_str.replace("$", "").replace(",", "")  # Quitar "$" y ","
+
+try:
+    monto = int(monto_str)
+    st.write("Monto ingresado:", monto)
+except ValueError:
+    st.write("Por favor, ingrese un monto válido.")
