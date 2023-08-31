@@ -55,56 +55,55 @@ tipo_inscripcion = st.selectbox("Seleccione el tipo de inscripción",inscripcion
 
 st.write("---")
 
+                # monto credito
+monto_credito = int(monto_credito)
+
+                # programa seleccionado
+tasas_interes = tasas_cft[programa_seleccionado]
+
+            # Arancel de la tarjeta de credito
+arancel_tarjeta = 0.018
+
+            # Calculamos la tasa del probrama
+base_tasa_programa = monto_credito * tasas_interes
+
+            # Calculamos la base 2
+base_arancel = monto_credito * arancel_tarjeta
+
+            # Iva arancel
+iva_arancel = 0.21 * base_arancel
+
+            # Iva del programa
+iva_programa = 0.105 * base_tasa_programa
+
+            # ingreso bruto
+iibb = 0.025 * base_tasa_programa
+
+            # otro iva
+iva3 = 0.015 * base_tasa_programa
+
+            # total de descuentos
+total_descuentos_1 = base_tasa_programa + iva_arancel + iva_programa + iibb + iva3 + base_arancel
+
+            # neto_percibido
+neto_percibido = monto_credito - total_descuentos_1
+
+            # descuento en %
+total_descuentos_2 = (total_descuentos_1 / monto_credito )
+
+            # monto a cobrar
+monto_a_cobrar = ( 1 / (1-total_descuentos_2) * monto_credito )
+monto_a_cobrar = round(monto_a_cobrar,2)
+monto_final = '{:,.2f}'.format(monto_a_cobrar).replace(',', ' ')
+monto_final = monto_final.replace(".",",")
+monto_final = monto_final.replace(" ",".")
+
+# reintegro a percibir
+reintegro = iva_arancel + iva_programa + iva3
 
 colA, colB = st.columns([1,2])
 with colA : 
     if st.button("Calcular"):
-                # monto credito
-        monto_credito = int(monto_credito)
-
-                # programa seleccionado
-        tasas_interes = tasas_cft[programa_seleccionado]
-
-            # Arancel de la tarjeta de credito
-        arancel_tarjeta = 0.018
-
-            # Calculamos la tasa del probrama
-        base_tasa_programa = monto_credito * tasas_interes
-
-            # Calculamos la base 2
-        base_arancel = monto_credito * arancel_tarjeta
-
-            # Iva arancel
-        iva_arancel = 0.21 * base_arancel
-
-            # Iva del programa
-        iva_programa = 0.105 * base_tasa_programa
-
-            # ingreso bruto
-        iibb = 0.025 * base_tasa_programa
-
-            # otro iva
-        iva3 = 0.015 * base_tasa_programa
-
-            # total de descuentos
-        total_descuentos_1 = base_tasa_programa + iva_arancel + iva_programa + iibb + iva3 + base_arancel
-
-            # neto_percibido
-        neto_percibido = monto_credito - total_descuentos_1
-
-            # descuento en %
-        total_descuentos_2 = (total_descuentos_1 / monto_credito )
-
-            # monto a cobrar
-        monto_a_cobrar = ( 1 / (1-total_descuentos_2) * monto_credito )
-        monto_a_cobrar = round(monto_a_cobrar,2)
-        monto_final = '{:,.2f}'.format(monto_a_cobrar).replace(',', ' ')
-        monto_final = monto_final.replace(".",",")
-        monto_final = monto_final.replace(" ",".")
-
-         # reintegro a percibir
-        reintegro = iva_arancel + iva_programa + iva3
-
         # instanciamos aux
         aux = True
 
@@ -115,18 +114,20 @@ with colB:
     else:
          st.write("")    
 
-st.write("Composición del precio sugerido:")
-st.write(f"+ Arancel T.Cred (1.8%): **${arancel_tarjeta}**")
-st.write("Impuestos:")
-st.write(f"+ IVA (21%): **${iva_arancel}**")
-st.write(f"+ IVA (10.5%) ley 25.063: **${iva_programa}**")
-st.write("Percepciones:")
-st.write(f"+ II.BB (2.5%): **${iibb}**")
-st.write(f"+ IVA RG2408 (1.5%): **${iva3}**")
-st.write(f"+ El precio sugerido es: **${monto_final}**")
+if aux == True : 
+    st.write("Composición del precio sugerido:")
+    st.write(f"+ Tasa del programa {programa_seleccionado} ({tasas_cft[programa_seleccionado]*100}%): **${base_tasa_programa}**")
+    st.write(f"+ Arancel T.Cred (1.8%): **${base_arancel}**")
+    st.write("Impuestos:")
+    st.write(f"+ IVA (21%): **${iva_arancel}**")
+    st.write(f"+ IVA (10.5%) ley 25.063: **${iva_programa}**")
+    st.write("Percepciones:")
+    st.write(f"+ II.BB (2.5%): **${iibb}**")
+    st.write(f"+ IVA RG2408 (1.5%): **${iva3}**")
+    
 
-if (tipo_inscripcion != "Monotributista"):
-    st.write(f"**ATENCIÓN**: Al estar inscripto como {tipo_inscripcion} usted recuperará **${reintegro}** en concepto de IVA")
+    if (tipo_inscripcion != "Monotributista"):
+        st.write(f"**ATENCIÓN**: Al estar inscripto como {tipo_inscripcion} usted recuperará **${reintegro}** en concepto de IVA")
 
 
 st.write("---")
