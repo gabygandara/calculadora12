@@ -32,7 +32,7 @@ with col3 :
 
 st.write("---")
 # Realizamos el input del monto
-monto_credito = st.text_input("Ingrese el monto", value="$", format="%,d")
+monto_credito = st.text_input("Ingrese el monto", value="$")
 
 st.write("---")
 # Inputo de la cuota
