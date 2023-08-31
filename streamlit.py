@@ -24,7 +24,7 @@ with col1 :
     st.write("")
 
 with col2 : 
-    st.image("imgs/logos_came_recortados.png",use_column_width=True)
+    st.image("imgs/logos_came_recortados.png",width=600)
     
 with col3 :
     st.write("")
