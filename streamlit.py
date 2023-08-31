@@ -128,24 +128,24 @@ with colB:
 if aux == True : 
     st.write(f"+ ##### Monto actual: ${monto_credito}")
     st.write(f"+ ##### Monto a cobrar: ${monto_final}")
-    st.write(f"+ ##### Total de descuentos: {round(total_descuentos_en_porcentaje,2)*100}%")
-    st.write(f"+ ##### Total de descuentos '($)': ${round(total_descuentos_pesos,2)}")
-    st.write(f"+ ##### Neto a percibir: ${(round(monto_a_cobrar - total_descuentos_pesos),2)}")
+    st.write(f"+ ##### Total de descuentos: {round(total_descuentos_en_porcentaje,1)*100}%")
+    st.write(f"+ ##### Total de descuentos en pesos: ${round(total_descuentos_pesos,1)}")
+    st.write(f"+ ##### Neto a percibir: ${(round(monto_a_cobrar - total_descuentos_pesos),1)}")
 
 
 
 if aux == True : 
     st.write("**Detalle de descuentos:**")
-    st.write(f"+ Tasa del programa {programa_seleccionado} ({tasas_cft[programa_seleccionado]*100}%): **${round(base_tasa_programa,2)}**")
-    st.write(f"+ Arancel T.Cred (1.8%): **${round(base_arancel,2)}**")
-    st.write(f"+ IVA (21%): **${round(iva_arancel,2)}**")
-    st.write(f"+ IVA (10.5%) ley 25.063: **${round(iva_programa,2)}**")
-    st.write(f"+ II.BB (2.5%): **${round(iibb,2)}**")
-    st.write(f"+ IVA RG2408 (1.5%): **${round(iva3,2)}**")
+    st.write(f"+ Tasa del programa {programa_seleccionado} ({tasas_cft[programa_seleccionado]*100}%): **${round(base_tasa_programa,1)}**")
+    st.write(f"+ Arancel T.Cred (1.8%): **${round(base_arancel,1)}**")
+    st.write(f"+ IVA (21%): **${round(iva_arancel,1)}**")
+    st.write(f"+ IVA (10.5%) ley 25.063: **${round(iva_programa,1)}**")
+    st.write(f"+ II.BB (2.5%): **${round(iibb,1)}**")
+    st.write(f"+ IVA RG2408 (1.5%): **${round(iva3,1)}**")
     
 
     if (tipo_inscripcion != "Monotributista"):
-        st.write(f"**ATENCIÓN**: Al estar inscripto como {tipo_inscripcion} usted recuperará **${round(reintegro,2)}** en concepto de IVA")
+        st.write(f"**ATENCIÓN**: Al estar inscripto como {tipo_inscripcion} usted recuperará **${round(reintegro,1)}** en concepto de IVA")
 
 
 st.write("---")
