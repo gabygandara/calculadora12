@@ -10,7 +10,7 @@ st.set_page_config(
     )
 
 # Titulo centrado con columnas
-col11, col22, col33 = st.columns([1, 2, 1])
+col11, col22, col33 = st.columns([0.5, 3, 0.5])
 
 with col11:
     st.write("")
