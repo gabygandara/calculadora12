@@ -9,11 +9,13 @@ st.set_page_config(
     page_icon="📊",
     )
 
-# Titulo
-st.markdown("# **Calculadora Ahora 12**")
+# Titulo centrado con columnas
+col11, col22, col33 = st.columns([1, 2, 1])
+with col11:
+    st.markdown("# **Calculadora Ahora 12**")
 
-# Columnas superiores
-col1, col2, col3 = st.columns(3)
+# Columnas inferiores
+col1, col2, col3 = st.columns([1,2,1])
 
 with col1 :
     st.write("")
@@ -26,10 +28,13 @@ with col3 :
 
 
 
+# Inputo de la cuota
+cuotas = ["Ahora 3","Ahora 6","Ahora 12","Ahora 18","Ahora 24"]
+cuota = st.selectbox("Programa",cuotas)    
+
+# Que seleccione 
+
 
 # Realizamos el input del monto
 monto_credito = st.number_input("Ingrese el monto")
 
-# Inputo de la cuota
-cuotas = ["Ahora 3","Ahora 6","Ahora 12","Ahora 18","Ahora 24"]
-cuota = st.selectbox("Programa",cuotas)    
