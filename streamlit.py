@@ -33,7 +33,7 @@ with col3 :
 st.write("---")
 # Realizamos el input del monto
 monto_credito = st.text_input("Ingrese el monto sin puntos ni comas", value="$0")
-monto_credito = monto_credito.str.replace("$", "")
+monto_credito = monto_credito.replace("$", "")
 
 st.write("---")
 # Inputo de la cuota
@@ -54,12 +54,3 @@ monto_credito = monto_credito.strip()
 st.write("---")
 
 st.write("Desarrollado por el departamento de Estadísticas y Bases de datos de CAME")
-
-monto_str = st.text_input("Ingrese un monto:", value="$0")
-monto_str = monto_str.replace("$", "").replace(",", "")  # Quitar "$" y ","
-
-try:
-    monto = int(monto_str)
-    st.write("Monto ingresado:", monto)
-except ValueError:
-    st.write("Por favor, ingrese un monto válido.")
