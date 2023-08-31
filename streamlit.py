@@ -17,20 +17,14 @@ st.markdown("<h1 style='text-align: center; font-size: 60px;'>Calculadora Ahora 
 
 st.write("---")
 
-
-st.markdown("""
-<div style="display: flex; justify-content: center; align-items: center;">
-  <img src="imgs/logos_came_recortados.png" alt="Imagen" width="100%" height="100%">
-</div>
-""", unsafe_allow_html=True)
 # Columnas inferiores
-col1, col2, col3 = st.columns([0.5,3,1])
+col1, col2, col3 = st.columns([0.5,3,0.5])
 
 with col1 :
     st.write("")
 
 with col2 : 
-    st.image("imgs/logos_came_recortados.png",width=600)
+    st.image("imgs/logos_came_recortados.png",use_column_width=True)
     
 with col3 :
     st.write("")
