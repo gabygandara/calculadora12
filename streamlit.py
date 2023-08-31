@@ -105,7 +105,7 @@ if st.button("Calcular"):
     #reintegro = iva_arancel + iva_programa + iva3
 
 
-    st.write(f"## El precio sugerido es: $**{monto_a_cobrar}**")
+    st.write(f"## El precio sugerido es: $**{monto_final}**")
 
 st.write("---")
 
