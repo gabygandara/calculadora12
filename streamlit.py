@@ -9,7 +9,13 @@ st.set_page_config(
     page_icon="📊",
     )
 
-# Titulo centrado con columnas
+# Creamos la tasa de interés
+tasas_cft = {"Ahora 3" : 0.1024 ,
+         "Ahora 6" : 0.2887 ,
+         "Ahora 12" : 0.3297 , 
+         "Ahora 18" : 0.4380 ,
+         "Ahora 24"  : 0.5221}
+
 
 
 # Aplicar estilos de formato CSS para agrandar el título
@@ -43,37 +49,60 @@ programas = ["Ahora 3","Ahora 6","Ahora 12","Ahora 18","Ahora 24"]
 programa_seleccionado = st.selectbox("Seleccione el programa",programas)    
 
 st.write("---")
+
 # Que seleccione 
 inscripciones = ["Monotributista", "Responsable Inscripto", "Sociedad"]
 tipo_inscripcion = st.selectbox("Seleccione el tipo de inscripción",inscripciones)
 
 st.write("---")
 
-   # Estilos CSS para el contenedor centrado
-st.markdown(
-        """
-        <style>
-        .center {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+if st.button("Mi Botón"):
+    # monto credito
+    monto_credito = int(monto_credito)
+    st.write(f"{monto_credito}")
 
-    # Contenedor centrado
-st.write('<div class="center">', unsafe_allow_html=True)
-    
-    # Botón estilizado
-if st.button("Mi Botón", key="my_button"):
-    st.write("¡Botón pulsado!")
+    # programa seleccionado
+    tasas_interes = tasas_cft[programa_seleccionado]
+    st.write(f"{tasas_interes}")
 
-    # Finalizar el contenedor centrado
-st.write('</div>', unsafe_allow_html=True)
+    # Arancel de la tarjeta de credito
+    arancel_tarjeta = 0.018
+
+    # Calculamos la tasa del probrama
+    base_tasa_programa = monto_credito * tasas_interes
+
+    # Calculamos la base 2
+    base_arancel = monto_credito * arancel_tarjeta
+
+    # Iva arancel
+    iva_arancel = 0.21 * base_arancel
+
+    # Iva del programa
+    iva_programa = 0.105 * base_tasa_programa
+
+    # ingreso bruto
+    iibb = 0.025 * base_tasa_programa
+
+    # otro iva
+    iva3 = 0.015 * base_tasa_programa
+
+    # total de descuentos
+    total_descuentos_1 = base_tasa_programa + iva_arancel + iva_programa + iibb + iva3 + base_arancel
+
+    # neto_percibido
+    neto_percibido = monto_credito - total_descuentos_1
+
+    # descuento en %
+    total_descuentos_2 = (total_descuentos_1 / monto_credito )
+
+    # monto a cobrar
+    monto_a_cobrar = ( 1 / (1-total_descuentos_2) * monto_credito )
+
+    # reintegro a percibir
+    #reintegro = iva_arancel + iva_programa + iva3
+
+
+
 st.write("---")
 
 st.write("Desarrollado por el departamento de Estadísticas y Bases de datos de CAME")
