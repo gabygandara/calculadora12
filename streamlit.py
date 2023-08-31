@@ -84,7 +84,7 @@ st.markdown(button_style, unsafe_allow_html=True)
 st.write('<div class="center">', unsafe_allow_html=True)
     
     # Botón estilizado con clase "styled-button"
-if st.button("Mi Botón"):
+if st.button("Mi Botón", key="my_button"):
     st.write("¡Botón pulsado!")
 st.write('</div>', unsafe_allow_html=True)
 
