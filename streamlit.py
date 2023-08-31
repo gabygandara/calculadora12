@@ -15,7 +15,7 @@ col11, col22, col33 = st.columns([0.5, 3, 0.5])
 with col11:
     st.write("")
 with col22:
-    st.markdown("# **Calculadora Ahora 12**")
+    st.markdown("#   **Calculadora Ahora 12**")
 with col33:
     st.write("")
 
@@ -26,7 +26,7 @@ with col1 :
     st.write("")
 
 with col2 : 
-    st.image("imgs/Diseño sin título (9).png")
+    st.image("imgs/Diseño sin título (9).png",use_column_width=True)
     
 with col3 :
     st.write("")
