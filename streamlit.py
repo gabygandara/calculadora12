@@ -58,11 +58,9 @@ st.write("---")
 if st.button("Calcular"):
         # monto credito
     monto_credito = int(monto_credito)
-    st.write(f"{monto_credito}")
 
         # programa seleccionado
     tasas_interes = tasas_cft[programa_seleccionado]
-    st.write(f"{tasas_interes}")
 
     # Arancel de la tarjeta de credito
     arancel_tarjeta = 0.018
@@ -105,7 +103,12 @@ if st.button("Calcular"):
     #reintegro = iva_arancel + iva_programa + iva3
 
 
-    st.write(f"## El precio sugerido es: $**{monto_final}**")
+    st.write(f"+ El precio sugerido es: $**{monto_final}**")
+    st.write(f"+ El precio sugerido es: $**{monto_final}**")
+    st.write(f"+ El precio sugerido es: $**{monto_final}**")
+    st.write(f"+ El precio sugerido es: $**{monto_final}**")
+    st.write(f"+ El precio sugerido es: $**{monto_final}**")
+    st.write(f"+ El precio sugerido es: $**{monto_final}**")
 
 st.write("---")
 
