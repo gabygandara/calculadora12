@@ -16,12 +16,12 @@ st.set_page_config(
 col1, col2, col3 = st.columns([1,2,1])
 
 with col1 :
-    st.image("imgs/CAME-Transparente.png", width=600)
+    st.image("imgs/CAME-Transparente.png", width=200)
 
 with col2 : 
     colA, colB = st.columns([1,2]) 
     with colA:
-        st.image("imgs/logo_ahora12.png", width=600)
+        st.image("imgs/logo_ahora12.png", width=200)
     with colB:
         st.title("Calculadora Ahora 12")
 
@@ -37,4 +37,4 @@ with col2 :
     
 
 with col3 :
-    st.image("imgs/comercio@4x.png", width=600)
+    st.image("imgs/comercio@4x.png", width=200)
