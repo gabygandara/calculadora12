@@ -47,8 +47,7 @@ tipo_inscripcion = st.selectbox("Seleccione el tipo de inscripción",inscripcion
 st.write("---")
 
 monto_credito = monto_credito.strip()
-
-monto_credito = int(monto_credito)    
+    
 
 
 st.write("---")
