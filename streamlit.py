@@ -32,8 +32,10 @@ with col3 :
 
 st.write("---")
 # Realizamos el input del monto
-monto_credito = st.text_input("Ingrese el monto sin puntos ni comas", value="$0")
+monto_input = st.text_input("Ingrese el monto sin puntos ni comas", value="$")
+monto_credito = monto_input.strip()
 monto_credito = monto_credito.replace("$", "")
+
 
 try:
     monto_credito = int(monto_credito)
@@ -52,7 +54,7 @@ tipo_inscripcion = st.selectbox("Seleccione el tipo de inscripción",inscripcion
 
 st.write("---")
 
-monto_credito = monto_credito.strip()
+
     
 
 
