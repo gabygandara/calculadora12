@@ -188,12 +188,6 @@ with colA :
 
 with colB:
     
-    # codigo de la tarjeta por las dudas
-    """padding: 20px;
-                border-radius: 5px;
-                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-                background-color: #f9f9f9;"""
-
     custom_css = """
         <style>
             .tarjeta {
