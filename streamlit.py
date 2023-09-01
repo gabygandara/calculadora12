@@ -40,12 +40,18 @@ st.write("---")
 # Realizamos el input del monto
 
 monto_input = st.text_input("Ingrese el monto sin puntos ni comas", value="$")
-if monto_input != "$":
-    monto_credito = monto_input.strip()
-    monto_credito = monto_credito.replace("$", "")
-    monto_credito = int(monto_credito)
+monto_credito = monto_input.strip()
+monto_credito = monto_credito.replace("$", "").replace(".","").replace(",,",",").replace(",",".")
+
+if monto_credito == "" or monto_credito == "$" or monto_credito == " " : 
+    aux3 = False 
 else:
-    monto_credito = 1
+    try:
+        monto_credito = float(monto_credito)
+        aux3= True
+    except ValueError:
+        st.text("Coloque un número válido porfavor")
+        aux3 = False         
 
 st.write("---")
 # Inputo de la cuota
@@ -60,66 +66,63 @@ tipo_inscripcion = st.selectbox("Seleccione el tipo de inscripción",inscripcion
 
 st.write("---")
 
+if aux3 == True :
+
+                    # programa seleccionado
+    tasas_interes = tasas_cft[programa_seleccionado]
+
+                # Arancel de la tarjeta de credito
+    arancel_tarjeta = 0.018
+
+                # Calculamos la tasa del probrama
+    base_tasa_programa = monto_credito * tasas_interes
+
+                # Calculamos la base 2
+    base_arancel = monto_credito * arancel_tarjeta
+
+                # Iva arancel
+    iva_arancel = 0.21 * base_arancel
+
+                # Iva del programa
+    iva_programa = 0.105 * base_tasa_programa
+
+                # ingreso bruto
+    iibb = 0.025 * base_tasa_programa
+
+                # otro iva
+    iva3 = 0.015 * base_tasa_programa
+
+                # total de descuentos
+    total_descuentos_1 = base_tasa_programa + iva_arancel + iva_programa + iibb + iva3 + base_arancel
+
+                # neto_percibido
+    neto_percibido = monto_credito - total_descuentos_1
+
+                # descuento en %
+    total_descuentos_2 = (total_descuentos_1 / monto_credito )
+
+                # monto a cobrar
+    monto_a_cobrar = ( 1 / (1-total_descuentos_2) * monto_credito )
+
+    # reintegro a percibir
+    reintegro = iva_arancel + iva_programa + iva3
 
 
-                # programa seleccionado
-tasas_interes = tasas_cft[programa_seleccionado]
+    #descuentos %
+    total_descuentos_en_porcentaje = (total_descuentos_1 / monto_credito ) 
 
-            # Arancel de la tarjeta de credito
-arancel_tarjeta = 0.018
+    total_descuentos_pesos = monto_a_cobrar * total_descuentos_en_porcentaje
 
-            # Calculamos la tasa del probrama
-base_tasa_programa = monto_credito * tasas_interes
+    neto_a_percibir = monto_a_cobrar - total_descuentos_pesos
 
-            # Calculamos la base 2
-base_arancel = monto_credito * arancel_tarjeta
+    # Creamos lista de variables
+    lista_variables = [monto_credito, monto_a_cobrar, total_descuentos_pesos, neto_a_percibir, base_tasa_programa, base_arancel, iva_arancel, iva_programa, iibb, iva3, reintegro]
 
-            # Iva arancel
-iva_arancel = 0.21 * base_arancel
-
-            # Iva del programa
-iva_programa = 0.105 * base_tasa_programa
-
-            # ingreso bruto
-iibb = 0.025 * base_tasa_programa
-
-            # otro iva
-iva3 = 0.015 * base_tasa_programa
-
-            # total de descuentos
-total_descuentos_1 = base_tasa_programa + iva_arancel + iva_programa + iibb + iva3 + base_arancel
-
-            # neto_percibido
-neto_percibido = monto_credito - total_descuentos_1
-
-            # descuento en %
-total_descuentos_2 = (total_descuentos_1 / monto_credito )
-
-            # monto a cobrar
-monto_a_cobrar = ( 1 / (1-total_descuentos_2) * monto_credito )
-monto_final = '{:,.1f}'.format(monto_a_cobrar).replace(',', ' ')
-monto_final = monto_final.replace(".",",")
-monto_final = monto_final.replace(" ",".")
-
-# reintegro a percibir
-reintegro = iva_arancel + iva_programa + iva3
-
-
-#descuentos %
-total_descuentos_en_porcentaje = (total_descuentos_1 / monto_credito ) 
-
-total_descuentos_pesos = monto_a_cobrar * total_descuentos_en_porcentaje
-
-neto_a_percibir = monto_a_cobrar - total_descuentos_pesos
-
-# Creamos lista de variables
-lista_variables = [monto_credito, monto_a_cobrar, total_descuentos_pesos, neto_a_percibir, base_tasa_programa, base_arancel, iva_arancel, iva_programa, iibb, iva3, reintegro]
-
-# iteramos para el formato
-for i in range (len(lista_variables)) :
-    lista_variables[i] = '{:,.1f}'.format(lista_variables[i]).replace(',', ' ')
-    lista_variables[i] = lista_variables[i].replace(".",",")
-    lista_variables[i] = lista_variables[i].replace(" ",".")
+    # iteramos para el formato
+    for i in range (len(lista_variables)) :
+        lista_variables[i] = '{:,.1f}'.format(lista_variables[i]).replace(',', ' ')
+        lista_variables[i] = lista_variables[i].replace(".",",")
+        lista_variables[i] = lista_variables[i].replace(" ",".")
 
 colA, colB = st.columns([1,2])
 with colA : 
@@ -131,7 +134,10 @@ with colA :
         # Cuando se hace clic en el botón, realiza alguna acción
     #    aux = True
     if st.button("Calcular",help="Haz clic para calcular"):
-        aux = True
+        if aux3 == True :
+            aux = True
+        else:
+            st.text("Coloque un número válido porfavor")    
 
     if st.button("Descargar en PDF"):
         st.write("sigue en desarrollo...")    
@@ -158,8 +164,8 @@ with colB:
         
     if aux == True :
         st.markdown(custom_css, unsafe_allow_html=True)
-        monto_final = f"${monto_final}"
-        tarjeta = f'<div class="tarjeta" style="font-size: 45px;font-weight: bold; color: #00008B;">{monto_final}</div>'
+        monto_final = f"${monto_a_cobrar}"
+        tarjeta = f'<div class="tarjeta" style="font-size: 45px;font-weight: bold; color: #00008B;">{monto_a_cobrar}</div>'
         st.markdown('<div class="subheader">El precio sugerido es:</div>', unsafe_allow_html=True)
         st.markdown(tarjeta, unsafe_allow_html=True)
         st.markdown('</div></div>', unsafe_allow_html=True)
@@ -201,34 +207,3 @@ st.write("---")
 st.write("Desarrollado por el departamento de Estadísticas y Bases de datos de CAME")
 
 
-st.write("---")
-st.write("SECTOR DE PRUEBAS")
-
-
-def format_number_with_dot_separator(number):
-    # Convierte el número a una cadena y formatea con separador de miles usando punto "."
-    parts = str(number).split('.')
-    integer_part = parts[0]
-    if len(parts) > 1:
-        decimal_part = '.' + parts[1]
-    else:
-        decimal_part = ''
-    formatted_number = "{:,}".format(int(integer_part)).replace(',', '.') + decimal_part
-    return formatted_number
-
-st.title('Calculadora con Separador de Miles con Punto')
-
-# Entrada del usuario
-user_input = st.text_input('Ingrese un número:', value='0')
-
-# Convierte la entrada del usuario en formato numérico
-try:
-    number = float(user_input.replace(',', ''))
-except ValueError:
-    number = 0.0
-
-# Formatea el número con separador de miles usando punto "." y muestra el resultado en tiempo real
-formatted_number = format_number_with_dot_separator(number)
-st.write(f'Número formateado con separador de miles usando punto: {formatted_number}')
-
-st.write("---")
