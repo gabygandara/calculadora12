@@ -113,23 +113,9 @@ total_descuentos_pesos = monto_a_cobrar * total_descuentos_en_porcentaje
 
 colA, colB = st.columns([1,2])
 with colA : 
-    # Parámetros estáticos para el botón
-    button_text = st.text_input("Texto del Botón", "Haz clic aquí")
-    button_color = st.color_picker("Color del Botón", "#3498db")
-
-    # Ancho y altura estáticos para el botón
-    static_button_width = 200
-    static_button_height = 50
-
-    # Crea un botón personalizado con los parámetros proporcionados
-    if st.button(button_text, key="custom_button", on_click=None, args=(), kwargs={}):
-
-        aux = True
-    # Aplica las personalizaciones al botón con altura y ancho estáticos
-    st.markdown(f'<style>div.stButton > button.el-button {{background-color: {button_color} !important; width: {static_button_width}px !important; height: {static_button_height}px !important;}}</style>', unsafe_allow_html=True)
-   # if st.button("Calcular"):
+    if st.button("Calcular"):
         # instanciamos aux
-        
+        aux = True
 
 with colB:
     if aux == True :
