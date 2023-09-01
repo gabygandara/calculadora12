@@ -113,30 +113,23 @@ total_descuentos_pesos = monto_a_cobrar * total_descuentos_en_porcentaje
 
 colA, colB = st.columns([1,2])
 with colA : 
-    with st.form("my_form"):
-        # Crea el botón con la clase de estilo personalizado
-        button_clicked = st.form_submit_button("Calcular", help="Haz clic para calcular")
+    # Parámetros estáticos para el botón
+    button_text = st.text_input("Texto del Botón", "Haz clic aquí")
+    button_color = st.color_picker("Color del Botón", "#3498db")
 
-    st.markdown(
-        """
-        <style>
-        .my-custom-button {
-            background-color: #4CAF50;
-            color: red;
-            padding: 1px 1px;
-            font-size: 1px;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+    # Ancho y altura estáticos para el botón
+    static_button_width = 200
+    static_button_height = 50
 
-    if button_clicked:
-        # Cuando se hace clic en el botón, realiza alguna acción
+    # Crea un botón personalizado con los parámetros proporcionados
+    if st.button(button_text, key="custom_button", key_press="Enter", on_click=None, args=(), kwargs={}):
+
         aux = True
-
-
-
+    # Aplica las personalizaciones al botón con altura y ancho estáticos
+    st.markdown(f'<style>div.stButton > button.el-button {{background-color: {button_color} !important; width: {static_button_width}px !important; height: {static_button_height}px !important;}}</style>', unsafe_allow_html=True)
+   # if st.button("Calcular"):
+        # instanciamos aux
+        
 
 with colB:
     if aux == True :
