@@ -138,9 +138,9 @@ with colA :
             aux = True
         else:
             pass  
-
-    if st.button("Descargar en PDF"):
-        st.write("sigue en desarrollo...")    
+    if aux == True:
+        if st.button("Descargar en PDF"):
+            st.write("sigue en desarrollo...")    
 
 with colB:
     
@@ -201,9 +201,9 @@ if aux == True :
     if (tipo_inscripcion != "Monotributista"):
         st.write(f"**ATENCIÓN**: Al estar inscripto como {tipo_inscripcion} usted recuperará **${lista_variables[10]}** en concepto de IVA")
 
-
 st.write("---")
-
-st.write("Desarrollado por el departamento de Estadísticas y Bases de datos de CAME")
+st.markdown("Tasas y cálculos realizados en base a datos del Ministerio de economía de la República Argentina.")
+st.markdown("Para mayor información ingresar en: [Aquí](https://www.argentina.gob.ar/ahora-12/comerciantes#:~:text=Ahora%2012%2032%2C97%25%20es%20la%20tasa%20m%C3%A1xima%20de,a%20aplicar%20sobre%20el%20precio%20de%20contado%201%2C664)")
+st.text("Desarrollado por el departamento de Estadísticas y Bases de datos de CAME")
 
 
