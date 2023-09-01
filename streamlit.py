@@ -218,7 +218,7 @@ if aux == True :
     st.write("---")
     st.write(f"+ ##### Monto actual: ${lista_variables[0]}")
     st.write(f"+ ##### Monto a cobrar: ${lista_variables[1]}")
-    st.write(f"+ ##### Total de descuentos: {round(total_descuentos_en_porcentaje,3)*100}%")
+    st.write(f"+ ##### Total de descuentos: {round(total_descuentos_en_porcentaje,2)*100}%")
     st.write(f"+ ##### Total de descuentos en pesos: ${lista_variables[2]}")
     st.write(f"+ ##### Neto a percibir: ${lista_variables[3]}")
 
