@@ -272,3 +272,7 @@ st.markdown(
 
 # Agrega el marcador
 st.markdown('<div class="footer">Desarrollado por el departamento de Estadísticas y Bases de datos de CAME</div>', unsafe_allow_html=True)
+
+st.write("pruebas")
+if st.button("Descargar en PDF"):
+    generate_pdf()
