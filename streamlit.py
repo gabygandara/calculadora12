@@ -164,8 +164,8 @@ with colB:
         
     if aux == True :
         st.markdown(custom_css, unsafe_allow_html=True)
-        monto_final = f"${monto_a_cobrar}"
-        tarjeta = f'<div class="tarjeta" style="font-size: 45px;font-weight: bold; color: #00008B;">{monto_a_cobrar}</div>'
+        monto_final = f"${lista_variables[1]}"
+        tarjeta = f'<div class="tarjeta" style="font-size: 45px;font-weight: bold; color: #00008B;">{lista_variables[1]}</div>'
         st.markdown('<div class="subheader">El precio sugerido es:</div>', unsafe_allow_html=True)
         st.markdown(tarjeta, unsafe_allow_html=True)
         st.markdown('</div></div>', unsafe_allow_html=True)
