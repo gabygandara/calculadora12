@@ -126,23 +126,13 @@ with colA :
 
 with colB:
     if aux == True :
-        # Agregar CSS personalizado para el marco alrededor del texto
-        st.markdown(
-            """
-            <style>
-            .text-frame {
-                border: 2px solid #000; /* Borde de 2 píxeles sólido de color negro */
-                padding: 10px; /* Espacio entre el borde y el texto */
-                border-radius: 4px; /* Radio de borde para suavizar los bordes */
-            }
-            </style>
-            """,
-            unsafe_allow_html=True
-        )
-
-        # Contenedor con el marco alrededor del texto
-        with st.markdown('<div class="text-frame">El precio sugerido es:</div>', unsafe_allow_html=True):
-            st.write(f"# $**{monto_final}**")  # El texto dentro del marco
+        monto_final = f"${monto_final}"
+        tarjeta = f'<div class="tarjeta" style="font-size: 30px; color: #00008B;">{monto_final}</div>'
+        st.markdown('<div class="subheader">El precio sugerido es:</div>', unsafe_allow_html=True)
+        st.markdown(tarjeta, unsafe_allow_html=True)
+        st.markdown('</div></div>', unsafe_allow_html=True)
+        #st.write(f"El precio sugerido es:")
+        #st.write(f"# $**{monto_final}**")
     else:
          st.write("")    
 
