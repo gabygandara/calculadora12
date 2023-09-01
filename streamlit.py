@@ -141,7 +141,6 @@ with colA :
     if aux == True:
         if st.button("Descargar en PDF"):
             st.write("sigue en desarrollo...")
-            aux = True    
 
 with colB:
     
