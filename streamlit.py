@@ -122,7 +122,7 @@ with colA :
     static_button_height = 50
 
     # Crea un botón personalizado con los parámetros proporcionados
-    if st.button(button_text, key="custom_button", key_press="Enter", on_click=None, args=(), kwargs={}):
+    if st.button(button_text, key="custom_button", on_click=None, args=(), kwargs={}):
 
         aux = True
     # Aplica las personalizaciones al botón con altura y ancho estáticos
