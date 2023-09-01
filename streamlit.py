@@ -97,8 +97,7 @@ total_descuentos_2 = (total_descuentos_1 / monto_credito )
 
             # monto a cobrar
 monto_a_cobrar = ( 1 / (1-total_descuentos_2) * monto_credito )
-monto_a_cobrar = round(monto_a_cobrar,1)
-monto_final = '{:,.2f}'.format(monto_a_cobrar).replace(',', ' ')
+monto_final = '{:,.1f}'.format(monto_a_cobrar).replace(',', ' ')
 monto_final = monto_final.replace(".",",")
 monto_final = monto_final.replace(" ",".")
 
@@ -147,7 +146,7 @@ with colB:
     if aux == True :
         st.markdown(custom_css, unsafe_allow_html=True)
         monto_final = f"${monto_final}"
-        tarjeta = f'<div class="tarjeta" style="font-size: 30px; color: #00008B;">{monto_final}</div>'
+        tarjeta = f'<div class="tarjeta" style="font-size: 45px;font-weight: bold; color: #00008B;">{monto_final}</div>'
         st.markdown('<div class="subheader">El precio sugerido es:</div>', unsafe_allow_html=True)
         st.markdown(tarjeta, unsafe_allow_html=True)
         st.markdown('</div></div>', unsafe_allow_html=True)
@@ -161,7 +160,7 @@ with colB:
 if aux == True : 
     st.write("---")
     st.write(f"+ ##### Monto actual: ${monto_credito}")
-    st.write(f"+ ##### Monto a cobrar: ${monto_final}")
+    st.write(f"+ ##### Monto a cobrar: {monto_final}")
     st.write(f"+ ##### Total de descuentos: {round(total_descuentos_en_porcentaje,1)*100}%")
     st.write(f"+ ##### Total de descuentos en pesos: ${round(total_descuentos_pesos,1)}")
     st.write(f"+ ##### Neto a percibir: ${round((monto_a_cobrar - total_descuentos_pesos),1)}")
