@@ -2,7 +2,7 @@
 import streamlit as st
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
-
+from io import BytesIO
 
 # Configuramos la página
 st.set_page_config(
@@ -131,8 +131,11 @@ def generate_pdf():
     # Nombre del archivo PDF
     pdf_filename = "informe.pdf"
 
+    # Crear un objeto BytesIO para guardar el PDF en memoria
+    pdf_buffer = BytesIO()
     # Generar el PDF
-    c = canvas.Canvas(pdf_filename, pagesize=letter)
+    c = canvas.Canvas(pdf_buffer, pagesize=letter)
+    
     
     # Agregar título
     c.setFont("Helvetica-Bold", 16)
@@ -163,9 +166,10 @@ def generate_pdf():
 
     # Guardar y cerrar el PDF
     c.save()
+    pdf_buffer.seek(0)
 
     # Descargar el PDF generado
-    st.markdown("[Descargar PDF]({})".format(pdf_filename), unsafe_allow_html=True)
+    st.download_button("Descargar PDF", pdf_buffer, file_name="informe.pdf")
 
 
 colA, colB = st.columns([1,2])
@@ -180,7 +184,6 @@ with colA :
     if st.button("Calcular"):
         if aux3 == True :
             aux = True
-            generate_pdf()
         else:
             pass  
     if aux == True:
