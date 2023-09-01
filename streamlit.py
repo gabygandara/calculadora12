@@ -7,7 +7,7 @@ from io import BytesIO
 # Configuramos la página
 st.set_page_config(
     page_title="Calculadora Ahora 12",
-    page_icon="📊",
+    page_icon="imgs/CAME-Transparente.ico.ico",
     )
 
 # Creamos la tasa de interés
@@ -151,14 +151,15 @@ if aux3 == True :
     c.drawString(100, 640, f"Total de descuentos en pesos: ${lista_variables[2]}")
     c.drawString(100, 620, f"Neto a percibir: ${lista_variables[3]}")
 
+    tasas_a_STR = str(tasas_cft[programa_seleccionado]*100).replace(".",",")
 
     c.drawString(100, 580, f"Detalle de descuentos")
-    c.drawString(100, 560, f"Tasa del programa {programa_seleccionado} ({tasas_cft[programa_seleccionado]*100}%): ${lista_variables[4]}")
-    c.drawString(100, 540, f"Arancel T.Cred (1.8%): ${lista_variables[5]}")
+    c.drawString(100, 560, f"Tasa del programa {programa_seleccionado} ({tasas_a_STR}%): ${lista_variables[4]}")
+    c.drawString(100, 540, f"Arancel T.Cred (1,8%): ${lista_variables[5]}")
     c.drawString(100, 520, f"IVA (21%): ${lista_variables[6]}")
-    c.drawString(100, 500, f"IVA (10.5%) ley 25.063: ${lista_variables[7]}")
-    c.drawString(100, 480, f"II.BB (2.5%): ${lista_variables[8]}")
-    c.drawString(100, 460, f"IVA RG2408 (1.5%): ${lista_variables[9]}")
+    c.drawString(100, 500, f"IVA (10,5%) ley 25.063: ${lista_variables[7]}")
+    c.drawString(100, 480, f"II.BB (2,5%): ${lista_variables[8]}")
+    c.drawString(100, 460, f"IVA RG2408 (1,5%): ${lista_variables[9]}")
     
     if (tipo_inscripcion != "Monotributista"):
         c.drawString(100, 420, f"**ATENCIÓN**: Al estar inscripto como {tipo_inscripcion} usted recuperará **${lista_variables[10]}** en concepto de IVA")
@@ -230,7 +231,7 @@ if aux == True :
 if aux == True : 
     st.write("---")
     st.write("**Detalle de descuentos:**")
-    st.write(f"+ Tasa del programa {programa_seleccionado} ({tasas_cft[programa_seleccionado]*100}%): **${lista_variables[4]}**")
+    st.write(f"+ Tasa del programa {programa_seleccionado} ({tasas_a_STR}%): **${lista_variables[4]}**")
     st.write(f"+ Arancel T.Cred (1.8%): **${lista_variables[5]}**")
     st.write(f"+ IVA (21%): **${lista_variables[6]}**")
     st.write(f"+ IVA (10.5%) ley 25.063: **${lista_variables[7]}**")
