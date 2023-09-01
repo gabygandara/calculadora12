@@ -113,8 +113,13 @@ total_descuentos_pesos = monto_a_cobrar * total_descuentos_en_porcentaje
 
 colA, colB = st.columns([1,2])
 with colA : 
-    if st.button("Calcular"):
-        # instanciamos aux
+    button_style = (
+    f"background-color: #4CAF50; color: white; padding: 10px 20px; font-size: 16px;"
+        )
+    
+    if st.button("Calcular", key="my_button", help="Haz clic para calcular", 
+                 type='button', style=button_style):
+        # Cuando se hace clic en el botón, realiza alguna acción
         aux = True
 
 with colB:
