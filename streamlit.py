@@ -114,21 +114,15 @@ total_descuentos_pesos = monto_a_cobrar * total_descuentos_en_porcentaje
 colA, colB = st.columns([1,2])
 with colA : 
     with st.form("my_form"):
-        st.markdown(
-        """
-        <style>
-        .my-custom-button {
-            background-color: blue;
-            color: white;
-            padding: 12px 24px;
-            border: none; 
-            font-size: 16px;  /* Cambiamos el tamaño de fuente a 16px */
-            border-radius: 4px;  
-        }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+        st.style(
+            {".my-custom-button": {
+                "background-color": "blue",
+                "color": "white",
+                "padding": "12px 24px",
+                "border-radius": "4px",
+                "font-size": "16px"
+            }}
+        )
         button_clicked = st.form_submit_button("Calcular", help="Haz clic para calcular")
 
     if button_clicked:
