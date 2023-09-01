@@ -180,6 +180,7 @@ with colA :
     if st.button("Calcular"):
         if aux3 == True :
             aux = True
+            generate_pdf()
         else:
             pass  
     if aux == True:
