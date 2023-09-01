@@ -137,14 +137,14 @@ with colA :
 
     # Contenedor con marco debajo del botón
     with st.markdown('<div class="button-frame"><button class="my-custom-button">Calcular</button></div>', unsafe_allow_html=True):
-        pass  # Este bloque no hace nada, solo actúa como contenedor
+        if st.button("Calcular"):
+        # instanciamos aux
+            aux = True
+
 
 
     # Acción al hacer clic en el botón
-    if st.button("Calcular"):
-        # instanciamos aux
-        aux = True
-
+    
 with colB:
     if aux == True :
         st.write(f"El precio sugerido es:")
