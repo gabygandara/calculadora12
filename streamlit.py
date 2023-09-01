@@ -120,10 +120,12 @@ with colA :
         """
         <style>
         .my-custom-button {
-            background-color: #4CAF50;
-            color: blue;
-            padding: 10px 20px;
-            font-size: 16px;
+            background: linear-gradient(to bottom, #0074D9, #3498DB);
+            color: white;
+            padding: 12px 24px;
+            border: none; 
+            font-size: 20px;
+            border-radius: 4px;  
         }
         </style>
         """,
