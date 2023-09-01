@@ -145,7 +145,7 @@ if aux3 == True :
     c.setFont("Helvetica", 12)
     c.drawString(100, 700, f"Monto actual: ${lista_variables[0]}")
     c.drawString(100, 680, f"Monto a cobrar: {lista_variables[1]}")
-    c.drawString(100, 660, f"Total de descuentos: {round(total_descuentos_en_porcentaje,3)*100}%")
+    c.drawString(100, 660, f"Total de descuentos: {round(total_descuentos_en_porcentaje,1)*100}%")
     c.drawString(100, 640, f"Total de descuentos en pesos: ${lista_variables[2]}")
     c.drawString(100, 620, f"Neto a percibir: ${lista_variables[3]}")
 
