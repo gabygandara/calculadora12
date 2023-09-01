@@ -169,7 +169,7 @@ def generate_pdf():
     pdf_buffer.seek(0)
 
     # Descargar el PDF generado
-    st.download_button("Descargar PDF", pdf_buffer, file_name="informe.pdf")
+    return st.download_button("Descargar PDF", pdf_buffer, file_name="informe.pdf")
 
 
 colA, colB = st.columns([1,2])
