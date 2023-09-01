@@ -114,7 +114,7 @@ total_descuentos_pesos = monto_a_cobrar * total_descuentos_en_porcentaje
 colA, colB = st.columns([1,2])
 with colA : 
     button_style = (
-    f"background-color: #4CAF50; color: white; padding: 10px 20px; font-size: 16px;"
+    f"background-color: #4CAF50; color: blue; padding: 10px 20px; font-size: 16px;"
         )
     
     if st.button("Calcular", key="my_button", help="Haz clic para calcular", 
