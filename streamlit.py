@@ -97,7 +97,7 @@ total_descuentos_2 = (total_descuentos_1 / monto_credito )
 
             # monto a cobrar
 monto_a_cobrar = ( 1 / (1-total_descuentos_2) * monto_credito )
-monto_a_cobrar = round(monto_a_cobrar,2)
+monto_a_cobrar = round(monto_a_cobrar,1)
 monto_final = '{:,.2f}'.format(monto_a_cobrar).replace(',', ' ')
 monto_final = monto_final.replace(".",",")
 monto_final = monto_final.replace(" ",".")
@@ -113,11 +113,15 @@ total_descuentos_pesos = monto_a_cobrar * total_descuentos_en_porcentaje
 
 colA, colB = st.columns([1,2])
 with colA : 
-    with st.form("my_form"):
-        button_clicked = st.form_submit_button("Calcular", help="Haz clic para calcular",use_container_width=True)
+    # por las dudas lo guardo :p
+    #with st.form("my_form"):
+    #    button_clicked = st.form_submit_button("Calcular", help="Haz clic para calcular",use_container_width=True)
     
-    if button_clicked:
+    #if button_clicked:
         # Cuando se hace clic en el botón, realiza alguna acción
+    #    aux = True
+    if st.button("Calcular",help="Haz clic para calcular"):
+    
         aux = True
 
 with colB:
