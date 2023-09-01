@@ -113,30 +113,26 @@ total_descuentos_pesos = monto_a_cobrar * total_descuentos_en_porcentaje
 
 colA, colB = st.columns([1,2])
 with colA : 
-    # Agrega CSS personalizado para el marco
-    st.markdown(
-        """
-        <style>
-        .button-frame {
-            border: 2px solid #000;
-            padding: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 5px;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+    with st.form("my_form"):
+        st.write(
+            f"""
+            <style>
+            .my-custom-button {{
+                background-color: blue;
+                color: white;
+                padding: 12px 24px;
+                border: none; 
+                font-size: 16px;
+                border-radius: 4px;  
+            }}
+            </style>
+            <button class="my-custom-button" type="submit">Calcular</button>
+            """
+        )
 
-
-
-    # Verifica si el botón "Calcular" se ha presionado
-
-    st.markdown('<div class="button-frame"><button>Calcular</button></div>', unsafe_allow_html=True)
-    if st.button("Calcular"):
-        aux = True  # Cambia el valor de aux a True cuando se presiona el botón
+    if st.form_submit_button(""):
+        # Cuando se hace clic en el botón, realiza alguna acción
+        aux = True
 
 
 
