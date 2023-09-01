@@ -110,14 +110,16 @@ if aux3 == True :
 
 
     #descuentos %
-    total_descuentos_en_porcentaje = (total_descuentos_1 / monto_credito ) * 100
+    total_descuentos_en_porcentaje = (total_descuentos_1 / monto_credito )
 
+    total_descuentos_en_porcentaje_2 = (total_descuentos_1 / monto_credito ) * 100
+    
     total_descuentos_pesos = monto_a_cobrar * total_descuentos_en_porcentaje
 
     neto_a_percibir = monto_a_cobrar - total_descuentos_pesos
 
     # Creamos lista de variables
-    lista_variables = [monto_credito, monto_a_cobrar, total_descuentos_pesos, neto_a_percibir, base_tasa_programa, base_arancel, iva_arancel, iva_programa, iibb, iva3, reintegro, total_descuentos_en_porcentaje]
+    lista_variables = [monto_credito, monto_a_cobrar, total_descuentos_pesos, neto_a_percibir, base_tasa_programa, base_arancel, iva_arancel, iva_programa, iibb, iva3, reintegro, total_descuentos_en_porcentaje_2]
 
     # iteramos para el formato
     for i in range (len(lista_variables)) :
