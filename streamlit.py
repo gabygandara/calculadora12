@@ -124,7 +124,7 @@ with colA :
             color: white;
             padding: 12px 24px;
             border: none; 
-            font-size: 20px;
+            font-size: 10px;
             border-radius: 4px;  
         }
         </style>
