@@ -1,6 +1,7 @@
 # Importamos las librerias a utilizar
 import streamlit as st
-import pandas as pd
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
 
 
 # Configuramos la página
@@ -124,6 +125,49 @@ if aux3 == True :
         lista_variables[i] = lista_variables[i].replace(".",",")
         lista_variables[i] = lista_variables[i].replace(" ",".")
 
+# función para hacer el PDF :
+def generate_pdf():
+  
+    # Nombre del archivo PDF
+    pdf_filename = "informe.pdf"
+
+    # Generar el PDF
+    c = canvas.Canvas(pdf_filename, pagesize=letter)
+    
+    # Agregar título
+    c.setFont("Helvetica-Bold", 16)
+    c.drawString(200, 770, "Calculadora 12")
+    
+    # Agregar imagen (ajusta la ruta de la imagen)
+    imagen_path = "imgs/CAME-Transparente.png"  # Reemplaza 'tu_imagen.png' con la ruta de tu propia imagen
+    c.drawImage(imagen_path, 100, 1, width=200, height=100)
+
+    c.setFont("Helvetica", 12)
+    c.drawString(100, 700, f"Monto actual: ${lista_variables[0]}")
+    c.drawString(100, 680, f"Monto a cobrar: {lista_variables[1]}")
+    c.drawString(100, 660, f"Total de descuentos: {round(total_descuentos_en_porcentaje,1)*100}%")
+    c.drawString(100, 640, f"Total de descuentos en pesos: ${lista_variables[2]}")
+    c.drawString(100, 620, f"Neto a percibir: ${lista_variables[3]}")
+
+
+    c.drawString(100, 580, f"Detalle de descuentos")
+    c.drawString(100, 560, f"Tasa del programa {programa_seleccionado} ({tasas_cft[programa_seleccionado]*100}%): ${lista_variables[4]}")
+    c.drawString(100, 540, f"Arancel T.Cred (1.8%): ${lista_variables[5]}")
+    c.drawString(100, 520, f"IVA (21%): ${lista_variables[6]}")
+    c.drawString(100, 500, f"IVA (10.5%) ley 25.063: ${lista_variables[7]}")
+    c.drawString(100, 480, f"II.BB (2.5%): ${lista_variables[8]}")
+    c.drawString(100, 460, f"IVA RG2408 (1.5%): ${lista_variables[9]}")
+  
+    if (tipo_inscripcion != "Monotributista"):
+        c.drawString(100, 700, f"**ATENCIÓN**: Al estar inscripto como {tipo_inscripcion} usted recuperará **${lista_variables[10]}** en concepto de IVA")
+
+    # Guardar y cerrar el PDF
+    c.save()
+
+    # Descargar el PDF generado
+    st.markdown("[Descargar PDF]({})".format(pdf_filename), unsafe_allow_html=True)
+
+
 colA, colB = st.columns([1,2])
 with colA : 
     # por las dudas lo guardo :p
@@ -133,24 +177,26 @@ with colA :
     #if button_clicked:
         # Cuando se hace clic en el botón, realiza alguna acción
     #    aux = True
-    if st.button("Calcular",help="Haz clic para calcular"):
+    if st.button("Calcular"):
         if aux3 == True :
             aux = True
         else:
             pass  
     if aux == True:
         if st.button("Descargar en PDF"):
-            st.write("sigue en desarrollo...")
+            generate_pdf()
 
 with colB:
     
+    # codigo de la tarjeta por las dudas
+    """padding: 20px;
+                border-radius: 5px;
+                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+                background-color: #f9f9f9;"""
+
     custom_css = """
         <style>
             .tarjeta {
-                padding: 20px;
-                border-radius: 5px;
-                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-                background-color: #f9f9f9;
                 text-align: center;
             }
             .subheader {
@@ -179,7 +225,7 @@ with colB:
 if aux == True : 
     st.write("---")
     st.write(f"+ ##### Monto actual: ${lista_variables[0]}")
-    st.write(f"+ ##### Monto a cobrar: {lista_variables[1]}")
+    st.write(f"+ ##### Monto a cobrar: ${lista_variables[1]}")
     st.write(f"+ ##### Total de descuentos: {round(total_descuentos_en_porcentaje,1)*100}%")
     st.write(f"+ ##### Total de descuentos en pesos: ${lista_variables[2]}")
     st.write(f"+ ##### Neto a percibir: ${lista_variables[3]}")
@@ -228,4 +274,3 @@ st.markdown(
 
 # Agrega el marcador
 st.markdown('<div class="footer">Desarrollado por el departamento de Estadísticas y Bases de datos de CAME</div>', unsafe_allow_html=True)
-
