@@ -201,26 +201,22 @@ st.write("---")
 st.write("Desarrollado por el departamento de Estadísticas y Bases de datos de CAME")
 
 
-
-
 st.write("---")
 st.write("SECTOR DE PRUEBAS")
-# Código JavaScript para formatear el número con separadores de miles en tiempo real
-javascript_code = """
-    <script>
-    var inputElement = document.getElementById("user_input");
-    inputElement.addEventListener("input", function(event) {
-        var inputValue = event.target.value;
-        var formattedValue = Number(inputValue).toLocaleString();
-        event.target.value = formattedValue;
-    });
-    </script>
-"""
 
-st.title('Calculadora con Separadores en Tiempo Real')
 
-# Agrega el código JavaScript a la aplicación Streamlit
-st.markdown(javascript_code, unsafe_allow_html=True)
+def format_number_with_dot_separator(number):
+    # Convierte el número a una cadena y formatea con separador de miles usando punto "."
+    parts = str(number).split('.')
+    integer_part = parts[0]
+    if len(parts) > 1:
+        decimal_part = '.' + parts[1]
+    else:
+        decimal_part = ''
+    formatted_number = "{:,}".format(int(integer_part)).replace(',', '.') + decimal_part
+    return formatted_number
+
+st.title('Calculadora con Separador de Miles con Punto')
 
 # Entrada del usuario
 user_input = st.text_input('Ingrese un número:', value='0')
@@ -231,6 +227,8 @@ try:
 except ValueError:
     number = 0.0
 
-# Muestra el número formateado con separadores
-st.write(f'Número formateado con separadores: {number:,}')
+# Formatea el número con separador de miles usando punto "." y muestra el resultado en tiempo real
+formatted_number = format_number_with_dot_separator(number)
+st.write(f'Número formateado con separador de miles usando punto: {formatted_number}')
+
 st.write("---")
