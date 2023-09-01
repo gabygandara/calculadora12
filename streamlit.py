@@ -114,25 +114,26 @@ total_descuentos_pesos = monto_a_cobrar * total_descuentos_en_porcentaje
 colA, colB = st.columns([1,2])
 with colA : 
     with st.form("my_form"):
-        st.write(
-            f"""
+        # Agrega CSS personalizado para el botón
+        st.markdown(
+            """
             <style>
-            .my-custom-button {{
+            .my-custom-button {
                 background-color: blue;
                 color: white;
-                padding: 12px 24px;
-                border: none; 
+                padding: 10px 20px;
                 font-size: 16px;
-                border-radius: 4px;  
-            }}
+                border: none;
+                border-radius: 4px;
+            }
             </style>
-            <button class="my-custom-button" type="submit">Calcular</button>
-            """
+            """,
+            unsafe_allow_html=True
         )
 
-    if st.form_submit_button(""):
-        # Cuando se hace clic en el botón, realiza alguna acción
-        aux = True
+        # Crea el botón con la clase de estilo personalizado
+        if st.form_submit_button("Calcular", class_="my-custom-button"):
+            aux = True  # Cambia el valor de aux a True cuando se presiona el botón
 
 
 
