@@ -115,7 +115,7 @@ colA, colB = st.columns([1,2])
 with colA : 
     with st.form("my_form"):
         # Crea el botón con la clase de estilo personalizado
-        button_clicked = st.form_submit_button("Calcular", help="Haz clic para calcular", class_="my-custom-button")
+        button_clicked = st.form_submit_button("Calcular", help="Haz clic para calcular")
 
     st.markdown(
         """
