@@ -123,8 +123,8 @@ with colA :
         .my-custom-button {
             background-color: #4CAF50;
             color: red;
-            padding: 5px 5px;
-            font-size: 5px;
+            padding: 1px 1px;
+            font-size: 1px;
         }
         </style>
         """,
