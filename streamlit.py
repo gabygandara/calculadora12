@@ -137,7 +137,7 @@ with colA :
         if aux3 == True :
             aux = True
         else:
-            st.text("Coloque un número válido porfavor")    
+            pass  
 
     if st.button("Descargar en PDF"):
         st.write("sigue en desarrollo...")    
