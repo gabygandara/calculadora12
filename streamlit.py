@@ -125,7 +125,27 @@ with colA :
         aux = True
 
 with colB:
+    
+    custom_css = """
+        <style>
+            .tarjeta {
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+                background-color: #f9f9f9;
+                text-align: center;
+            }
+            .subheader {
+                font-size: 20px;
+                font-weight: bold;
+                color: #333;
+            }
+        </style>
+        """
+        # Agregar el estilo CSS personalizado utilizando st.markdown
+        
     if aux == True :
+        st.markdown(custom_css, unsafe_allow_html=True)
         monto_final = f"${monto_final}"
         tarjeta = f'<div class="tarjeta" style="font-size: 30px; color: #00008B;">{monto_final}</div>'
         st.markdown('<div class="subheader">El precio sugerido es:</div>', unsafe_allow_html=True)
