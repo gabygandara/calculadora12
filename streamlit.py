@@ -117,7 +117,7 @@ if aux3 == True :
     neto_a_percibir = monto_a_cobrar - total_descuentos_pesos
 
     # Creamos lista de variables
-    lista_variables = [monto_credito, monto_a_cobrar, total_descuentos_pesos, neto_a_percibir, base_tasa_programa, base_arancel, iva_arancel, iva_programa, iibb, iva3, reintegro]
+    lista_variables = [monto_credito, monto_a_cobrar, total_descuentos_pesos, neto_a_percibir, base_tasa_programa, base_arancel, iva_arancel, iva_programa, iibb, iva3, reintegro, total_descuentos_en_porcentaje]
 
     # iteramos para el formato
     for i in range (len(lista_variables)) :
@@ -145,7 +145,7 @@ if aux3 == True :
     c.setFont("Helvetica", 12)
     c.drawString(100, 700, f"Monto actual: ${lista_variables[0]}")
     c.drawString(100, 680, f"Monto a cobrar: {lista_variables[1]}")
-    c.drawString(100, 660, f"Total de descuentos: {round(total_descuentos_en_porcentaje,2)}%")
+    c.drawString(100, 660, f"Total de descuentos: {lista_variables[11]}%")
     c.drawString(100, 640, f"Total de descuentos en pesos: ${lista_variables[2]}")
     c.drawString(100, 620, f"Neto a percibir: ${lista_variables[3]}")
 
@@ -218,7 +218,7 @@ if aux == True :
     st.write("---")
     st.write(f"+ ##### Monto actual: ${lista_variables[0]}")
     st.write(f"+ ##### Monto a cobrar: ${lista_variables[1]}")
-    st.write(f"+ ##### Total de descuentos: {round(total_descuentos_en_porcentaje,2)}%")
+    st.write(f"+ ##### Total de descuentos: {lista_variables[11]}%")
     st.write(f"+ ##### Total de descuentos en pesos: ${lista_variables[2]}")
     st.write(f"+ ##### Neto a percibir: ${lista_variables[3]}")
 
