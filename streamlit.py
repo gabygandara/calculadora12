@@ -110,6 +110,17 @@ total_descuentos_en_porcentaje = (total_descuentos_1 / monto_credito )
 
 total_descuentos_pesos = monto_a_cobrar * total_descuentos_en_porcentaje
 
+neto_a_percibir = monto_a_cobrar - total_descuentos_pesos
+
+# Creamos lista de variables
+lista_variables = [monto_credito,monto_a_cobrar,total_descuentos_pesos,neto_a_percibir,base_tasa_programa,base_arancel,iva_arancel,iva_programa,iibb,iva3,reintegro]
+
+# iteramos para el formato
+for i in range (len(lista_variables)) :
+    lista_variables[i] = '{:,.1f}'.format(lista_variables[i]).replace(',', ' ')
+    lista_variables[i] = lista_variables[i].replace(".",",")
+    lista_variables[i] = lista_variables[i].replace(" ",".")
+
 colA, colB = st.columns([1,2])
 with colA : 
     # por las dudas lo guardo :p
@@ -159,11 +170,11 @@ with colB:
 
 if aux == True : 
     st.write("---")
-    st.write(f"+ ##### Monto actual: ${monto_credito}")
-    st.write(f"+ ##### Monto a cobrar: {monto_final}")
+    st.write(f"+ ##### Monto actual: ${lista_variables[0]}")
+    st.write(f"+ ##### Monto a cobrar: {lista_variables[1]}")
     st.write(f"+ ##### Total de descuentos: {round(total_descuentos_en_porcentaje,1)*100}%")
-    st.write(f"+ ##### Total de descuentos en pesos: ${round(total_descuentos_pesos,1)}")
-    st.write(f"+ ##### Neto a percibir: ${round((monto_a_cobrar - total_descuentos_pesos),1)}")
+    st.write(f"+ ##### Total de descuentos en pesos: ${lista_variables[3]}")
+    st.write(f"+ ##### Neto a percibir: ${lista_variables[4]}")
 
 
 
@@ -171,16 +182,16 @@ if aux == True :
 if aux == True : 
     st.write("---")
     st.write("**Detalle de descuentos:**")
-    st.write(f"+ Tasa del programa {programa_seleccionado} ({tasas_cft[programa_seleccionado]*100}%): **${round(base_tasa_programa,1)}**")
-    st.write(f"+ Arancel T.Cred (1.8%): **${round(base_arancel,1)}**")
-    st.write(f"+ IVA (21%): **${round(iva_arancel,1)}**")
-    st.write(f"+ IVA (10.5%) ley 25.063: **${round(iva_programa,1)}**")
-    st.write(f"+ II.BB (2.5%): **${round(iibb,1)}**")
-    st.write(f"+ IVA RG2408 (1.5%): **${round(iva3,1)}**")
+    st.write(f"+ Tasa del programa {programa_seleccionado} ({tasas_cft[programa_seleccionado]*100}%): **${lista_variables[5]}**")
+    st.write(f"+ Arancel T.Cred (1.8%): **${lista_variables[6]}**")
+    st.write(f"+ IVA (21%): **${lista_variables[7]}**")
+    st.write(f"+ IVA (10.5%) ley 25.063: **${lista_variables[8]}**")
+    st.write(f"+ II.BB (2.5%): **${lista_variables[9]}**")
+    st.write(f"+ IVA RG2408 (1.5%): **${lista_variables[10]}**")
     
 
     if (tipo_inscripcion != "Monotributista"):
-        st.write(f"**ATENCIÓN**: Al estar inscripto como {tipo_inscripcion} usted recuperará **${round(reintegro,1)}** en concepto de IVA")
+        st.write(f"**ATENCIÓN**: Al estar inscripto como {tipo_inscripcion} usted recuperará **${lista_variables[11]}** en concepto de IVA")
 
 
 st.write("---")
