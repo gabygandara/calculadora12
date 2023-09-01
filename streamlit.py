@@ -207,3 +207,24 @@ st.markdown("Para mayor información ingresar en: [Aquí](https://www.argentina.
 st.text("Desarrollado por el departamento de Estadísticas y Bases de datos de CAME")
 
 
+# Agrega CSS personalizado para el marco inferior
+st.markdown(
+    """
+    <style>
+    .bottom-frame {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-top: 2px solid #000;
+        text-align: center;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Agrega el marco y el texto encima de él
+st.markdown('<div class="bottom-frame">Este es un marco en la parte inferior</div>', unsafe_allow_html=True)
