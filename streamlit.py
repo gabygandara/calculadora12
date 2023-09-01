@@ -206,37 +206,44 @@ st.markdown("Tasas y cálculos realizados en base a datos del Ministerio de econ
 st.markdown("Para mayor información ingresar en: [Aquí](https://www.argentina.gob.ar/ahora-12/comerciantes#:~:text=Ahora%2012%2032%2C97%25%20es%20la%20tasa%20m%C3%A1xima%20de,a%20aplicar%20sobre%20el%20precio%20de%20contado%201%2C664)")
 st.text("Desarrollado por el departamento de Estadísticas y Bases de datos de CAME")
 
+import streamlit as st
 
-# Agrega CSS personalizado para el marco inferior
+# Agrega CSS personalizado para el marco en la parte inferior
 st.markdown(
     """
     <style>
-    body {
-        background-color: #f0f0f0;
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
-    .stApp {
-        max-width: 600px;
-        margin: 2em auto;
-        padding: 1em;
-        background-color: #ffffff;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    .stTextInput input {
+    .bottom-frame {
+        position: fixed;
+        bottom: 0;
+        left: 0;
         width: 100%;
-        padding: 0.5em;
-        margin: 0;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-    .stTextInput label {
-        font-weight: bold;
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-top: 2px solid #000;
+        text-align: center;
+        display: none;
     }
     </style>
     """,
-    unsafe_allow_html=True,
+    unsafe_allow_html=True
 )
+
+# Agrega JavaScript para mostrar el marco al desplazarse hacia abajo
+st.markdown(
+    """
+    <script>
+    window.addEventListener('scroll', function() {
+        var bottomFrame = document.querySelector('.bottom-frame');
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+            bottomFrame.style.display = 'block';
+        } else {
+            bottomFrame.style.display = 'none';
+        }
+    });
+    </script>
+    """,
+    unsafe_allow_html=True
+)
+
+# Agrega el marco y el texto encima de él
+st.markdown('<div class="bottom-frame">Este es un marco en la parte inferior</div>', unsafe_allow_html=True)
