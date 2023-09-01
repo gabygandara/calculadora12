@@ -242,7 +242,6 @@ if aux == True :
 
 st.write("---")
 
-st.markdown("Tasas y cálculos realizados en base a datos del Ministerio de economía de la República Argentina.")
 st.markdown("Para mayor información [click aquí](https://www.argentina.gob.ar/ahora-12/comerciantes#:~:text=Ahora%2012%2032%2C97%25%20es%20la%20tasa%20m%C3%A1xima%20de,a%20aplicar%20sobre%20el%20precio%20de%20contado%201%2C664)")
 
 
