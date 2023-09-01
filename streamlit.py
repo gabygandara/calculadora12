@@ -216,11 +216,11 @@ st.markdown(
         position: fixed;
         bottom: 0;
         left: 0;
-        width: 100%;
-        background-color: #f0f0f0;
-        padding: 10px;
-        border-top: 2px solid #000;
-        text-align: center;
+        width: 50%;
+        background-color: #ffffff;
+        padding: 5px;
+        text-align: left;
+        font-size: 12px;
     }
     </style>
     """,
@@ -228,5 +228,5 @@ st.markdown(
 )
 
 # Agrega el marcador
-st.markdown('<div class="footer">Desarrollado por: Tu Nombre</div>', unsafe_allow_html=True)
+st.markdown('<div class="footer">Desarrollado por: por el departamento de Estadísticas y Bases de datos de CAME</div>', unsafe_allow_html=True)
 
