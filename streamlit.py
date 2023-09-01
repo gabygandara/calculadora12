@@ -216,7 +216,7 @@ st.markdown(
         position: fixed;
         bottom: 0;
         left: 0;
-        width: 50%;
+        width: 100%;
         background-color: #ffffff;
         padding: 5px;
         text-align: left;
