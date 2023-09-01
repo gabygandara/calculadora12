@@ -211,20 +211,32 @@ st.text("Desarrollado por el departamento de Estadísticas y Bases de datos de C
 st.markdown(
     """
     <style>
-    .bottom-frame {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
+    body {
         background-color: #f0f0f0;
-        padding: 10px;
-        border-top: 2px solid #000;
-        text-align: center;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .stApp {
+        max-width: 600px;
+        margin: 2em auto;
+        padding: 1em;
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .stTextInput input {
+        width: 100%;
+        padding: 0.5em;
+        margin: 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .stTextInput label {
+        font-weight: bold;
     }
     </style>
     """,
-    unsafe_allow_html=True
+    unsafe_allow_html=True,
 )
-
-# Agrega el marco y el texto encima de él
-st.markdown('<div class="bottom-frame">Este es un marco en la parte inferior</div>', unsafe_allow_html=True)
