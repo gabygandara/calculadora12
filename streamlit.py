@@ -113,9 +113,32 @@ total_descuentos_pesos = monto_a_cobrar * total_descuentos_en_porcentaje
 
 colA, colB = st.columns([1,2])
 with colA : 
+    # Agrega CSS personalizado para el marco
+    st.markdown(
+        """
+        <style>
+        .button-frame {
+            border: 2px solid #000;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+
+
+    # Verifica si el botón "Calcular" se ha presionado
+
+    st.markdown('<div class="button-frame"><button>Calcular</button></div>', unsafe_allow_html=True)
     if st.button("Calcular"):
-        # instanciamos aux
-        aux = True
+        aux = True  # Cambia el valor de aux a True cuando se presiona el botón
+
+
 
 with colB:
     if aux == True :
