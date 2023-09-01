@@ -131,8 +131,10 @@ with colA :
         # Cuando se hace clic en el botón, realiza alguna acción
     #    aux = True
     if st.button("Calcular",help="Haz clic para calcular"):
-    
         aux = True
+
+    if st.button("Descargar en PDF"):
+        st.write("sigue en desarrollo...")    
 
 with colB:
     
@@ -199,3 +201,36 @@ st.write("---")
 st.write("Desarrollado por el departamento de Estadísticas y Bases de datos de CAME")
 
 
+
+
+st.write("---")
+st.write("SECTOR DE PRUEBAS")
+# Código JavaScript para formatear el número con separadores de miles en tiempo real
+javascript_code = """
+    <script>
+    var inputElement = document.getElementById("user_input");
+    inputElement.addEventListener("input", function(event) {
+        var inputValue = event.target.value;
+        var formattedValue = Number(inputValue).toLocaleString();
+        event.target.value = formattedValue;
+    });
+    </script>
+"""
+
+st.title('Calculadora con Separadores en Tiempo Real')
+
+# Agrega el código JavaScript a la aplicación Streamlit
+st.markdown(javascript_code, unsafe_allow_html=True)
+
+# Entrada del usuario
+user_input = st.text_input('Ingrese un número:', value='0')
+
+# Convierte la entrada del usuario en formato numérico
+try:
+    number = float(user_input.replace(',', ''))
+except ValueError:
+    number = 0.0
+
+# Muestra el número formateado con separadores
+st.write(f'Número formateado con separadores: {number:,}')
+st.write("---")
