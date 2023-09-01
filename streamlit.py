@@ -263,5 +263,5 @@ st.markdown(
 )
 
 # Agrega el marcador
-st.markdown('<div class="footer">Desarrollado por el departamento de Estadísticas y Bases de Datos de <a href="https://www.redcame.org.ar/" target="_blank">CAME</a></div>', unsafe_allow_html=True)
+st.markdown('<div class="footer">Desarrollado por el departamento de <a href="https://www.redcame.org.ar/" target="_blank">Estadísticas y Bases de Datos de CAME</a></div>', unsafe_allow_html=True)
 
