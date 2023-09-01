@@ -7,7 +7,7 @@ from io import BytesIO
 # Configuramos la página
 st.set_page_config(
     page_title="Calculadora Ahora 12",
-    page_icon="imgs/CAME-Transparente.ico.ico",
+    page_icon="imgs/CAME-Transparente.png",
     )
 
 # Creamos la tasa de interés
