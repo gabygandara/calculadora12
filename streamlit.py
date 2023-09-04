@@ -336,9 +336,17 @@ with colFc:
     # Cargar la imagen del logotipo de Instagram
     logo_image = "imgs/facebook.png"  # Reemplaza con la ruta de tu imagen
     # Mostrar el logotipo de Instagram
-    st.image(logo_image, width=32)
-    # Crear un enlace clickeable
-    st.markdown(f"[Facebook]({facebook_url})")
+    col_prueba1, colprueba2, colprueba3 = st.columns(3)
+    with col_prueba1 :
+        st.write("")
+        
+    with colprueba2:
+        st.image(logo_image, width=32)
+        # Crear un enlace clickeable
+        st.markdown(f"[Facebook]({facebook_url})", unsafe_allow_html=True)
+
+    with colprueba3 :
+        st.write("")        
 
 with colIg:
     # URL de tu perfil de Instagram
@@ -348,7 +356,7 @@ with colIg:
     # Mostrar el logotipo de Instagram
     st.image(logo_image, width=32)
     # Crear un enlace clickeable
-    st.markdown(f"[Instagram]({instagram_url})")
+    st.markdown(f"[Instagram]({instagram_url})", unsafe_allow_html=True)
 
 with colTw:
     # URL de tu perfil de Instagram
@@ -358,7 +366,7 @@ with colTw:
     # Mostrar el logotipo de Instagram
     st.image(logo_image, width=32)
     # Crear un enlace clickeable
-    st.markdown(f"[Twitter]({twiter_url})")
+    st.markdown(f"[Twitter]({twiter_url})", unsafe_allow_html=True)
 
 with colLk:
     # URL de tu perfil de Instagram
@@ -368,7 +376,7 @@ with colLk:
     # Mostrar el logotipo de Instagram
     st.image(logo_image, width=32)
     # Crear un enlace clickeable
-    st.markdown(f"[LinkedIn]({linkedin_url})") 
+    st.markdown(f"[LinkedIn]({linkedin_url})", unsafe_allow_html=True) 
 
 with colYt:
     # URL de tu perfil de Instagram
@@ -376,6 +384,6 @@ with colYt:
     # Cargar la imagen del logotipo de Instagram
     logo_image = "imgs/yutu.png"  # Reemplaza con la ruta de tu imagen
     # Mostrar el logotipo de Instagram
-    st.image(logo_image, width = 42)
+    st.image(logo_image, width = 40)
     # Crear un enlace clickeable
-    st.markdown(f"[Youtube]({youtube_url})")               
+    st.markdown(f"[Youtube]({youtube_url})", unsafe_allow_html=True)               
