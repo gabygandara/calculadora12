@@ -202,7 +202,7 @@ if aux3 == True :
     c.drawString(200, 320, f"IVA RG2408 (1,5%): ${lista_variables[9]}")
     
     if (tipo_inscripcion != "Monotributista"):
-        c.drawString(20, 280, f"Al estar inscripto como {tipo_inscripcion} usted recuperará ${lista_variables[10]} en concepto de IVA")
+        c.drawString(40, 280, f"Al estar inscripto como {tipo_inscripcion} usted recuperará ${lista_variables[10]} en concepto de IVA")
 
         # Guardar y cerrar el PDF
     c.save()
@@ -308,3 +308,5 @@ st.markdown(
 # Agrega el marcador
 st.markdown('<div class="footer">Desarrollado por el departamento de <a href="https://www.redcame.org.ar/" target="_blank">Estadísticas y Bases de Datos de CAME</a></div>', unsafe_allow_html=True)
 
+# Coloca la imagen en la esquina inferior derecha
+st.image('imgs/logo_ahora12.png', width=100, use_container_width=False)
