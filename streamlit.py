@@ -376,6 +376,6 @@ with colYt:
     # Cargar la imagen del logotipo de Instagram
     logo_image = "imgs/yutu.png"  # Reemplaza con la ruta de tu imagen
     # Mostrar el logotipo de Instagram
-    st.image(logo_image, width = 32)
+    st.image(logo_image, width = 42)
     # Crear un enlace clickeable
     st.markdown(f"[Youtube]({youtube_url})")               
