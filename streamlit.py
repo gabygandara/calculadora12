@@ -328,7 +328,7 @@ st.markdown('<div class="footer">Desarrollado por el departamento de <a href="ht
 
 st.write("---")
 # Titulo para las redes
-st.markdown("<h1 style='text-align: center; font-size: 22px; font-family: Verdana, sans-serif;'>¡Seguinos en nuestras redes sociales!</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; font-size: 22px; font-family: Verdana, sans-serif;'>¡Seguí a CAME en redes sociales!</h1>", unsafe_allow_html=True)
 # Creamos las columnas para los logos de apps
 st.write("")
 
