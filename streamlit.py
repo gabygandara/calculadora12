@@ -324,3 +324,16 @@ st.markdown(
 
 # Agrega el marcador
 st.markdown('<div class="footer">Desarrollado por el departamento de <a href="https://www.redcame.org.ar/" target="_blank">Estadísticas y Bases de Datos de CAME</a></div>', unsafe_allow_html=True)
+
+
+# URL de tu perfil de Instagram
+instagram_url = "https://www.facebook.com/redcame"
+
+# Cargar la imagen del logotipo de Instagram
+logo_image = "imgs/ICONO_FACEBOOK.png"  # Reemplaza con la ruta de tu imagen
+
+# Mostrar el logotipo de Instagram
+st.image(logo_image, use_column_width=True)
+
+# Agregar un enlace al perfil de Instagram
+st.markdown(f'<a href="{instagram_url}" target="_blank">¡Sígueme en Instagram!</a>', unsafe_allow_html=True)
