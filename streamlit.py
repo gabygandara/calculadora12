@@ -63,7 +63,8 @@ st.write("---")
 
 # Que seleccione 
 inscripciones = ["Monotributista", "Responsable Inscripto", "Sociedad"]
-tipo_inscripcion = st.selectbox("Seleccione el tipo de inscripción",inscripciones)
+st.write("Seleccione el tipo de inscripción")
+tipo_inscripcion = st.selectbox("",inscripciones)
 
 st.write("---")
 
