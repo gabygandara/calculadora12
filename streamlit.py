@@ -335,7 +335,7 @@ st.write("")
 # Agregar espacio en blanco a la izquierda
 
 # Columnas para centrar
-col_izq, col_centro, colder = st.columns([0.9,1.9,0.5])
+col_izq, col_centro, colder = st.columns([0.7,1.8,0.5])
 with col_izq :
     st.write("")
 
