@@ -137,13 +137,23 @@ if aux3 == True :
         
         
         # Agregar título
-    c.setFont("Verdana", 22)
-    c.drawString(200, 770, "Calculadora 12")
+    c.setFont("Helvetica-Bold", 22)
+    c.drawString(200, 770, "Calculadora Ahora 12")
 
     c.drawString(200, 720, f"Precio sugerido: {lista_variables[1]}")    
         # Agregar imagen (ajusta la ruta de la imagen)
     imagen_path = "imgs/CAME-Transparente.png"  # Reemplaza 'tu_imagen.png' con la ruta de tu propia imagen
     c.drawImage(imagen_path, 100, 1, width=200, height=100)
+
+    # Agrega una línea separadora
+    line_x1, line_y1 = 100, 650
+    line_x2, line_y2 = 400, 650
+    # linea
+    c.line(line_x1, line_y1, line_x2, line_y2)
+
+    # Dibuja un cuadrado
+    x, y, width, height = 100, 550, 300, 50  # Coordenadas y dimensiones del cuadrado
+    c.rect(x, y, width, height)
 
     c.setFont("Helvetica", 12)
     c.drawString(100, 700, f"Monto actual: ${lista_variables[0]}")
