@@ -337,9 +337,45 @@ with colFc:
     logo_image = "imgs/ICONO_FACEBOOK.png"  # Reemplaza con la ruta de tu imagen
     # Mostrar el logotipo de Instagram
     st.image(logo_image, use_column_width=True)
+    # Crear un enlace clickeable
+    st.markdown(f"[Facebook]({facebook_url})")
 
-    # Crear un botón que redirija a la página
-    if st.button("Ir a la página"):
-        import webbrowser
-        webbrowser.open_new_tab(facebook_url)
+with colIg:
+    # URL de tu perfil de Instagram
+    facebook_url = "https://www.facebook.com/redcame"
+    # Cargar la imagen del logotipo de Instagram
+    logo_image = "imgs/ICONO_FACEBOOK.png"  # Reemplaza con la ruta de tu imagen
+    # Mostrar el logotipo de Instagram
+    st.image(logo_image, use_column_width=True)
+    # Crear un enlace clickeable
+    st.markdown(f"[Facebook]({facebook_url})")
 
+with colTw:
+    # URL de tu perfil de Instagram
+    facebook_url = "https://www.facebook.com/redcame"
+    # Cargar la imagen del logotipo de Instagram
+    logo_image = "imgs/ICONO_FACEBOOK.png"  # Reemplaza con la ruta de tu imagen
+    # Mostrar el logotipo de Instagram
+    st.image(logo_image, use_column_width=True)
+    # Crear un enlace clickeable
+    st.markdown(f"[Facebook]({facebook_url})")
+
+with colLk:
+    # URL de tu perfil de Instagram
+    facebook_url = "https://www.facebook.com/redcame"
+    # Cargar la imagen del logotipo de Instagram
+    logo_image = "imgs/ICONO_FACEBOOK.png"  # Reemplaza con la ruta de tu imagen
+    # Mostrar el logotipo de Instagram
+    st.image(logo_image, use_column_width=True)
+    # Crear un enlace clickeable
+    st.markdown(f"[Facebook]({facebook_url})") 
+
+with colYt:
+    # URL de tu perfil de Instagram
+    facebook_url = "https://www.facebook.com/redcame"
+    # Cargar la imagen del logotipo de Instagram
+    logo_image = "imgs/ICONO_FACEBOOK.png"  # Reemplaza con la ruta de tu imagen
+    # Mostrar el logotipo de Instagram
+    st.image(logo_image, use_column_width=True)
+    # Crear un enlace clickeable
+    st.markdown(f"[Facebook]({facebook_url})")               
