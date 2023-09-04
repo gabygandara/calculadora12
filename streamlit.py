@@ -145,8 +145,8 @@ if aux3 == True :
 
     # Coordenadas y dimensiones de la imagen
     imagen_path = "imgs/logos_came_con_fondo y recortados2.png"  # Reemplaza 'tu_imagen.png' con la ruta de tu propia imagen
-    imagen_width = 400  # Ancho de la imagen
-    imagen_height = 100  # Altura de la imagen
+    imagen_width = 300  # Ancho de la imagen
+    imagen_height = 50  # Altura de la imagen
     imagen_x = (letter[0] - imagen_width) / 2  # Centrar la imagen horizontalmente
     imagen_y = 620  # Espacio entre el título y la imagen
 
