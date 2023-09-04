@@ -4,6 +4,18 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from io import BytesIO
 
+# Establece el estilo de fuente para toda la aplicación
+st.markdown("""
+    <style>
+        /* Cambia la fuente a Verdana y el tamaño a 18px */
+        body {
+            font-family: Verdana, sans-serif;
+            font-size: 18px;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+
 # Configuramos la página
 st.set_page_config(
     page_title="Calculadora Ahora 12",
@@ -63,8 +75,7 @@ st.write("---")
 
 # Que seleccione 
 inscripciones = ["Monotributista", "Responsable Inscripto", "Sociedad"]
-st.write("Seleccione el tipo de inscripción")
-tipo_inscripcion = st.selectbox("",inscripciones)
+tipo_inscripcion = st.selectbox("Seleccione el tipo de inscripción",inscripciones)
 
 st.write("---")
 
@@ -138,9 +149,10 @@ if aux3 == True :
         
         
         # Agregar título
-    c.setFont("Helvetica-Bold", 16)
+    c.setFont("Helvetica-Bold", 22)
     c.drawString(200, 770, "Calculadora 12")
-        
+
+    c.drawString(200, 720, f"Precio sugerido: {lista_variables[1]}")    
         # Agregar imagen (ajusta la ruta de la imagen)
     imagen_path = "imgs/CAME-Transparente.png"  # Reemplaza 'tu_imagen.png' con la ruta de tu propia imagen
     c.drawImage(imagen_path, 100, 1, width=200, height=100)
