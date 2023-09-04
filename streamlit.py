@@ -309,4 +309,4 @@ st.markdown(
 st.markdown('<div class="footer">Desarrollado por el departamento de <a href="https://www.redcame.org.ar/" target="_blank">Estadísticas y Bases de Datos de CAME</a></div>', unsafe_allow_html=True)
 
 # Coloca la imagen en la esquina inferior derecha
-st.image('imgs/logo_ahora12.png', width=100, use_container_width=False)
+st.image('imgs/logo_ahora12.png', width=100)
