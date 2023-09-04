@@ -336,10 +336,10 @@ with colFc:
     # Cargar la imagen del logotipo de Instagram
     logo_image = "imgs/facebook.png"  # Reemplaza con la ruta de tu imagen
     # Mostrar el logotipo de Instagram
-    col_prueba1, colprueba2, colprueba3 = st.columns(3)
+    col_prueba1, colprueba2, colprueba3 = st.columns([0.5,2,0.5])
     with col_prueba1 :
         st.write("")
-        
+
     with colprueba2:
         st.image(logo_image, width=32)
         # Crear un enlace clickeable
