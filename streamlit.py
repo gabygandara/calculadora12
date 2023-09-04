@@ -141,7 +141,7 @@ if aux3 == True :
     c.drawString(200, 770, "Calculadora Ahora 12")
 
     # Coordenadas y dimensiones del rectángulo
-    x, y, width, height = 100, 720, 300, 50
+    x, y, width, height = 100, 740, 300, 50
 
     # Dibujar el rectángulo
     c.rect(x, y, width, height)
