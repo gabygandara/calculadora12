@@ -137,7 +137,7 @@ if aux3 == True :
         
         
         # Agregar título
-    c.setFont("Helvetica-Bold", 22)
+    c.setFont("Verdana", 22)
     c.drawString(200, 770, "Calculadora 12")
 
     c.drawString(200, 720, f"Precio sugerido: {lista_variables[1]}")    
