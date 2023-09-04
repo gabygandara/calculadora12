@@ -141,7 +141,7 @@ if aux3 == True :
 
     # Escribimos la fecha actual 
     c.setFont("Helvetica", 10)
-    c.drawString(40, 740, f"{fecha_hora_actual}")
+    c.drawString(40, 760, f"{fecha_hora_actual}")
 
     # Agregar título
     c.setFont("Helvetica-Bold", 32)
