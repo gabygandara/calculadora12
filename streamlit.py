@@ -176,8 +176,8 @@ if aux3 == True :
 
 
     # Agrega una línea separadora
-    line_x1, line_y1 = 100, 470
-    line_x2, line_y2 = 800, 470
+    line_x1, line_y1 = 100, 460
+    line_x2, line_y2 = 400, 460
     # linea
     c.line(line_x1, line_y1, line_x2, line_y2)
 
@@ -192,17 +192,17 @@ if aux3 == True :
     tasas_a_STR = str(tasas_cft[programa_seleccionado]*100).replace(".",",")
 
     c.setFont("Helvetica-Bold", 12)
-    c.drawString(200, 460, f"Detalle de descuentos")
+    c.drawString(200, 440, f"Detalle de descuentos")
     c.setFont("Helvetica", 12)
-    c.drawString(200, 440, f"Tasa del programa {programa_seleccionado} ({tasas_a_STR}%): ${lista_variables[4]}")
-    c.drawString(200, 420, f"Arancel T.Cred (1,8%): ${lista_variables[5]}")
-    c.drawString(200, 400, f"IVA (21%): ${lista_variables[6]}")
-    c.drawString(200, 380, f"IVA (10,5%) ley 25.063: ${lista_variables[7]}")
-    c.drawString(200, 360, f"II.BB (2,5%): ${lista_variables[8]}")
-    c.drawString(200, 340, f"IVA RG2408 (1,5%): ${lista_variables[9]}")
+    c.drawString(200, 420, f"Tasa del programa {programa_seleccionado} ({tasas_a_STR}%): ${lista_variables[4]}")
+    c.drawString(200, 400, f"Arancel T.Cred (1,8%): ${lista_variables[5]}")
+    c.drawString(200, 380, f"IVA (21%): ${lista_variables[6]}")
+    c.drawString(200, 360, f"IVA (10,5%) ley 25.063: ${lista_variables[7]}")
+    c.drawString(200, 340, f"II.BB (2,5%): ${lista_variables[8]}")
+    c.drawString(200, 320, f"IVA RG2408 (1,5%): ${lista_variables[9]}")
     
     if (tipo_inscripcion != "Monotributista"):
-        c.drawString(200, 320, f"**ATENCIÓN**: Al estar inscripto como {tipo_inscripcion} usted recuperará **${lista_variables[10]}** en concepto de IVA")
+        c.drawString(200, 300, f"**ATENCIÓN**: Al estar inscripto como {tipo_inscripcion} usted recuperará **${lista_variables[10]}** en concepto de IVA")
 
         # Guardar y cerrar el PDF
     c.save()
