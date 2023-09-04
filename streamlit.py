@@ -177,7 +177,7 @@ if aux3 == True :
 
     # Agrega una línea separadora
     line_x1, line_y1 = 100, 460
-    line_x2, line_y2 = 400, 460
+    line_x2, line_y2 = 600, 460
     # linea
     c.line(line_x1, line_y1, line_x2, line_y2)
 
