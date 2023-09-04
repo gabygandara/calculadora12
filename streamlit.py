@@ -328,24 +328,18 @@ st.markdown('<div class="footer">Desarrollado por el departamento de <a href="ht
 
 
 # Creamos las columnas para los logos de apps
-colIconos, colRelleno = st.columns([0.5,1.5])
-with colIconos : 
-    colFc, colIg, colTw, colLk, colYt = st.columns(5)
+colFc, colIg, colTw, colLk, colYt = st.columns(5)
 
-    with colFc:
-        # URL de tu perfil de Instagram
-        instagram_url = "https://www.facebook.com/redcame"
+with colFc:
+    # URL de tu perfil de Instagram
+    facebook_url = "https://www.facebook.com/redcame"
+    # Cargar la imagen del logotipo de Instagram
+    logo_image = "imgs/ICONO_FACEBOOK.png"  # Reemplaza con la ruta de tu imagen
+    # Mostrar el logotipo de Instagram
+    st.image(logo_image, use_column_width=True)
 
-        # Cargar la imagen del logotipo de Instagram
-        logo_image = "imgs/ICONO_FACEBOOK.png"  # Reemplaza con la ruta de tu imagen
-
-        # Mostrar el logotipo de Instagram
-        st.image(logo_image, use_column_width=True)
-
-        # Agregar un enlace al perfil de Instagram
-        st.markdown(f'<a href="{instagram_url}" target="_blank">¡aqui!</a>', unsafe_allow_html=True)
-
-
-with colRelleno:
-    st.write("")    
+    # Crear un botón que redirija a la página
+    if st.button("Ir a la página"):
+        import webbrowser
+        webbrowser.open_new_tab(facebook_url)
 
