@@ -349,3 +349,14 @@ with colIconos :
 with colRelleno:
     st.write("")    
 
+
+# OPCION 2
+import streamlit as st
+from streamlit.components.v1 import components
+
+# URL de tu perfil de Instagram
+instagram_url = "https://www.instagram.com/tu_usuario/"
+
+# Agregar un icono de Instagram
+icon_html = f'<a href="{instagram_url}" target="_blank"><i class="fab fa-instagram fa-4x"></i></a>'
+components.html(icon_html, width=100, height=100)
