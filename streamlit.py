@@ -141,7 +141,7 @@ if aux3 == True :
     titulo = "Calculadora Ahora 12"
     titulo_width = c.stringWidth(titulo, "Helvetica-Bold", 32)
     titulo_x = (letter[0] - titulo_width) / 2  # Centrar el título horizontalmente
-    c.drawString(titulo_x, 770, titulo)
+    c.drawString(titulo_x, 760, titulo)
 
     # Coordenadas y dimensiones del rectángulo
     rect_x = 100  # Ajusta la posición X del rectángulo
