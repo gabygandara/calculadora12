@@ -242,7 +242,7 @@ with colA :
         else:
             pass  
     if aux == True:
-        st.download_button("Descargar PDF", pdf_buffer, file_name="informe.pdf")
+        st.download_button("Descargar PDF", pdf_buffer, file_name="Resumen precio sugerido.pdf")
 
 
 with colB:
