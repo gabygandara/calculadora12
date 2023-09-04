@@ -4,18 +4,6 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from io import BytesIO
 
-# Establece el estilo de fuente para toda la aplicación
-st.markdown("""
-    <style>
-        /* Cambia la fuente a Verdana y el tamaño a 18px */
-        body {
-            font-family: Verdana, sans-serif;
-            font-size: 18px;
-        }
-    </style>
-""", unsafe_allow_html=True)
-
-
 # Configuramos la página
 st.set_page_config(
     page_title="Calculadora Ahora 12",
@@ -32,7 +20,7 @@ aux = False
 
 
 # Aplicar estilos de formato CSS para agrandar el título
-st.markdown("<h1 style='text-align: center; font-size: 60px;'>Calculadora Ahora 12</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; font-size: 60px; font-family: Verdana, sans-serif;'>Calculadora Ahora 12</h1>", unsafe_allow_html=True)
 
 st.write("---")
 
