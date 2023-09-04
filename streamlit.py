@@ -330,6 +330,11 @@ st.write("---")
 # Titulo para las redes
 st.markdown("<h1 style='text-align: center; font-size: 22px; font-family: Verdana, sans-serif;'>¡Seguinos en nuestras redes sociales!</h1>", unsafe_allow_html=True)
 # Creamos las columnas para los logos de apps
+st.write("")
+
+# Agregar espacio en blanco a la izquierda
+st.write(" " * 5)
+
 colFc, colIg, colTw, colLk, colYt = st.columns(5)
 
 with colFc:
@@ -381,3 +386,6 @@ with colYt:
     st.image(logo_image, width = 40)
     # Crear un enlace clickeable
     st.markdown(f"[Youtube]({youtube_url})", unsafe_allow_html=True)               
+
+# Agregar espacio en blanco a la derecha
+st.write(" " * 5)    
