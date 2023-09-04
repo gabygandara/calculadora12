@@ -144,7 +144,7 @@ if aux3 == True :
     c.drawString(titulo_x, 760, titulo)
 
     # Coordenadas y dimensiones de la imagen
-    imagen_path = "imgs/logos_came_con_fondo y recortados.png"  # Reemplaza 'tu_imagen.png' con la ruta de tu propia imagen
+    imagen_path = "imgs/logos_came_con_fondo y recortados2.png"  # Reemplaza 'tu_imagen.png' con la ruta de tu propia imagen
     imagen_width = 400  # Ancho de la imagen
     imagen_height = 150  # Altura de la imagen
     imagen_x = (letter[0] - imagen_width) / 2  # Centrar la imagen horizontalmente
