@@ -202,7 +202,7 @@ if aux3 == True :
     c.drawString(200, 320, f"IVA RG2408 (1,5%): ${lista_variables[9]}")
     
     if (tipo_inscripcion != "Monotributista"):
-        c.drawString(100, 300, f"**ATENCIÓN**: Al estar inscripto como {tipo_inscripcion} usted recuperará **${lista_variables[10]}** en concepto de IVA")
+        c.drawString(50, 300, f"ATENCIÓN: Al estar inscripto como {tipo_inscripcion} usted recuperará ${lista_variables[10]} en concepto de IVA")
 
         # Guardar y cerrar el PDF
     c.save()
