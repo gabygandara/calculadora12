@@ -148,7 +148,7 @@ if aux3 == True :
     imagen_width = 400  # Ancho de la imagen
     imagen_height = 150  # Altura de la imagen
     imagen_x = (letter[0] - imagen_width) / 2  # Centrar la imagen horizontalmente
-    imagen_y = 500  # Espacio entre el título y la imagen
+    imagen_y = 720  # Espacio entre el título y la imagen
 
     c.drawImage(imagen_path, imagen_x, imagen_y, width=imagen_width, height=imagen_height)
 
@@ -156,7 +156,7 @@ if aux3 == True :
     rect_width = 400  # Ancho del rectángulo
     rect_height = 50  # Altura del rectángulo
     rect_x = (letter[0] - rect_width) / 2  # Centrar el rectángulo horizontalmente
-    rect_y = 520  # Espacio entre la imagen y el rectángulo
+    rect_y = 680  # Espacio entre la imagen y el rectángulo
 
     c.rect(rect_x, rect_y, rect_width, rect_height)
 
