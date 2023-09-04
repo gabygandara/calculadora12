@@ -4,6 +4,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from io import BytesIO
 import datetime
+import pytz
 
 # Configuramos la página
 st.set_page_config(
@@ -135,10 +136,12 @@ if aux3 == True :
     pdf_buffer = BytesIO()
         # Generar el PDF
     c = canvas.Canvas(pdf_buffer, pagesize=letter)
-        
-    # Obtener la fecha y hora actual
-    # Obtener la fecha y hora actual
-    fecha_hora_actual = datetime.datetime.now()
+
+    # Establecer la zona horaria a Buenos Aires
+    zona_horaria = pytz.timezone('America/Argentina/Buenos_Aires')
+
+    # Obtener la fecha y hora actual en la zona horaria especificada
+    fecha_hora_actual = datetime.datetime.now(zona_horaria)
 
     # Obtener la fecha en formato dd/mm/aa
     fecha_actual = fecha_hora_actual.strftime("%d/%m/%y")
@@ -148,8 +151,7 @@ if aux3 == True :
 
     # Escribimos la fecha actual 
     c.setFont("Helvetica", 10)
-    c.drawString(40, 760, f"{fecha_actual}")
-    c.drawString(40, 750, f"{hora_actual}")
+    c.drawString(40, 760, f"{fecha_actual} - {hora_actual}")
 
     # Agregar título
     c.setFont("Helvetica-Bold", 32)
@@ -186,8 +188,6 @@ if aux3 == True :
 
     # Agregar texto dentro del rectángulo
     c.drawString(text_x, text_y, texto)
-
-    
 
 
     # Agrega una línea separadora
