@@ -334,48 +334,48 @@ with colFc:
     # URL de tu perfil de Instagram
     facebook_url = "https://www.facebook.com/redcame"
     # Cargar la imagen del logotipo de Instagram
-    logo_image = "imgs/ICONO_FACEBOOK.png"  # Reemplaza con la ruta de tu imagen
+    logo_image = "imgs/facebook.png"  # Reemplaza con la ruta de tu imagen
     # Mostrar el logotipo de Instagram
-    st.image(logo_image, use_column_width=True)
+    st.image(logo_image, width=32)
     # Crear un enlace clickeable
     st.markdown(f"[Facebook]({facebook_url})")
 
 with colIg:
     # URL de tu perfil de Instagram
-    facebook_url = "https://www.facebook.com/redcame"
+    instagram_url = "https://www.instagram.com/redcame/"
     # Cargar la imagen del logotipo de Instagram
-    logo_image = "imgs/ICONO_FACEBOOK.png"  # Reemplaza con la ruta de tu imagen
-    # Mostrar el logotipo de Instagram
-    st.image(logo_image, use_column_width=True)
-    # Crear un enlace clickeable
-    st.markdown(f"[Facebook]({facebook_url})")
-
-with colTw:
-    # URL de tu perfil de Instagram
-    facebook_url = "https://www.facebook.com/redcame"
-    # Cargar la imagen del logotipo de Instagram
-    logo_image = "imgs/ICONO_FACEBOOK.png"  # Reemplaza con la ruta de tu imagen
-    # Mostrar el logotipo de Instagram
-    st.image(logo_image, use_column_width=True)
-    # Crear un enlace clickeable
-    st.markdown(f"[Facebook]({facebook_url})")
-
-with colLk:
-    # URL de tu perfil de Instagram
-    facebook_url = "https://www.facebook.com/redcame"
-    # Cargar la imagen del logotipo de Instagram
-    logo_image = "imgs/ICONO_FACEBOOK.png"  # Reemplaza con la ruta de tu imagen
+    logo_image = "imgs/ig.png"  # Reemplaza con la ruta de tu imagen
     # Mostrar el logotipo de Instagram
     st.image(logo_image, width=32)
     # Crear un enlace clickeable
-    st.markdown(f"[Facebook]({facebook_url})") 
+    st.markdown(f"[Instagram]({instagram_url})")
+
+with colTw:
+    # URL de tu perfil de Instagram
+    twiter_url = "https://twitter.com/redcame"
+    # Cargar la imagen del logotipo de Instagram
+    logo_image = "imgs/twiter.png"  # Reemplaza con la ruta de tu imagen
+    # Mostrar el logotipo de Instagram
+    st.image(logo_image, width=32)
+    # Crear un enlace clickeable
+    st.markdown(f"[Twitter]({twiter_url})")
+
+with colLk:
+    # URL de tu perfil de Instagram
+    linkedin_url = "https://ar.linkedin.com/company/redcame"
+    # Cargar la imagen del logotipo de Instagram
+    logo_image = "imgs/linkedin.png"  # Reemplaza con la ruta de tu imagen
+    # Mostrar el logotipo de Instagram
+    st.image(logo_image, width=32)
+    # Crear un enlace clickeable
+    st.markdown(f"[LinkedIn]({linkedin_url})") 
 
 with colYt:
     # URL de tu perfil de Instagram
-    facebook_url = "https://www.facebook.com/redcame"
+    youtube_url = "https://www.youtube.com/c/CAMEar"
     # Cargar la imagen del logotipo de Instagram
-    logo_image = "imgs/ICONO_FACEBOOK.png"  # Reemplaza con la ruta de tu imagen
+    logo_image = "imgs/yutu.png"  # Reemplaza con la ruta de tu imagen
     # Mostrar el logotipo de Instagram
     st.image(logo_image, use_column_width=True)
     # Crear un enlace clickeable
-    st.markdown(f"[Facebook]({facebook_url})")               
+    st.markdown(f"[Youtube]({youtube_url})")               
