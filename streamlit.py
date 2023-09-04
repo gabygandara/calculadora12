@@ -136,15 +136,21 @@ if aux3 == True :
     c = canvas.Canvas(pdf_buffer, pagesize=letter)
         
         
-        # Agregar título
+    # Agregar título
     c.setFont("Helvetica-Bold", 32)
-    c.drawString(200, 770, "Calculadora Ahora 12")
+    titulo = "Calculadora Ahora 12"
+    titulo_width = c.stringWidth(titulo, "Helvetica-Bold", 32)
+    titulo_x = (letter[0] - titulo_width) / 2  # Centrar el título horizontalmente
+    c.drawString(titulo_x, 770, titulo)
 
     # Coordenadas y dimensiones del rectángulo
-    x, y, width, height = 100, 740, 300, 50
+    rect_x = 100  # Ajusta la posición X del rectángulo
+    rect_width = 400  # Ancho del rectángulo
+    rect_height = 50  # Altura del rectángulo
+    rect_y = 720 - rect_height  # Colocar el rectángulo debajo del título
 
     # Dibujar el rectángulo
-    c.rect(x, y, width, height)
+    c.rect(rect_x, rect_y, rect_width, rect_height)
 
     # Texto que quieres agregar dentro del rectángulo
     c.setFont("Helvetica-Bold", 20)
@@ -152,9 +158,8 @@ if aux3 == True :
 
     # Alinear el texto en el centro del rectángulo
     text_width = c.stringWidth(texto, "Helvetica-Bold", 20)
-    text_height = 20  # Tamaño de fuente
-    text_x = x + (width - text_width) / 2
-    text_y = y + (height - text_height) / 2
+    text_x = rect_x + (rect_width - text_width) / 2
+    text_y = rect_y + (rect_height - 20) / 2  # Alinear verticalmente en el centro
 
     # Agregar texto dentro del rectángulo
     c.drawString(text_x, text_y, texto)
