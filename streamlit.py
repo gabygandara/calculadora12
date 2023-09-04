@@ -177,7 +177,7 @@ if aux3 == True :
 
     # Agrega una línea separadora
     line_x1, line_y1 = 100, 460
-    line_x2, line_y2 = 500, 460
+    line_x2, line_y2 = 520, 460
     # linea
     c.line(line_x1, line_y1, line_x2, line_y2)
 
@@ -202,7 +202,7 @@ if aux3 == True :
     c.drawString(200, 320, f"IVA RG2408 (1,5%): ${lista_variables[9]}")
     
     if (tipo_inscripcion != "Monotributista"):
-        c.drawString(200, 300, f"**ATENCIÓN**: Al estar inscripto como {tipo_inscripcion} usted recuperará **${lista_variables[10]}** en concepto de IVA")
+        c.drawString(100, 300, f"**ATENCIÓN**: Al estar inscripto como {tipo_inscripcion} usted recuperará **${lista_variables[10]}** en concepto de IVA")
 
         # Guardar y cerrar el PDF
     c.save()
