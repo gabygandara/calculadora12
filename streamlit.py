@@ -137,11 +137,19 @@ if aux3 == True :
     c = canvas.Canvas(pdf_buffer, pagesize=letter)
         
     # Obtener la fecha y hora actual
-    fecha_hora_actual = datetime.datetime.now() 
+    # Obtener la fecha y hora actual
+    fecha_hora_actual = datetime.datetime.now()
+
+    # Obtener la fecha en formato dd/mm/aa
+    fecha_actual = fecha_hora_actual.strftime("%d/%m/%y")
+
+    # Obtener la hora en formato hh:mm:ss
+    hora_actual = fecha_hora_actual.strftime("%H:%M:%S")
 
     # Escribimos la fecha actual 
     c.setFont("Helvetica", 10)
-    c.drawString(40, 760, f"{fecha_hora_actual}")
+    c.drawString(40, 760, f"{fecha_actual}")
+    c.drawString(40, 750, f"{hora_actual}")
 
     # Agregar título
     c.setFont("Helvetica-Bold", 32)
