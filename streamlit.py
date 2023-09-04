@@ -20,7 +20,7 @@ aux = False
 
 
 # Aplicar estilos de formato CSS para agrandar el título
-st.markdown("<h1 style='text-align: center; font-size: 60px; font-family: Verdana, sans-serif;'>Calculadora Ahora 12</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; font-size: 54px; font-family: Verdana, sans-serif;'>Calculadora Ahora 12</h1>", unsafe_allow_html=True)
 
 st.write("---")
 
@@ -137,10 +137,28 @@ if aux3 == True :
         
         
         # Agregar título
-    c.setFont("Helvetica-Bold", 22)
+    c.setFont("Helvetica-Bold", 32)
     c.drawString(200, 770, "Calculadora Ahora 12")
 
-    c.drawString(200, 720, f"Precio sugerido: {lista_variables[1]}")    
+    # Coordenadas y dimensiones del rectángulo
+    x, y, width, height = 100, 550, 300, 50
+
+    # Dibujar el rectángulo
+    c.rect(x, y, width, height)
+
+    # Texto que quieres agregar dentro del rectángulo
+    c.setFont("Helvetica-Bold", 20)
+    texto = f"Precio sugerido: {lista_variables[1]}"
+
+    # Alinear el texto en el centro del rectángulo
+    text_width = c.stringWidth(texto, "Helvetica-Bold", 20)
+    text_height = 20  # Tamaño de fuente
+    text_x = x + (width - text_width) / 2
+    text_y = y + (height - text_height) / 2
+
+    # Agregar texto dentro del rectángulo
+    c.drawString(text_x, text_y, texto)
+    
         # Agregar imagen (ajusta la ruta de la imagen)
     imagen_path = "imgs/CAME-Transparente.png"  # Reemplaza 'tu_imagen.png' con la ruta de tu propia imagen
     c.drawImage(imagen_path, 100, 1, width=200, height=100)
@@ -151,9 +169,6 @@ if aux3 == True :
     # linea
     c.line(line_x1, line_y1, line_x2, line_y2)
 
-    # Dibuja un cuadrado
-    x, y, width, height = 100, 550, 300, 50  # Coordenadas y dimensiones del cuadrado
-    c.rect(x, y, width, height)
 
     c.setFont("Helvetica", 12)
     c.drawString(100, 700, f"Monto actual: ${lista_variables[0]}")
