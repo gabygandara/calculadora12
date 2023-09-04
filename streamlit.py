@@ -366,7 +366,7 @@ with colLk:
     # Cargar la imagen del logotipo de Instagram
     logo_image = "imgs/ICONO_FACEBOOK.png"  # Reemplaza con la ruta de tu imagen
     # Mostrar el logotipo de Instagram
-    st.image(logo_image, width=50)
+    st.image(logo_image, width=32)
     # Crear un enlace clickeable
     st.markdown(f"[Facebook]({facebook_url})") 
 
