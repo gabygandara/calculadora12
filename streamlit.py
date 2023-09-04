@@ -3,6 +3,7 @@ import streamlit as st
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from io import BytesIO
+import datetime
 
 # Configuramos la página
 st.set_page_config(
@@ -128,14 +129,20 @@ if aux3 == True :
         lista_variables[i] = lista_variables[i].replace(" ",".")
 
     # Nombre del archivo PDF
-    pdf_filename = "informe.pdf"
+    pdf_filename = "Resumen precio sugerido.pdf"
 
         # Crear un objeto BytesIO para guardar el PDF en memoria
     pdf_buffer = BytesIO()
         # Generar el PDF
     c = canvas.Canvas(pdf_buffer, pagesize=letter)
         
-        
+    # Obtener la fecha y hora actual
+    fecha_hora_actual = datetime.datetime.now() 
+
+    # Escribimos la fecha actual 
+    c.setFont("Helvetica", 10)
+    c.drawString(40, 760, fecha_hora_actual)
+
     # Agregar título
     c.setFont("Helvetica-Bold", 32)
     titulo = "Calculadora Ahora 12"
@@ -162,7 +169,7 @@ if aux3 == True :
 
     # Texto que quieres agregar dentro del rectángulo
     c.setFont("Helvetica-Bold", 20)
-    texto = f"Precio sugerido: {lista_variables[1]}"
+    texto = f"Precio sugerido: ${lista_variables[1]}"
 
     # Alinear el texto en el centro del rectángulo
     text_width = c.stringWidth(texto, "Helvetica-Bold", 20)
@@ -195,11 +202,13 @@ if aux3 == True :
     c.drawString(200, 440, f"Detalle de descuentos")
     c.setFont("Helvetica", 12)
     c.drawString(200, 420, f"Tasa del programa {programa_seleccionado} ({tasas_a_STR}%): ${lista_variables[4]}")
-    c.drawString(200, 400, f"Arancel T.Cred (1,8%): ${lista_variables[5]}")
-    c.drawString(200, 380, f"IVA (21%): ${lista_variables[6]}")
     c.drawString(200, 360, f"IVA (10,5%) ley 25.063: ${lista_variables[7]}")
     c.drawString(200, 340, f"II.BB (2,5%): ${lista_variables[8]}")
     c.drawString(200, 320, f"IVA RG2408 (1,5%): ${lista_variables[9]}")
+    c.drawString(200, 400, f"Arancel T.Cred (1,8%): ${lista_variables[5]}")
+    c.drawString(200, 380, f"IVA (21%): ${lista_variables[6]}")
+    
+    
     
     if (tipo_inscripcion != "Monotributista"):
         c.drawString(40, 280, f"Al estar inscripto como {tipo_inscripcion} usted recuperará ${lista_variables[10]} en concepto de IVA")
@@ -307,6 +316,3 @@ st.markdown(
 
 # Agrega el marcador
 st.markdown('<div class="footer">Desarrollado por el departamento de <a href="https://www.redcame.org.ar/" target="_blank">Estadísticas y Bases de Datos de CAME</a></div>', unsafe_allow_html=True)
-
-# Coloca la imagen en la esquina inferior derecha
-st.image('imgs/logo_ahora12.png', width=100)
