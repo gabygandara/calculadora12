@@ -137,25 +137,26 @@ if aux3 == True :
         
         
     # Agregar título
+   # Agregar título
     c.setFont("Helvetica-Bold", 32)
     titulo = "Calculadora Ahora 12"
     titulo_width = c.stringWidth(titulo, "Helvetica-Bold", 32)
     titulo_x = (letter[0] - titulo_width) / 2  # Centrar el título horizontalmente
-    c.drawString(titulo_x, 760, titulo)
+    c.drawString(titulo_x, 720, titulo)
 
     # Agregar imagen (ajusta la ruta de la imagen)
     imagen_path = "imgs/logos_came_con_fondo y recortados.png"  # Reemplaza 'tu_imagen.png' con la ruta de tu propia imagen
     imagen_width = 200
     imagen_height = 200
     imagen_x = (letter[0] - imagen_width) / 2  # Centrar la imagen horizontalmente
-    imagen_y = 540  # Espacio entre el título y la imagen
+    imagen_y = 520  # Espacio entre el título y la imagen
     c.drawImage(imagen_path, imagen_x, imagen_y, width=imagen_width, height=imagen_height)
 
     # Coordenadas y dimensiones del rectángulo
     rect_width = 400  # Ancho del rectángulo
     rect_height = 50  # Altura del rectángulo
     rect_x = (letter[0] - rect_width) / 2  # Centrar el rectángulo horizontalmente
-    rect_y = 380  # Espacio entre la imagen y el rectángulo
+    rect_y = 320  # Espacio entre la imagen y el rectángulo
 
     # Dibujar el rectángulo
     c.rect(rect_x, rect_y, rect_width, rect_height)
