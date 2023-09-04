@@ -143,12 +143,12 @@ if aux3 == True :
     titulo_x = (letter[0] - titulo_width) / 2  # Centrar el título horizontalmente
     c.drawString(titulo_x, 750, titulo)
 
-    # Agregar imagen (ajusta la ruta de la imagen)
+    # Coordenadas y dimensiones de la imagen
     imagen_path = "imgs/logos_came_con_fondo y recortados.png"  # Reemplaza 'tu_imagen.png' con la ruta de tu propia imagen
-    imagen_width = 300  # Aumenta el ancho de la imagen
-    imagen_height = 200
+    imagen_width = 300  # Ancho de la imagen
+    imagen_height = 200  # Altura de la imagen
     imagen_x = (letter[0] - imagen_width) / 2  # Centrar la imagen horizontalmente
-    imagen_y = 530  # Espacio entre el título y la imagen
+    imagen_y = 600  # Espacio entre el título y la imagen
 
     c.drawImage(imagen_path, imagen_x, imagen_y, width=imagen_width, height=imagen_height)
 
@@ -156,9 +156,8 @@ if aux3 == True :
     rect_width = 400  # Ancho del rectángulo
     rect_height = 50  # Altura del rectángulo
     rect_x = (letter[0] - rect_width) / 2  # Centrar el rectángulo horizontalmente
-    rect_y = 320  # Espacio entre la imagen y el rectángulo
+    rect_y = 520  # Espacio entre la imagen y el rectángulo
 
-    # Dibujar el rectángulo
     c.rect(rect_x, rect_y, rect_width, rect_height)
 
     # Texto que quieres agregar dentro del rectángulo
