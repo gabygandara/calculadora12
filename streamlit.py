@@ -343,7 +343,7 @@ with colIconos :
         st.image(logo_image, use_column_width=True)
 
         # Agregar un enlace al perfil de Instagram
-        st.markdown(f'<a href="{instagram_url}" target="_blank">¡Sígueme en Instagram!</a>', unsafe_allow_html=True)
+        st.markdown(f'<a href="{instagram_url}" target="_blank">¡aqui!</a>', unsafe_allow_html=True)
 
 
 with colRelleno:
