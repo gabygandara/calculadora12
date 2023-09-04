@@ -141,21 +141,21 @@ if aux3 == True :
 
     # Escribimos la fecha actual 
     c.setFont("Helvetica", 10)
-    c.drawString(40, 760, f"{fecha_hora_actual}")
+    c.drawString(40, 740, f"{fecha_hora_actual}")
 
     # Agregar título
     c.setFont("Helvetica-Bold", 32)
     titulo = "Calculadora Ahora 12"
     titulo_width = c.stringWidth(titulo, "Helvetica-Bold", 32)
     titulo_x = (letter[0] - titulo_width) / 2  # Centrar el título horizontalmente
-    c.drawString(titulo_x, 740, titulo)
+    c.drawString(titulo_x, 720, titulo)
 
     # Coordenadas y dimensiones de la imagen
     imagen_path = "imgs/logos_came_con_fondo y recortados2.png"  # Reemplaza 'tu_imagen.png' con la ruta de tu propia imagen
     imagen_width = 300  # Ancho de la imagen
     imagen_height = 50  # Altura de la imagen
     imagen_x = (letter[0] - imagen_width) / 2  # Centrar la imagen horizontalmente
-    imagen_y = 680  # Espacio entre el título y la imagen
+    imagen_y = 660  # Espacio entre el título y la imagen
 
     c.drawImage(imagen_path, imagen_x, imagen_y, width=imagen_width, height=imagen_height)
 
@@ -163,7 +163,7 @@ if aux3 == True :
     rect_width = 400  # Ancho del rectángulo
     rect_height = 50  # Altura del rectángulo
     rect_x = (letter[0] - rect_width) / 2  # Centrar el rectángulo horizontalmente
-    rect_y = 600 # Espacio entre la imagen y el rectángulo
+    rect_y = 580 # Espacio entre la imagen y el rectángulo
 
     c.rect(rect_x, rect_y, rect_width, rect_height)
 
@@ -183,35 +183,35 @@ if aux3 == True :
 
 
     # Agrega una línea separadora
-    line_x1, line_y1 = 100, 460
-    line_x2, line_y2 = 520, 460
+    line_x1, line_y1 = 100, 440
+    line_x2, line_y2 = 520, 440
     # linea
     c.line(line_x1, line_y1, line_x2, line_y2)
 
 
     c.setFont("Helvetica", 12)
-    c.drawString(200, 560, f"Monto actual: ${lista_variables[0]}")
-    c.drawString(200, 540, f"Monto a cobrar: {lista_variables[1]}")
-    c.drawString(200, 520, f"Total de descuentos: {lista_variables[11]}%")
-    c.drawString(200, 500, f"Total de descuentos en pesos: ${lista_variables[2]}")
-    c.drawString(200, 480, f"Neto a percibir: ${lista_variables[3]}")
+    c.drawString(200, 540, f"Monto actual: ${lista_variables[0]}")
+    c.drawString(200, 520, f"Monto a cobrar: {lista_variables[1]}")
+    c.drawString(200, 500, f"Total de descuentos: {lista_variables[11]}%")
+    c.drawString(200, 480, f"Total de descuentos en pesos: ${lista_variables[2]}")
+    c.drawString(200, 460, f"Neto a percibir: ${lista_variables[3]}")
 
     tasas_a_STR = str(tasas_cft[programa_seleccionado]*100).replace(".",",")
 
     c.setFont("Helvetica-Bold", 12)
-    c.drawString(200, 440, f"Detalle de descuentos")
+    c.drawString(200, 420, f"Detalle de descuentos")
     c.setFont("Helvetica", 12)
-    c.drawString(200, 420, f"Tasa del programa {programa_seleccionado} ({tasas_a_STR}%): ${lista_variables[4]}")
-    c.drawString(200, 360, f"IVA (10,5%) ley 25.063: ${lista_variables[7]}")
-    c.drawString(200, 340, f"II.BB (2,5%): ${lista_variables[8]}")
-    c.drawString(200, 320, f"IVA RG2408 (1,5%): ${lista_variables[9]}")
-    c.drawString(200, 400, f"Arancel T.Cred (1,8%): ${lista_variables[5]}")
-    c.drawString(200, 380, f"IVA (21%): ${lista_variables[6]}")
+    c.drawString(200, 400, f"Tasa del programa {programa_seleccionado} ({tasas_a_STR}%): ${lista_variables[4]}")
+    c.drawString(200, 380, f"IVA (10,5%) ley 25.063: ${lista_variables[7]}")
+    c.drawString(200, 360, f"II.BB (2,5%): ${lista_variables[8]}")
+    c.drawString(200, 340, f"IVA RG2408 (1,5%): ${lista_variables[9]}")
+    c.drawString(200, 320, f"Arancel T.Cred (1,8%): ${lista_variables[5]}")
+    c.drawString(200, 300, f"IVA (21%): ${lista_variables[6]}")
     
     
     
     if (tipo_inscripcion != "Monotributista"):
-        c.drawString(40, 280, f"Al estar inscripto como {tipo_inscripcion} usted recuperará ${lista_variables[10]} en concepto de IVA")
+        c.drawString(40, 260, f"Al estar inscripto como {tipo_inscripcion} usted recuperará ${lista_variables[10]} en concepto de IVA")
 
         # Guardar y cerrar el PDF
     c.save()
