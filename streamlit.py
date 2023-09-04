@@ -147,7 +147,7 @@ if aux3 == True :
     rect_x = 100  # Ajusta la posición X del rectángulo
     rect_width = 400  # Ancho del rectángulo
     rect_height = 50  # Altura del rectángulo
-    rect_y = 720 - rect_height  # Colocar el rectángulo debajo del título
+    rect_y = 680 - rect_height  # Colocar el rectángulo debajo del título
 
     # Dibujar el rectángulo
     c.rect(rect_x, rect_y, rect_width, rect_height)
@@ -165,12 +165,12 @@ if aux3 == True :
     c.drawString(text_x, text_y, texto)
     
         # Agregar imagen (ajusta la ruta de la imagen)
-    imagen_path = "imgs/CAME-Transparente.png"  # Reemplaza 'tu_imagen.png' con la ruta de tu propia imagen
-    c.drawImage(imagen_path, 100, 1, width=200, height=100)
+    imagen_path = "imgs/logos_came_con_fondo y recortados.png"  # Reemplaza 'tu_imagen.png' con la ruta de tu propia imagen
+    c.drawImage(imagen_path, 100, 720, width=200, height=200)
 
     # Agrega una línea separadora
-    line_x1, line_y1 = 100, 650
-    line_x2, line_y2 = 400, 650
+    line_x1, line_y1 = 100, 800
+    line_x2, line_y2 = 400, 800
     # linea
     c.line(line_x1, line_y1, line_x2, line_y2)
 
