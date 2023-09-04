@@ -148,7 +148,7 @@ if aux3 == True :
     imagen_width = 300  # Ancho de la imagen
     imagen_height = 50  # Altura de la imagen
     imagen_x = (letter[0] - imagen_width) / 2  # Centrar la imagen horizontalmente
-    imagen_y = 620  # Espacio entre el título y la imagen
+    imagen_y = 740  # Espacio entre el título y la imagen
 
     c.drawImage(imagen_path, imagen_x, imagen_y, width=imagen_width, height=imagen_height)
 
