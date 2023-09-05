@@ -228,7 +228,7 @@ if aux3 == True :
     tasas_a_STR = str(tasas_cft[programa_seleccionado]*100).replace(".",",")
 
     c.setFont("Helvetica", 12)
-    c.drawString(200, 420, f"ACLARACIÓN: Los montos se calcularon en base al precio sugerido, lo que permite percibir el precio de contado luego de los descuentos.")
+    c.drawString(100, 420, f"ACLARACIÓN: Los montos se calcularon en base al precio sugerido, lo que permite percibir el precio de contado luego de los descuentos.")
     c.setFont("Helvetica-Bold", 12)
     c.drawString(200, 400, f"Detalle de descuentos")
     c.setFont("Helvetica", 12)
