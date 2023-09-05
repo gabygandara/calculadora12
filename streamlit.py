@@ -111,10 +111,10 @@ if aux3 == True :
 
     # vuelvo a definir las variables según el monto a cobrar
     # linea divisoria 2
-    base_tasa_programa = monto_credito * tasas_interes
+    base_tasa_programa = monto_a_cobrar * tasas_interes
 
                 # Calculamos la base 2
-    base_arancel = monto_credito * arancel_tarjeta
+    base_arancel = monto_a_cobrar * arancel_tarjeta
 
                 # Iva arancel
     iva_arancel = 0.21 * base_arancel
