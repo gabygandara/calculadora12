@@ -110,7 +110,7 @@ if aux3 == True :
     
 
     # vuelvo a definir las variables según el monto a cobrar
-    # linea divisoria 2
+    # linea divisoria 1
     base_tasa_programa = monto_a_cobrar * tasas_interes
 
                 # Calculamos la base 2
@@ -130,7 +130,8 @@ if aux3 == True :
 
     # reintegro a percibir
     reintegro = iva_arancel + iva_programa + iva3
-    # linea divisoria 1
+    # linea divisoria 2
+
     #descuentos %
     total_descuentos_en_porcentaje = (total_descuentos_1 / monto_credito )
 
@@ -307,6 +308,7 @@ if aux == True :
 
 if aux == True : 
     st.write("---")
+    st.write("**ACLARACIÓN**: Los montos se calcularon en base al precio sugerido, lo que permite percibir el precio de contado luego de los descuentos.")
     st.write("**Detalle de descuentos:**")
     st.write(f"+ Tasa del programa {programa_seleccionado} ({tasas_a_STR}%): **${lista_variables[4]}**")
     st.write(f"+ Arancel T.Cred (1,8%): **${lista_variables[5]}**")
@@ -319,7 +321,7 @@ if aux == True :
     if (tipo_inscripcion != "Monotributista"):
         st.write(f"**ATENCIÓN**: Al estar inscripto como {tipo_inscripcion} usted recuperará **${lista_variables[10]}** en concepto de IVA")
 
-st.write("##### ACLARACIÓN: Los montos se calcularon en base al precio sugerido, lo que permite percibir el precio de contado luego de los descuentos.")
+
 st.write("---")
 
 st.markdown("Para mayor información [click aquí](https://www.argentina.gob.ar/ahora-12/comerciantes#:~:text=Ahora%2012%2032%2C97%25%20es%20la%20tasa%20m%C3%A1xima%20de,a%20aplicar%20sobre%20el%20precio%20de%20contado%201%2C664)")
