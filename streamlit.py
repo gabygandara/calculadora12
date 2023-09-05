@@ -42,7 +42,7 @@ with col3 :
 st.write("---")
 # Realizamos el input del monto
 
-monto_input = st.text_input("Precio de contado", value="$")
+monto_input = st.text_input("Precio contado", value="$")
 monto_credito = monto_input.strip()
 monto_credito = monto_credito.replace("$", "").replace(".","").replace(",,",",").replace(",",".")
 
@@ -107,10 +107,30 @@ if aux3 == True :
                 # monto a cobrar
     monto_a_cobrar = ( 1 / (1-total_descuentos_2) * monto_credito )
 
+    
+
+    # vuelvo a definir las variables según el monto a cobrar
+    # linea divisoria 2
+    base_tasa_programa = monto_credito * tasas_interes
+
+                # Calculamos la base 2
+    base_arancel = monto_credito * arancel_tarjeta
+
+                # Iva arancel
+    iva_arancel = 0.21 * base_arancel
+
+                # Iva del programa
+    iva_programa = 0.105 * base_tasa_programa
+
+                # ingreso bruto
+    iibb = 0.025 * base_tasa_programa
+
+                # otro iva
+    iva3 = 0.015 * base_tasa_programa
+
     # reintegro a percibir
     reintegro = iva_arancel + iva_programa + iva3
-
-
+    # linea divisoria 1
     #descuentos %
     total_descuentos_en_porcentaje = (total_descuentos_1 / monto_credito )
 
@@ -299,6 +319,7 @@ if aux == True :
     if (tipo_inscripcion != "Monotributista"):
         st.write(f"**ATENCIÓN**: Al estar inscripto como {tipo_inscripcion} usted recuperará **${lista_variables[10]}** en concepto de IVA")
 
+st.write("##### ACLARACIÓN: Los montos se calcularon en base al precio sugerido, lo que permite percibir el precio de contado luego de los descuentos.")
 st.write("---")
 
 st.markdown("Para mayor información [click aquí](https://www.argentina.gob.ar/ahora-12/comerciantes#:~:text=Ahora%2012%2032%2C97%25%20es%20la%20tasa%20m%C3%A1xima%20de,a%20aplicar%20sobre%20el%20precio%20de%20contado%201%2C664)")
