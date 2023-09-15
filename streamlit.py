@@ -6,6 +6,43 @@ from io import BytesIO
 import datetime
 import pytz
 import time
+import pandas as pd
+from github import Github
+import io
+
+    
+# Configura el repositorio de GitHub y el archivo CSV
+github_token = st.secrets["TOKEN"] 
+repo_name = st.secrets["REPO"]
+file_path = st.secrets["ARCHIVO"]   
+    
+# Creamos la función para agregar datos    
+def agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, lista_variables1, lista_variables2, programa_seleccionado, tipo_inscripcion):
+        g = Github(github_token)
+        repo = g.get_repo(repo_name)
+        contents = repo.get_contents(file_path)
+        # Create a file-like object from the decoded content
+        content_bytes = contents.decoded_content
+        content_file = io.BytesIO(content_bytes)
+        # Read the CSV from the file-like object
+        df = pd.read_csv(content_file)
+        # Create a DataFrame with the new data
+        new_data = pd.DataFrame({
+            'Fecha': [fecha_actual],
+            'Hora': [hora_actual],
+            'Provincia': [provincia_seleccionada],
+            'Monto': [lista_variables1],
+            'Precio Sugerido': [lista_variables2],
+            'Programa': [programa_seleccionado],
+            'Tipo de inscripcion': [tipo_inscripcion],
+        })
+        # Append the new DataFrame to the existing DataFrame
+        df = pd.concat([df, new_data], ignore_index=True)
+        # Save the updated DataFrame back to the file-like object
+        content_file.seek(0)  # Reset the file position to the beginning
+        df.to_csv(content_file, index=False)
+        # Update the file in the repository with the modified content
+        repo.update_file(contents.path, "Actualizado el archivo CSV", content_file.getvalue(), contents.sha)
 
 # Configuramos la página
 st.set_page_config(
@@ -19,6 +56,7 @@ tasas_cft = {"Ahora 3" : 0.1024 ,
          "Ahora 12" : 0.3297 , 
          "Ahora 18" : 0.4380 ,
          "Ahora 24"  : 0.5221}
+# Aux = False
 aux = False
 
 
@@ -41,8 +79,8 @@ with col3 :
 
 
 st.write("---")
-# Realizamos el input del monto
 
+# Realizamos el input del monto
 monto_input = st.text_input("Precio contado", value="$")
 monto_credito = monto_input.strip()
 monto_credito = monto_credito.replace("$", "").replace(".","").replace(",,",",").replace(",",".")
@@ -60,8 +98,6 @@ else:
         aux3 = False        
         st.markdown("<span style='color: red;'>Ingrese un monto válido porfavor.</span>", unsafe_allow_html=True)
 st.write("---")
-
-# Seleccionar provincias
 
 # listado de provincias
 provincias = [
@@ -92,6 +128,7 @@ provincias = [
     "Tucumán"
 ]
 
+# Seleccionar provincia
 provincia_seleccionada = st.selectbox("Seleccione la provincia",provincias)  
 
 if provincia_seleccionada == "Seleccione una provincia":
@@ -148,92 +185,62 @@ elif provincia_seleccionada == "Tierra del Fuego":
 elif provincia_seleccionada == "Tucumán":
     porcentaje_iibb = 0.029
 st.write("---")
-# Inputo de la cuota
+
+# Seleccionar el programa
 programas = ["Ahora 3","Ahora 6","Ahora 12","Ahora 18","Ahora 24"]
 programa_seleccionado = st.selectbox("Seleccione el programa",programas)    
 
 st.write("---")
 
-# Que seleccione 
+# Seleccionar tipo de inscripción
 inscripciones = ["Monotributista", "Responsable Inscripto", "Sociedad"]
 tipo_inscripcion = st.selectbox("Seleccione el tipo de inscripción",inscripciones)
 
 st.write("---")
 
-
- # programa seleccionado
-
-
-
 colA, colB = st.columns([1,2])
 with colA : 
-    # por las dudas lo guardo :p
-    #with st.form("my_form"):
-    #    button_clicked = st.form_submit_button("Calcular", help="Haz clic para calcular",use_container_width=True)
-    
-    #if button_clicked:
-        # Cuando se hace clic en el botón, realiza alguna acción
-    #    aux = True
     if st.button("Calcular"):
         if aux3 == True :
             if aux_seleccionar_provincia == True:
                 aux = True
                 tasas_interes = tasas_cft[programa_seleccionado]
-    
-                    # Arancel de la tarjeta de credito
+                # Arancel de la tarjeta de credito
                 arancel_tarjeta = 0.018
-    
-                            # Calculamos la tasa del probrama
+                # Calculamos la tasa del probrama
                 base_tasa_programa = monto_credito * tasas_interes
-    
-                            # Calculamos la base 2
+                # Calculamos la base 2
                 base_arancel = monto_credito * arancel_tarjeta
-    
-                            # Iva arancel
+                # Iva arancel
                 iva_arancel = 0.21 * base_arancel
-    
-                            # Iva del programa
+                 # Iva del programa
                 iva_programa = 0.105 * base_tasa_programa
-    
-                            # ingreso bruto
+                # ingreso bruto
                 iibb = porcentaje_iibb * base_tasa_programa
-    
-                            # otro iva
+                # otro iva
                 iva3 = 0.015 * base_tasa_programa
-    
-                            # total de descuentos
+                # total de descuentos
                 total_descuentos_1 = base_tasa_programa + iva_arancel + iva_programa + iibb + iva3 + base_arancel
-    
-                            # neto_percibido
+                # neto_percibido
                 neto_percibido = monto_credito - total_descuentos_1
-    
-                            # descuento en %
+                # descuento en %
                 total_descuentos_2 = (total_descuentos_1 / monto_credito )
-    
-                            # monto a cobrar
+                # monto a cobrar
                 monto_a_cobrar = ( 1 / (1-total_descuentos_2) * monto_credito )
-    
-                
     
                 # vuelvo a definir las variables según el monto a cobrar
                 # linea divisoria 1
                 base_tasa_programa = monto_a_cobrar * tasas_interes
-    
-                            # Calculamos la base 2
+                # Calculamos la base 2
                 base_arancel = monto_a_cobrar * arancel_tarjeta
-    
-                            # Iva arancel
+                # Iva arancel
                 iva_arancel = 0.21 * base_arancel
-    
-                            # Iva del programa
+                # Iva del programa
                 iva_programa = 0.105 * base_tasa_programa
-    
-                            # ingreso bruto
+                # ingreso bruto
                 iibb = porcentaje_iibb * base_tasa_programa
-    
-                            # otro iva
+                # otro iva
                 iva3 = 0.015 * base_tasa_programa
-    
                 # reintegro a percibir
                 reintegro = iva_arancel + iva_programa + iva3
                 # linea divisoria 2
@@ -321,13 +328,11 @@ with colA :
         # Agregar texto dentro del rectángulo
         c.drawString(text_x, text_y, texto)
 
-
         # Agrega una línea separadora
         line_x1, line_y1 = 100, 440
         line_x2, line_y2 = 520, 440
         # linea
         c.line(line_x1, line_y1, line_x2, line_y2)
-
 
         c.setFont("Helvetica", 12)
         c.drawString(200, 540, f"Monto actual: ${lista_variables[0]}")
@@ -352,12 +357,10 @@ with colA :
         c.drawString(200, 280, f"Arancel T.Cred (1,8%): ${lista_variables[5]}")
         c.drawString(200, 260, f"IVA (21%): ${lista_variables[6]}")
         
-        
-        
         if (tipo_inscripcion != "Monotributista"):
             c.drawString(40, 220, f"Al estar inscripto como {tipo_inscripcion} usted recuperará ${lista_variables[10]} en concepto de IVA")
 
-            # Guardar y cerrar el PDF
+        # Guardar y cerrar el PDF
         c.save()
         pdf_buffer.seek(0)
         st.download_button("Descargar PDF", pdf_buffer, file_name="Resumen precio sugerido.pdf")
@@ -417,6 +420,9 @@ if aux == True :
 
     if (tipo_inscripcion != "Monotributista"):
         st.write(f"**ATENCIÓN**: Al estar inscripto como {tipo_inscripcion} usted recuperará **${lista_variables[10]}** en concepto de IVA")
+
+if aux == True:
+    agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, lista_variables[0], lista_variables[1], programa_seleccionado, tipo_inscripcion)
 
 
 st.write("---")
