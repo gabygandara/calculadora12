@@ -5,6 +5,7 @@ from reportlab.pdfgen import canvas
 from io import BytesIO
 import datetime
 import pytz
+import time
 
 # Configuramos la página
 st.set_page_config(
@@ -14,7 +15,7 @@ st.set_page_config(
 
 # Creamos la tasa de interés
 tasas_cft = {"Ahora 3" : 0.1024 ,
-         "Ahora 6" : 0.1887 ,
+         "Ahora 6" : 0.2887 ,
          "Ahora 12" : 0.3297 , 
          "Ahora 18" : 0.4380 ,
          "Ahora 24"  : 0.5221}
@@ -48,14 +49,104 @@ monto_credito = monto_credito.replace("$", "").replace(".","").replace(",,",",")
 
 if monto_credito == "" or monto_credito == "$" or monto_credito == " " : 
     aux3 = False 
+elif monto_credito == "0":
+    aux3 = False
+    st.markdown("<span style='color: red;'>Ingrese un monto válido porfavor.</span>", unsafe_allow_html=True)
 else:
     try:
         monto_credito = float(monto_credito)
-        aux3= True
+        aux3 = True
     except ValueError:
-        st.text("Coloque un número válido porfavor")
-        aux3 = False         
+        aux3 = False        
+        st.markdown("<span style='color: red;'>Ingrese un monto válido porfavor.</span>", unsafe_allow_html=True)
+st.write("---")
 
+# Seleccionar provincias
+
+# listado de provincias
+provincias = [
+    "Seleccione una provincia",
+    "Buenos Aires",
+    "Ciudad Autónoma de Buenos Aires",
+    "Catamarca",
+    "Chaco",
+    "Chubut",
+    "Córdoba",
+    "Corrientes",
+    "Entre Ríos",
+    "Formosa",
+    "Jujuy",
+    "La Pampa",
+    "La Rioja",
+    "Mendoza",
+    "Misiones",
+    "Neuquén",
+    "Río Negro",
+    "Salta",
+    "San Juan",
+    "San Luis",
+    "Santa Cruz",
+    "Santa Fe",
+    "Santiago del Estero",
+    "Tierra del Fuego",
+    "Tucumán"
+]
+
+provincia_seleccionada = st.selectbox("Seleccione la provincia",provincias)  
+
+if provincia_seleccionada == "Seleccione una provincia":
+    aux_seleccionar_provincia = False
+else:
+    aux_seleccionar_provincia = True
+    
+if provincia_seleccionada == "Buenos Aires":
+    porcentaje_iibb = 0.05
+elif provincia_seleccionada == "Ciudad Autónoma de Buenos Aires":
+    porcentaje_iibb = 0.03
+elif provincia_seleccionada == "Catamarca":
+    porcentaje_iibb = 0.03
+elif provincia_seleccionada == "Chaco":
+    porcentaje_iibb = 0.035
+elif provincia_seleccionada == "Chubut":
+    porcentaje_iibb = 0.05
+elif provincia_seleccionada == "Córdoba":
+    porcentaje_iibb = 0.0475
+elif provincia_seleccionada == "Corrientes":
+    porcentaje_iibb = 0.029
+elif provincia_seleccionada == "Entre Ríos":
+    porcentaje_iibb = 0.035
+elif provincia_seleccionada == "Formosa":
+    porcentaje_iibb = 0.03
+elif provincia_seleccionada == "Jujuy":
+    porcentaje_iibb = 0.03
+elif provincia_seleccionada == "La Pampa":
+    porcentaje_iibb = 0.028
+elif provincia_seleccionada == "La Rioja":
+    porcentaje_iibb = 0.025
+elif provincia_seleccionada == "Mendoza":
+    porcentaje_iibb = 0.0275
+elif provincia_seleccionada == "Misiones":
+    porcentaje_iibb = 0.025
+elif provincia_seleccionada == "Neuquén":
+    porcentaje_iibb = 0.03
+elif provincia_seleccionada == "Río Negro":
+    porcentaje_iibb = 0.033
+elif provincia_seleccionada == "Salta":
+    porcentaje_iibb = 0.033
+elif provincia_seleccionada == "San Juan":
+    porcentaje_iibb = 0.03
+elif provincia_seleccionada == "San Luis":
+    porcentaje_iibb = 0.023
+elif provincia_seleccionada == "Santa Cruz":
+    porcentaje_iibb = 0.03
+elif provincia_seleccionada == "Santa Fe":
+    porcentaje_iibb = 0.045
+elif provincia_seleccionada == "Santiago del Estero":
+    porcentaje_iibb = 0.03
+elif provincia_seleccionada == "Tierra del Fuego":
+    porcentaje_iibb = 0.03
+elif provincia_seleccionada == "Tucumán":
+    porcentaje_iibb = 0.029
 st.write("---")
 # Inputo de la cuota
 programas = ["Ahora 3","Ahora 6","Ahora 12","Ahora 18","Ahora 24"]
@@ -69,185 +160,8 @@ tipo_inscripcion = st.selectbox("Seleccione el tipo de inscripción",inscripcion
 
 st.write("---")
 
-if aux3 == True :
 
-                    # programa seleccionado
-    tasas_interes = tasas_cft[programa_seleccionado]
-
-                # Arancel de la tarjeta de credito
-    arancel_tarjeta = 0.018
-
-                # Calculamos la tasa del probrama
-    base_tasa_programa = monto_credito * tasas_interes
-
-                # Calculamos la base 2
-    base_arancel = monto_credito * arancel_tarjeta
-
-                # Iva arancel
-    iva_arancel = 0.21 * base_arancel
-
-                # Iva del programa
-    iva_programa = 0.105 * base_tasa_programa
-
-                # ingreso bruto
-    iibb = 0.025 * base_tasa_programa
-
-                # otro iva
-    iva3 = 0.015 * base_tasa_programa
-
-                # total de descuentos
-    total_descuentos_1 = base_tasa_programa + iva_arancel + iva_programa + iibb + iva3 + base_arancel
-
-                # neto_percibido
-    neto_percibido = monto_credito - total_descuentos_1
-
-                # descuento en %
-    total_descuentos_2 = (total_descuentos_1 / monto_credito )
-
-                # monto a cobrar
-    monto_a_cobrar = ( 1 / (1-total_descuentos_2) * monto_credito )
-
-    
-
-    # vuelvo a definir las variables según el monto a cobrar
-    # linea divisoria 1
-    base_tasa_programa = monto_a_cobrar * tasas_interes
-
-                # Calculamos la base 2
-    base_arancel = monto_a_cobrar * arancel_tarjeta
-
-                # Iva arancel
-    iva_arancel = 0.21 * base_arancel
-
-                # Iva del programa
-    iva_programa = 0.105 * base_tasa_programa
-
-                # ingreso bruto
-    iibb = 0.025 * base_tasa_programa
-
-                # otro iva
-    iva3 = 0.015 * base_tasa_programa
-
-    # reintegro a percibir
-    reintegro = iva_arancel + iva_programa + iva3
-    # linea divisoria 2
-
-    #descuentos %
-    total_descuentos_en_porcentaje = (total_descuentos_1 / monto_credito )
-
-    total_descuentos_en_porcentaje_2 = (total_descuentos_1 / monto_credito ) * 100
-    
-    total_descuentos_pesos = monto_a_cobrar * total_descuentos_en_porcentaje
-
-    neto_a_percibir = monto_a_cobrar - total_descuentos_pesos
-
-    # Creamos lista de variables
-    lista_variables = [monto_credito, monto_a_cobrar, total_descuentos_pesos, neto_a_percibir, base_tasa_programa, base_arancel, iva_arancel, iva_programa, iibb, iva3, reintegro, total_descuentos_en_porcentaje_2]
-
-    # iteramos para el formato
-    for i in range (len(lista_variables)) :
-        lista_variables[i] = '{:,.1f}'.format(lista_variables[i]).replace(',', ' ')
-        lista_variables[i] = lista_variables[i].replace(".",",")
-        lista_variables[i] = lista_variables[i].replace(" ",".")
-
-    # Nombre del archivo PDF
-    pdf_filename = "Resumen precio sugerido.pdf"
-
-        # Crear un objeto BytesIO para guardar el PDF en memoria
-    pdf_buffer = BytesIO()
-        # Generar el PDF
-    c = canvas.Canvas(pdf_buffer, pagesize=letter)
-
-    # Establecer la zona horaria a Buenos Aires
-    zona_horaria = pytz.timezone('America/Argentina/Buenos_Aires')
-
-    # Obtener la fecha y hora actual en la zona horaria especificada
-    fecha_hora_actual = datetime.datetime.now(zona_horaria)
-
-    # Obtener la fecha en formato dd/mm/aa
-    fecha_actual = fecha_hora_actual.strftime("%d/%m/%y")
-
-    # Obtener la hora en formato hh:mm:ss
-    hora_actual = fecha_hora_actual.strftime("%H:%M:%S")
-
-    # Escribimos la fecha actual 
-    c.setFont("Helvetica", 10)
-    c.drawString(40, 760, f"{fecha_actual} - {hora_actual}")
-
-    # Agregar título
-    c.setFont("Helvetica-Bold", 32)
-    titulo = "Calculadora Ahora 12"
-    titulo_width = c.stringWidth(titulo, "Helvetica-Bold", 32)
-    titulo_x = (letter[0] - titulo_width) / 2  # Centrar el título horizontalmente
-    c.drawString(titulo_x, 720, titulo)
-
-    # Coordenadas y dimensiones de la imagen
-    imagen_path = "imgs/logos_came_con_fondo y recortados2.png"  # Reemplaza 'tu_imagen.png' con la ruta de tu propia imagen
-    imagen_width = 300  # Ancho de la imagen
-    imagen_height = 50  # Altura de la imagen
-    imagen_x = (letter[0] - imagen_width) / 2  # Centrar la imagen horizontalmente
-    imagen_y = 660  # Espacio entre el título y la imagen
-
-    c.drawImage(imagen_path, imagen_x, imagen_y, width=imagen_width, height=imagen_height)
-
-    # Coordenadas y dimensiones del rectángulo
-    rect_width = 400  # Ancho del rectángulo
-    rect_height = 50  # Altura del rectángulo
-    rect_x = (letter[0] - rect_width) / 2  # Centrar el rectángulo horizontalmente
-    rect_y = 580 # Espacio entre la imagen y el rectángulo
-
-    c.rect(rect_x, rect_y, rect_width, rect_height)
-
-    # Texto que quieres agregar dentro del rectángulo
-    c.setFont("Helvetica-Bold", 20)
-    texto = f"Precio sugerido: ${lista_variables[1]}"
-
-    # Alinear el texto en el centro del rectángulo
-    text_width = c.stringWidth(texto, "Helvetica-Bold", 20)
-    text_x = rect_x + (rect_width - text_width) / 2
-    text_y = rect_y + (rect_height - 20) / 2  # Alinear verticalmente en el centro
-
-    # Agregar texto dentro del rectángulo
-    c.drawString(text_x, text_y, texto)
-
-
-    # Agrega una línea separadora
-    line_x1, line_y1 = 100, 440
-    line_x2, line_y2 = 520, 440
-    # linea
-    c.line(line_x1, line_y1, line_x2, line_y2)
-
-
-    c.setFont("Helvetica", 12)
-    c.drawString(200, 540, f"Monto actual: ${lista_variables[0]}")
-    c.drawString(200, 520, f"Monto a cobrar: {lista_variables[1]}")
-    c.drawString(200, 500, f"Total de descuentos: {lista_variables[11]}%")
-    c.drawString(200, 480, f"Total de descuentos en pesos: ${lista_variables[2]}")
-    c.drawString(200, 460, f"Neto a percibir: ${lista_variables[3]}")
-
-    tasas_a_STR = str(tasas_cft[programa_seleccionado]*100).replace(".",",")
-
-    c.setFont("Helvetica", 12)
-    c.drawString(100, 420, f"ACLARACIÓN: Los montos se calcularon en base al precio sugerido, lo que ")
-    c.drawString(100, 410, f"permite percibir el precio de contado luego de los descuentos.")
-    c.setFont("Helvetica-Bold", 12)
-    c.drawString(200, 380, f"Detalle de descuentos")
-    c.setFont("Helvetica", 12)
-    c.drawString(200, 360, f"Tasa del programa {programa_seleccionado} ({tasas_a_STR}%): ${lista_variables[4]}")
-    c.drawString(200, 340, f"IVA (10,5%) ley 25.063: ${lista_variables[7]}")
-    c.drawString(200, 320, f"II.BB (2,5%): ${lista_variables[8]}")
-    c.drawString(200, 300, f"IVA RG2408 (1,5%): ${lista_variables[9]}")
-    c.drawString(200, 280, f"Arancel T.Cred (1,8%): ${lista_variables[5]}")
-    c.drawString(200, 260, f"IVA (21%): ${lista_variables[6]}")
-    
-    
-    
-    if (tipo_inscripcion != "Monotributista"):
-        c.drawString(40, 220, f"Al estar inscripto como {tipo_inscripcion} usted recuperará ${lista_variables[10]} en concepto de IVA")
-
-        # Guardar y cerrar el PDF
-    c.save()
-    pdf_buffer.seek(0)
+ # programa seleccionado
 
 
 
@@ -262,12 +176,192 @@ with colA :
     #    aux = True
     if st.button("Calcular"):
         if aux3 == True :
-            aux = True
+            if aux_seleccionar_provincia == True:
+                aux = True
+                tasas_interes = tasas_cft[programa_seleccionado]
+    
+                    # Arancel de la tarjeta de credito
+                arancel_tarjeta = 0.018
+    
+                            # Calculamos la tasa del probrama
+                base_tasa_programa = monto_credito * tasas_interes
+    
+                            # Calculamos la base 2
+                base_arancel = monto_credito * arancel_tarjeta
+    
+                            # Iva arancel
+                iva_arancel = 0.21 * base_arancel
+    
+                            # Iva del programa
+                iva_programa = 0.105 * base_tasa_programa
+    
+                            # ingreso bruto
+                iibb = porcentaje_iibb * base_tasa_programa
+    
+                            # otro iva
+                iva3 = 0.015 * base_tasa_programa
+    
+                            # total de descuentos
+                total_descuentos_1 = base_tasa_programa + iva_arancel + iva_programa + iibb + iva3 + base_arancel
+    
+                            # neto_percibido
+                neto_percibido = monto_credito - total_descuentos_1
+    
+                            # descuento en %
+                total_descuentos_2 = (total_descuentos_1 / monto_credito )
+    
+                            # monto a cobrar
+                monto_a_cobrar = ( 1 / (1-total_descuentos_2) * monto_credito )
+    
+                
+    
+                # vuelvo a definir las variables según el monto a cobrar
+                # linea divisoria 1
+                base_tasa_programa = monto_a_cobrar * tasas_interes
+    
+                            # Calculamos la base 2
+                base_arancel = monto_a_cobrar * arancel_tarjeta
+    
+                            # Iva arancel
+                iva_arancel = 0.21 * base_arancel
+    
+                            # Iva del programa
+                iva_programa = 0.105 * base_tasa_programa
+    
+                            # ingreso bruto
+                iibb = porcentaje_iibb * base_tasa_programa
+    
+                            # otro iva
+                iva3 = 0.015 * base_tasa_programa
+    
+                # reintegro a percibir
+                reintegro = iva_arancel + iva_programa + iva3
+                # linea divisoria 2
+    
+                #descuentos %
+                total_descuentos_en_porcentaje = (total_descuentos_1 / monto_credito )
+    
+                total_descuentos_en_porcentaje_2 = (total_descuentos_1 / monto_credito ) * 100
+                
+                total_descuentos_pesos = monto_a_cobrar * total_descuentos_en_porcentaje
+    
+                neto_a_percibir = monto_a_cobrar - total_descuentos_pesos
+    
+                # Creamos lista de variables
+                lista_variables = [monto_credito, monto_a_cobrar, total_descuentos_pesos, neto_a_percibir, base_tasa_programa, base_arancel, iva_arancel, iva_programa, iibb, iva3, reintegro, total_descuentos_en_porcentaje_2]
+    
+                # iteramos para el formato
+                for i in range (len(lista_variables)) :
+                    lista_variables[i] = '{:,.1f}'.format(lista_variables[i]).replace(',', ' ')
+                    lista_variables[i] = lista_variables[i].replace(".",",")
+                    lista_variables[i] = lista_variables[i].replace(" ",".")
+            else:
+               # Utiliza st.markdown para cambiar el color del texto
+                st.markdown("<span style='color: red;'>Provincia no válida.</span>", unsafe_allow_html=True)
         else:
             pass  
     if aux == True:
-        st.download_button("Descargar PDF", pdf_buffer, file_name="Resumen precio sugerido.pdf")
+        # Nombre del archivo PDF
+        pdf_filename = "Resumen precio sugerido.pdf"
 
+            # Crear un objeto BytesIO para guardar el PDF en memoria
+        pdf_buffer = BytesIO()
+            # Generar el PDF
+        c = canvas.Canvas(pdf_buffer, pagesize=letter)
+
+        # Establecer la zona horaria a Buenos Aires
+        zona_horaria = pytz.timezone('America/Argentina/Buenos_Aires')
+
+        # Obtener la fecha y hora actual en la zona horaria especificada
+        fecha_hora_actual = datetime.datetime.now(zona_horaria)
+
+        # Obtener la fecha en formato dd/mm/aa
+        fecha_actual = fecha_hora_actual.strftime("%d/%m/%y")
+
+        # Obtener la hora en formato hh:mm:ss
+        hora_actual = fecha_hora_actual.strftime("%H:%M:%S")
+
+        # Escribimos la fecha actual 
+        c.setFont("Helvetica", 10)
+        c.drawString(40, 760, f"{fecha_actual} - {hora_actual}")
+
+        # Agregar título
+        c.setFont("Helvetica-Bold", 32)
+        titulo = "Calculadora Ahora 12"
+        titulo_width = c.stringWidth(titulo, "Helvetica-Bold", 32)
+        titulo_x = (letter[0] - titulo_width) / 2  # Centrar el título horizontalmente
+        c.drawString(titulo_x, 720, titulo)
+
+        # Coordenadas y dimensiones de la imagen
+        imagen_path = "imgs/logos_came_con_fondo y recortados2.png"  # Reemplaza 'tu_imagen.png' con la ruta de tu propia imagen
+        imagen_width = 300  # Ancho de la imagen
+        imagen_height = 50  # Altura de la imagen
+        imagen_x = (letter[0] - imagen_width) / 2  # Centrar la imagen horizontalmente
+        imagen_y = 660  # Espacio entre el título y la imagen
+
+        c.drawImage(imagen_path, imagen_x, imagen_y, width=imagen_width, height=imagen_height)
+
+        # Coordenadas y dimensiones del rectángulo
+        rect_width = 400  # Ancho del rectángulo
+        rect_height = 50  # Altura del rectángulo
+        rect_x = (letter[0] - rect_width) / 2  # Centrar el rectángulo horizontalmente
+        rect_y = 580 # Espacio entre la imagen y el rectángulo
+
+        c.rect(rect_x, rect_y, rect_width, rect_height)
+
+        # Texto que quieres agregar dentro del rectángulo
+        c.setFont("Helvetica-Bold", 20)
+        texto = f"Precio sugerido: ${lista_variables[1]}"
+
+        # Alinear el texto en el centro del rectángulo
+        text_width = c.stringWidth(texto, "Helvetica-Bold", 20)
+        text_x = rect_x + (rect_width - text_width) / 2
+        text_y = rect_y + (rect_height - 20) / 2  # Alinear verticalmente en el centro
+
+        # Agregar texto dentro del rectángulo
+        c.drawString(text_x, text_y, texto)
+
+
+        # Agrega una línea separadora
+        line_x1, line_y1 = 100, 440
+        line_x2, line_y2 = 520, 440
+        # linea
+        c.line(line_x1, line_y1, line_x2, line_y2)
+
+
+        c.setFont("Helvetica", 12)
+        c.drawString(200, 540, f"Monto actual: ${lista_variables[0]}")
+        c.drawString(200, 520, f"Monto a cobrar: {lista_variables[1]}")
+        c.drawString(200, 500, f"Total de descuentos: {lista_variables[11]}%")
+        c.drawString(200, 480, f"Total de descuentos en pesos: ${lista_variables[2]}")
+        c.drawString(200, 460, f"Neto a percibir: ${lista_variables[3]}")
+
+        tasas_a_STR = str(tasas_cft[programa_seleccionado]*100).replace(".",",")
+        porcentaje_iibb_str = str(porcentaje_iibb *100).replace(".",",")
+        
+        c.setFont("Helvetica", 12)
+        c.drawString(100, 420, f"ACLARACIÓN: Los montos se calcularon en base al precio sugerido, lo que ")
+        c.drawString(100, 410, f"permite percibir el precio de contado luego de los descuentos.")
+        c.setFont("Helvetica-Bold", 12)
+        c.drawString(200, 380, f"Detalle de descuentos")
+        c.setFont("Helvetica", 12)
+        c.drawString(200, 360, f"Tasa del programa {programa_seleccionado} ({tasas_a_STR}%): ${lista_variables[4]}")
+        c.drawString(200, 340, f"IVA (10,5%) ley 25.063: ${lista_variables[7]}")
+        c.drawString(200, 320, f"II.BB para {provincia_seleccionada} (Alícuota Gral.)({porcentaje_iibb_str}%): ${lista_variables[8]}")
+        c.drawString(200, 300, f"IVA RG2408 (1,5%): ${lista_variables[9]}")
+        c.drawString(200, 280, f"Arancel T.Cred (1,8%): ${lista_variables[5]}")
+        c.drawString(200, 260, f"IVA (21%): ${lista_variables[6]}")
+        
+        
+        
+        if (tipo_inscripcion != "Monotributista"):
+            c.drawString(40, 220, f"Al estar inscripto como {tipo_inscripcion} usted recuperará ${lista_variables[10]} en concepto de IVA")
+
+            # Guardar y cerrar el PDF
+        c.save()
+        pdf_buffer.seek(0)
+        st.download_button("Descargar PDF", pdf_buffer, file_name="Resumen precio sugerido.pdf")
+         
 
 with colB:
     
@@ -317,7 +411,7 @@ if aux == True :
     st.write(f"+ Arancel T.Cred (1,8%): **${lista_variables[5]}**")
     st.write(f"+ IVA (21%): **${lista_variables[6]}**")
     st.write(f"+ IVA (10,5%) ley 25.063: **${lista_variables[7]}**")
-    st.write(f"+ II.BB (2,5%): **${lista_variables[8]}**")
+    st.write(f"+ II.BB para {provincia_seleccionada} (Alícuota Gral.)({porcentaje_iibb_str}%): **${lista_variables[8]}**")
     st.write(f"+ IVA RG2408 (1,5%): **${lista_variables[9]}**")
     
 
