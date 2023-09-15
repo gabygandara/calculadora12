@@ -67,7 +67,7 @@ st.write("---")
 provincias = [
     "Seleccione una provincia",
     "Buenos Aires",
-    "Ciudad Autónoma de Buenos Aires",
+    "CABA",
     "Catamarca",
     "Chaco",
     "Chubut",
@@ -101,7 +101,7 @@ else:
     
 if provincia_seleccionada == "Buenos Aires":
     porcentaje_iibb = 0.05
-elif provincia_seleccionada == "Ciudad Autónoma de Buenos Aires":
+elif provincia_seleccionada == "CABA":
     porcentaje_iibb = 0.03
 elif provincia_seleccionada == "Catamarca":
     porcentaje_iibb = 0.03
