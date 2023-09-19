@@ -426,7 +426,7 @@ if aux == True:
         agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, lista_variables[0], lista_variables[1], programa_seleccionado, tipo_inscripcion)
 
     # Si salta error, esperar dos segundos y volver a cargar    
-    except github.GithubException:
+    except:
         try:
             time.sleep(2)
             agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, lista_variables[0], lista_variables[1], programa_seleccionado, tipo_inscripcion)
