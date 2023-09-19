@@ -9,6 +9,7 @@ import time
 import pandas as pd
 from github import Github
 import io
+import github
 
     
 # Configura el repositorio de GitHub y el archivo CSV
@@ -426,11 +427,11 @@ if aux == True:
         agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, lista_variables[0], lista_variables[1], programa_seleccionado, tipo_inscripcion)
 
     # Si salta error, esperar dos segundos y volver a cargar    
-    except:
+    except github.GithubException:
         try:
             time.sleep(2)
             agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, lista_variables[0], lista_variables[1], programa_seleccionado, tipo_inscripcion)
-        except:
+        except github.GithubException:
             pass    
 
 
