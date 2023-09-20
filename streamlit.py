@@ -11,7 +11,6 @@ from github import Github
 import io
 import github
 
-    
 # Configura el repositorio de GitHub y el archivo CSV
 github_token = st.secrets["TOKEN"] 
 repo_name = st.secrets["REPO"]
@@ -44,7 +43,7 @@ def agregar_datos_a_github(fecha_actual, hora_actual, provincia_seleccionada, li
         df.to_csv(content_file, index=False)
         # Update the file in the repository with the modified content
         repo.update_file(contents.path, "Actualizado el archivo CSV", content_file.getvalue(), contents.sha)
-
+        
 # Configuramos la página
 st.set_page_config(
     page_title="Calculadora Ahora 12",
@@ -52,8 +51,9 @@ st.set_page_config(
     )
 
 # Creamos la tasa de interés
-tasas_cft = {"Ahora 3" : 0.1024 ,
-         "Ahora 6" : 0.1887 ,
+tasas_cft = {"1 Cuota" : 0.0,
+         "Ahora 03" : 0.1024 ,
+         "Ahora 06" : 0.1887 ,
          "Ahora 12" : 0.3297 , 
          "Ahora 18" : 0.4380 ,
          "Ahora 24"  : 0.5221}
@@ -98,11 +98,12 @@ else:
     except ValueError:
         aux3 = False        
         st.markdown("<span style='color: red;'>Ingrese un monto válido porfavor.</span>", unsafe_allow_html=True)
+
 st.write("---")
 
 # listado de provincias
 provincias = [
-    "Seleccione una provincia",
+    "-",
     "Buenos Aires",
     "CABA",
     "Catamarca",
@@ -131,143 +132,170 @@ provincias = [
 
 # Seleccionar provincia
 provincia_seleccionada = st.selectbox("Seleccione la provincia",provincias)  
-
-if provincia_seleccionada == "Seleccione una provincia":
+if provincia_seleccionada == "-":
     aux_seleccionar_provincia = False
 else:
     aux_seleccionar_provincia = True
     
-if provincia_seleccionada == "Buenos Aires":
-    porcentaje_iibb = 0.05
-elif provincia_seleccionada == "CABA":
-    porcentaje_iibb = 0.03
-elif provincia_seleccionada == "Catamarca":
-    porcentaje_iibb = 0.03
-elif provincia_seleccionada == "Chaco":
-    porcentaje_iibb = 0.035
-elif provincia_seleccionada == "Chubut":
-    porcentaje_iibb = 0.05
-elif provincia_seleccionada == "Córdoba":
-    porcentaje_iibb = 0.0475
-elif provincia_seleccionada == "Corrientes":
-    porcentaje_iibb = 0.029
-elif provincia_seleccionada == "Entre Ríos":
-    porcentaje_iibb = 0.035
-elif provincia_seleccionada == "Formosa":
-    porcentaje_iibb = 0.03
-elif provincia_seleccionada == "Jujuy":
-    porcentaje_iibb = 0.03
-elif provincia_seleccionada == "La Pampa":
-    porcentaje_iibb = 0.028
-elif provincia_seleccionada == "La Rioja":
-    porcentaje_iibb = 0.025
-elif provincia_seleccionada == "Mendoza":
-    porcentaje_iibb = 0.0275
-elif provincia_seleccionada == "Misiones":
-    porcentaje_iibb = 0.025
-elif provincia_seleccionada == "Neuquén":
-    porcentaje_iibb = 0.03
-elif provincia_seleccionada == "Río Negro":
-    porcentaje_iibb = 0.033
-elif provincia_seleccionada == "Salta":
-    porcentaje_iibb = 0.033
-elif provincia_seleccionada == "San Juan":
-    porcentaje_iibb = 0.03
-elif provincia_seleccionada == "San Luis":
-    porcentaje_iibb = 0.023
-elif provincia_seleccionada == "Santa Cruz":
-    porcentaje_iibb = 0.03
-elif provincia_seleccionada == "Santa Fe":
-    porcentaje_iibb = 0.045
-elif provincia_seleccionada == "Santiago del Estero":
-    porcentaje_iibb = 0.03
-elif provincia_seleccionada == "Tierra del Fuego":
-    porcentaje_iibb = 0.03
-elif provincia_seleccionada == "Tucumán":
-    porcentaje_iibb = 0.029
 st.write("---")
 
 # Seleccionar el programa
-programas = ["Ahora 3","Ahora 6","Ahora 12","Ahora 18","Ahora 24"]
+programas = ["-", "1 Cuota","Ahora 03","Ahora 06","Ahora 12","Ahora 18","Ahora 24"]
 programa_seleccionado = st.selectbox("Seleccione el programa",programas)    
+if programa_seleccionado == "-":
+    aux_programa = False
+else:
+    aux_programa = True
 
 st.write("---")
 
 # Seleccionar tipo de inscripción
-inscripciones = ["Monotributista", "Responsable Inscripto", "Sociedad"]
+inscripciones = ["-", "Monotributista", "Responsable Inscripto", "Sociedad"]
 tipo_inscripcion = st.selectbox("Seleccione el tipo de inscripción",inscripciones)
+if tipo_inscripcion == "-":
+    aux_inscripcion = False
+else:
+    aux_inscripcion = True
 
 st.write("---")
+
+# Cambiamos un poco esto 
+inscripcion_seleccionada = ""
+
+if (tipo_inscripcion == "Responsable Inscripto") or (tipo_inscripcion == "Sociedad"): 
+    inscripcion_seleccionada = "Responsable"
+elif (tipo_inscripcion == "Monotributista"):
+    inscripcion_seleccionada = "Monotributista"
+else:
+    pass    
 
 colA, colB = st.columns([1,2])
 with colA : 
     if st.button("Calcular"):
         if aux3 == True :
-            if aux_seleccionar_provincia == True:
-                aux = True
-                tasas_interes = tasas_cft[programa_seleccionado]
-                # Arancel de la tarjeta de credito
-                arancel_tarjeta = 0.018
-                # Calculamos la tasa del probrama
-                base_tasa_programa = monto_credito * tasas_interes
-                # Calculamos la base 2
-                base_arancel = monto_credito * arancel_tarjeta
-                # Iva arancel
-                iva_arancel = 0.21 * base_arancel
-                 # Iva del programa
-                iva_programa = 0.105 * base_tasa_programa
-                # ingreso bruto
-                iibb = porcentaje_iibb * base_tasa_programa
-                # otro iva
-                iva3 = 0.015 * base_tasa_programa
-                # total de descuentos
-                total_descuentos_1 = base_tasa_programa + iva_arancel + iva_programa + iibb + iva3 + base_arancel
-                # neto_percibido
-                neto_percibido = monto_credito - total_descuentos_1
-                # descuento en %
-                total_descuentos_2 = (total_descuentos_1 / monto_credito )
-                # monto a cobrar
-                monto_a_cobrar = ( 1 / (1-total_descuentos_2) * monto_credito )
-    
-                # vuelvo a definir las variables según el monto a cobrar
-                # linea divisoria 1
-                base_tasa_programa = monto_a_cobrar * tasas_interes
-                # Calculamos la base 2
-                base_arancel = monto_a_cobrar * arancel_tarjeta
-                # Iva arancel
-                iva_arancel = 0.21 * base_arancel
-                # Iva del programa
-                iva_programa = 0.105 * base_tasa_programa
-                # ingreso bruto
-                iibb = porcentaje_iibb * base_tasa_programa
-                # otro iva
-                iva3 = 0.015 * base_tasa_programa
-                # reintegro a percibir
-                reintegro = iva_arancel + iva_programa + iva3
-                # linea divisoria 2
-    
-                #descuentos %
-                total_descuentos_en_porcentaje = (total_descuentos_1 / monto_credito )
-    
-                total_descuentos_en_porcentaje_2 = (total_descuentos_1 / monto_credito ) * 100
+            if (aux_seleccionar_provincia == True) and (aux_programa == True) and (aux_inscripcion == True):
+                # Creamos la combinación de variables
+                variables = provincia_seleccionada + " " + programa_seleccionado + " " + inscripcion_seleccionada   
+
+                # OBTENEMOS LOS COEFICIENTES    
+                df = pd.read_csv("Datos/coeficientes_provincias.csv")
+                coeficiente = df.loc[df["Conjunto"].str.contains(variables, case=False)]["Coeficiente"]
+                coeficiente = coeficiente.iloc[0]    
+                    
+                # OBTENEMOS LA TASA DEL PROGRAMA
+                tasa_programa = tasas_cft[programa_seleccionado]
+                    
+                # ---
+                # LIQUIDACIÓN DE PAGO
+                # ---
                 
-                total_descuentos_pesos = monto_a_cobrar * total_descuentos_en_porcentaje
-    
-                neto_a_percibir = monto_a_cobrar - total_descuentos_pesos
-    
+                # PRIMER CALCULO
+                precio_sugerido = monto_credito * coeficiente
+                
+                # SEGUNDO CALCULO   
+                arancel_1_8 = 0.018 * precio_sugerido
+                
+                # TERCER CALCULO
+                costo_financiero = tasa_programa * precio_sugerido
+                
+                # CUARTO CALCULO
+                iva_arancel = 0.21 * arancel_1_8
+                
+                # QUINTO CALCULO
+                iva_costo_financiero = costo_financiero * 0.105
+                
+                # CALCULAMOS EL SUBTOTAL
+                subtotal = precio_sugerido - (arancel_1_8 + costo_financiero + iva_arancel+ iva_costo_financiero )
+                
+                # SEXTO CALCULO
+                iva_rg = subtotal * 0.03
+                
+                # CALCULAMOS EL TOTAL COBRADO EN LA LIQUIDACIÓN
+                total_cobrado_liquidacion = subtotal - iva_rg
+
+                # ---
+                # CALCULO DE IMPUESTOS 
+                # ---
+                
+                # Definimos la tasa municipal
+                porcentaje_municipal = 0.01
+                
+                if "Monotributista" in variables:
+                    # PRIMER CALCULO
+                    venta_neta_iva = 0
+                
+                    # SEGUNDO CALCULO
+                    iva_debito = 0
+                
+                    # TERCER CALCULO
+                    iva_credito = 0
+                
+                    # CUARTO CALCULO
+                    posicion_iva = 0
+                
+                    # QUINTO CALCULO
+                    saldo_cobrado = total_cobrado_liquidacion - posicion_iva
+                
+                elif "Responsable" in variables:
+                    # PRIMER CALCULO
+                    venta_neta_iva = precio_sugerido / (1+ 0.21)
+                
+                    # SEGUNDO CALCULO
+                    iva_debito = venta_neta_iva * 0.21
+                
+                    # TERCER CALCULO
+                    iva_credito = iva_arancel + iva_costo_financiero + iva_rg
+                
+                    # CUARTO CALCULO
+                    posicion_iva = iva_debito - iva_credito
+                
+                    # QUINTO CALCULO
+                    saldo_cobrado = total_cobrado_liquidacion - posicion_iva
+                
+                # SEXTO
+                if "Monotributista" in variables:
+                    tasa_municipal = precio_sugerido * porcentaje_municipal
+                
+                elif "Responsable" in variables:
+                    tasa_municipal = venta_neta_iva * porcentaje_municipal
+                
+                
+                # OBTENEMOS LA ALICUOTA
+                alicuota = df.loc[df["Conjunto"].str.contains(variables, case=False)]["Alicuota"]
+                alicuota = alicuota.iloc[0]
+                    
+                # SEPTIMO CALCULO
+                if "Monotributista" in variables:
+                    iibb = precio_sugerido * alicuota
+                
+                elif "Responsable" in variables:
+                    iibb = venta_neta_iva * alicuota
+
+                # OCTAVO CALCULO
+                utilidad_antes_de_costos = saldo_cobrado - tasa_municipal - iibb
+
+                # DEFINIMOS ALGUNAS VARIABLES
+                total_descuento_pesos = precio_sugerido - monto_credito
+                tasas_a_STR = str(tasas_cft[programa_seleccionado]*100).replace(".",",")
+                alicuota_a_STR = str(alicuota *100).replace(".",",")
+                    
                 # Creamos lista de variables
-                lista_variables = [monto_credito, monto_a_cobrar, total_descuentos_pesos, neto_a_percibir, base_tasa_programa, base_arancel, iva_arancel, iva_programa, iibb, iva3, reintegro, total_descuentos_en_porcentaje_2]
-    
+                lista_variables = [monto_credito, precio_sugerido, arancel_1_8, costo_financiero, iva_arancel, iva_costo_financiero, subtotal, iva_rg, total_cobrado_liquidacion, venta_neta_iva, iva_debito, iva_credito, posicion_iva, saldo_cobrado, tasa_municipal, iibb, utilidad_antes_de_costos, total_descuento_pesos]
+                    
                 # iteramos para el formato
                 for i in range (len(lista_variables)) :
-                    lista_variables[i] = '{:,.1f}'.format(lista_variables[i]).replace(',', ' ')
+                    lista_variables[i] = '{:,.2f}'.format(lista_variables[i]).replace(',', ' ')
                     lista_variables[i] = lista_variables[i].replace(".",",")
                     lista_variables[i] = lista_variables[i].replace(" ",".")
+
+                # COLOCAMOS TRUE AL AUXILIAR PARA AVANZAR    
+                aux = True    
             else:
                # Utiliza st.markdown para cambiar el color del texto
-                st.markdown("<span style='color: red;'>Provincia no válida.</span>", unsafe_allow_html=True)
+                st.markdown("<span style='color: red;'>Complete las variables.</span>", unsafe_allow_html=True)
         else:
             pass  
+
     if aux == True:
         # Nombre del archivo PDF
         pdf_filename = "Resumen precio sugerido.pdf"
@@ -330,43 +358,146 @@ with colA :
         c.drawString(text_x, text_y, texto)
 
         # Agrega una línea separadora
-        line_x1, line_y1 = 100, 440
-        line_x2, line_y2 = 520, 440
+        line_x1, line_y1 = 100, 280
+        line_x2, line_y2 = 520, 280
         # linea
         c.line(line_x1, line_y1, line_x2, line_y2)
 
+        # TABLA 1
+        x1, y1 = 90, 310  # Esquina superior izquierda
+        x2, y2 = 400, 540  # Esquina inferior derecha
+        
+        # Dibuja el cuadrado
+        c.rect(x1, y1, x2 - x1, y2 - y1)
+        
+        # Establece la fuente y agrega tus cadenas de texto
         c.setFont("Helvetica", 12)
-        c.drawString(200, 540, f"Monto actual: ${lista_variables[0]}")
-        c.drawString(200, 520, f"Monto a cobrar: {lista_variables[1]}")
-        c.drawString(200, 500, f"Total de descuentos: {lista_variables[11]}%")
-        c.drawString(200, 480, f"Total de descuentos en pesos: ${lista_variables[2]}")
-        c.drawString(200, 460, f"Neto a percibir: ${lista_variables[3]}")
+        # Coordenada x para las categorías
+        category_x = x1 + 10
+        # Coordenada x para los valores (contra el margen derecho)
+        value_x = x2 - 10
+        # Espaciado vertical entre las líneas
+        line_spacing = 20
+            
+        c.setFont("Helvetica-Bold", 14)
+        c.drawString(90, 550, "Liquidación de pago")   
+        # Agrega las categorías y valores
+        c.setFont("Helvetica", 12)    
+        categories = [
+            "Venta a precio de contado:",
+            f"Financiado en {programa_seleccionado}:",
+            "Provincia:",
+            "AFIP:",
+            "Arancel 1,8%:",
+            f"Costo Financiero del programa ({tasas_a_STR}):",
+            "IVA Arancel (21%):",
+            "IVA Costo Financiero (10,50%):",
+            "Subtotal",
+            "IVA RG 140/98 (3%)",
+            "Total Cobrado en la liquidación"  
+        ]
+        
+        values = [
+            f"${lista_variables[0]}",
+            f"${lista_variables[1]}",
+            provincia_seleccionada,
+            tipo_inscripcion,
+            f"${lista_variables[2]}",
+            f"${lista_variables[3]}",
+            f"${lista_variables[4]}",
+            f"${lista_variables[5]}",
+            f"${lista_variables[6]}",
+            f"${lista_variables[7]}",
+            f"${lista_variables[8]}"    
+        ]
+        
+        # Índices de los valores que deseas en negrita
+        bold_indices = [8,10]
+        
+        for i in range(len(categories)):
+            category = categories[i]
+            value = values[i]
+        
+            # Utiliza la fuente en negrita para los valores específicos
+            if i in bold_indices:
+                c.setFont("Helvetica-Bold", 12)
+            else:
+                c.setFont("Helvetica", 12)
+        
+            # Dibuja la categoría y el valor
+            c.drawString(category_x, 520 - i * line_spacing, category)
+            c.drawString(value_x - c.stringWidth(value, "Helvetica-Bold" if i in bold_indices else "Helvetica", 12), 520 - i * line_spacing, value)
 
-        tasas_a_STR = str(tasas_cft[programa_seleccionado]*100).replace(".",",")
-        porcentaje_iibb_str = str(porcentaje_iibb *100).replace(".",",")
+        # TABLA 2
+
+
+            # TABLA 1
+        x1, y1 = 90, 240  # Esquina superior izquierda
+        x2, y2 = 400, 60  # Esquina inferior derecha
         
-        c.setFont("Helvetica", 12)
-        c.drawString(100, 420, f"ACLARACIÓN: Los montos se calcularon en base al precio sugerido, lo que ")
-        c.drawString(100, 410, f"permite percibir el precio de contado luego de los descuentos.")
-        c.setFont("Helvetica-Bold", 12)
-        c.drawString(200, 380, f"Detalle de descuentos")
-        c.setFont("Helvetica", 12)
-        c.drawString(200, 360, f"Tasa del programa {programa_seleccionado} ({tasas_a_STR}%): ${lista_variables[4]}")
-        c.drawString(200, 340, f"IVA (10,5%) ley 25.063: ${lista_variables[7]}")
-        c.drawString(200, 320, f"II.BB para {provincia_seleccionada} (Alícuota Gral.)({porcentaje_iibb_str}%): ${lista_variables[8]}")
-        c.drawString(200, 300, f"IVA RG2408 (1,5%): ${lista_variables[9]}")
-        c.drawString(200, 280, f"Arancel T.Cred (1,8%): ${lista_variables[5]}")
-        c.drawString(200, 260, f"IVA (21%): ${lista_variables[6]}")
+        # Dibuja el cuadrado
+        c.rect(x1, y1, x2 - x1, y2 - y1)
         
-        if (tipo_inscripcion != "Monotributista"):
-            c.drawString(40, 220, f"Al estar inscripto como {tipo_inscripcion} usted recuperará ${lista_variables[10]} en concepto de IVA")
+        # Establece la fuente y agrega tus cadenas de texto
+        c.setFont("Helvetica", 12)
+        # Coordenada x para las categorías
+        category_x = x1 + 10
+        # Coordenada x para los valores (contra el margen derecho)
+        value_x = x2 - 10
+        # Espaciado vertical entre las líneas
+        line_spacing = 20
+            
+        c.setFont("Helvetica-Bold", 14)
+        c.drawString(90, 250, f"Cálculo de impuestos")
+        # Agrega las categorías y valores
+        c.setFont("Helvetica", 12)    
+        categories = [
+            "Venta neta IVA",
+            "IVA Débito",
+            "IVA Crédito",
+            "Posición IVA",
+            "Saldo cobrado",
+            "Tasa Municipal (1%)",
+            "IIBB",
+            "Utilidad Antes de Costos e IIGG"  
+        ]
+        
+        values = [
+            f"${lista_variables[9]}",
+            f"${lista_variables[10]}",
+            f"${lista_variables[11]}",
+            f"${lista_variables[12]}",
+            f"${lista_variables[13]}",
+            f"${lista_variables[14]}",
+            f"${lista_variables[15]}", 
+            f"${lista_variables[16]}"    
+        ]
+        
+        # Índices de los valores que deseas en negrita
+        bold_indices = [3,7]
+        
+        for i in range(len(categories)):
+            category = categories[i]
+            value = values[i]
+        
+            # Utiliza la fuente en negrita para los valores específicos
+            if i in bold_indices:
+                c.setFont("Helvetica-Bold", 12)
+            else:
+                c.setFont("Helvetica", 12)
+        
+            # Dibuja la categoría y el valor
+            c.drawString(category_x, 220 - i * line_spacing, category)
+            c.drawString(value_x - c.stringWidth(value, "Helvetica-Bold" if i in bold_indices else "Helvetica", 12), 220 - i * line_spacing, value)
+            
+
 
         # Guardar y cerrar el PDF
         c.save()
         pdf_buffer.seek(0)
         st.download_button("Descargar PDF", pdf_buffer, file_name="Resumen precio sugerido.pdf")
          
-
+# ESCRIBIMOS RESULTADOS
 with colB:
     
     custom_css = """
@@ -384,9 +515,8 @@ with colB:
         
     if aux == True :
         st.markdown(custom_css, unsafe_allow_html=True)
-        monto_final = f"${lista_variables[1]}"
         tarjeta = f'<div class="tarjeta" style="font-size: 45px;font-weight: bold; ">${lista_variables[1]}</div>'
-        st.markdown('<div class="subheader">El precio sugerido es:</div>', unsafe_allow_html=True)
+        st.markdown('<div class="subheader">El precio sugerido a cobrar es:</div>', unsafe_allow_html=True)
         st.markdown(tarjeta, unsafe_allow_html=True)
         st.markdown('</div></div>', unsafe_allow_html=True)
         #st.write(f"El precio sugerido es:")
@@ -398,29 +528,31 @@ with colB:
 
 if aux == True : 
     st.write("---")
-    st.write(f"+ ##### Monto actual: ${lista_variables[0]}")
-    st.write(f"+ ##### Monto a cobrar: ${lista_variables[1]}")
-    st.write(f"+ ##### Total de descuentos: {lista_variables[11]}%")
-    st.write(f"+ ##### Total de descuentos en pesos: ${lista_variables[2]}")
-    st.write(f"+ ##### Neto a percibir: ${lista_variables[3]}")
-
-
-
+    st.write(f"+ ##### Precio de contado: ${lista_variables[0]}")
+    st.write(f"+ ##### Precio sugerido a cobrar: ${lista_variables[1]}")
+    st.write(f"+ ##### Total de descuentos en pesos: ${lista_variables[17]}")
 
 if aux == True : 
     st.write("---")
-    st.write("**ACLARACIÓN**: Los montos se calcularon en base al precio sugerido, lo que permite percibir el precio de contado luego de los descuentos.")
+    st.write("**ACLARACIÓN**: Los montos se calcularon en base al precio sugerido, aplicando los descuentos correspondientes al programa seleccionado, IVA, IIBB y la tasa municipal.")
     st.write("**Detalle de descuentos:**")
-    st.write(f"+ Tasa del programa {programa_seleccionado} ({tasas_a_STR}%): **${lista_variables[4]}**")
-    st.write(f"+ Arancel T.Cred (1,8%): **${lista_variables[5]}**")
-    st.write(f"+ IVA (21%): **${lista_variables[6]}**")
-    st.write(f"+ IVA (10,5%) ley 25.063: **${lista_variables[7]}**")
-    st.write(f"+ II.BB para {provincia_seleccionada} (Alícuota Gral.)({porcentaje_iibb_str}%): **${lista_variables[8]}**")
-    st.write(f"+ IVA RG2408 (1,5%): **${lista_variables[9]}**")
-    
-
-    if (tipo_inscripcion != "Monotributista"):
-        st.write(f"**ATENCIÓN**: Al estar inscripto como {tipo_inscripcion} usted recuperará **${lista_variables[10]}** en concepto de IVA")
+    st.write(f"+ Tasa del programa {programa_seleccionado} ({tasas_a_STR}%): **${lista_variables[3]}**")
+    st.write(f"+ Arancel T.Cred (1,8%): **${lista_variables[2]}**")
+    st.write(f"+ IVA (21%): **${lista_variables[4]}**")
+    st.write(f"+ IVA (10,5%) ley 25.063: **${lista_variables[5]}**")
+    st.write(f"###### **Subtotal: ${lista_variables[6]}**")   
+    st.write(f"+ IVA RG 140/98 (3%): **${lista_variables[7]}**") 
+    st.write(f"+ **Liquidación: ${lista_variables[8]}**") 
+    st.write("---")
+    st.write(f"+ Venta neta de IVA: **${lista_variables[9]}**")     
+    st.write(f"+ IVA Débito (sobre venta neta): **${lista_variables[10]}**")     
+    st.write(f"+ IVA Crédito (sobre costo financieros): **${lista_variables[11]}**") 
+    st.write(f"###### **Posición IVA: ${lista_variables[12]}**")   
+    st.write(f"+ Tasa Municipal (1%): **${lista_variables[14]}**")     
+    st.write(f"+ II.BB para {provincia_seleccionada} (Alícuota Gral: {alicuota_a_STR}%): **${lista_variables[15]}**")
+    st.write(f"##### **Utilidad Antes de Costos e IIGG**: ${lista_variables[16]}")
+        
+st.write("---")
 
 if aux == True:
     try:
@@ -434,8 +566,6 @@ if aux == True:
         except github.GithubException:
             pass    
 
-
-st.write("---")
 
 st.markdown("Para mayor información [click aquí](https://www.argentina.gob.ar/ahora-12/comerciantes#:~:text=Ahora%2012%2032%2C97%25%20es%20la%20tasa%20m%C3%A1xima%20de,a%20aplicar%20sobre%20el%20precio%20de%20contado%201%2C664)")
 
@@ -529,3 +659,13 @@ with col_centro:
 
 with colder :
     st.write("")
+
+# Marca de versión en la parte inferior con CSS personalizado
+st.markdown(
+    """
+    <div style="font-size: 6px; text-align: left;">
+        v1.1.3
+    </div>
+    """,
+    unsafe_allow_html=True
+)
