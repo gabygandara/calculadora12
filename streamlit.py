@@ -277,7 +277,7 @@ with colA :
                 # DEFINIMOS ALGUNAS VARIABLES
                 total_descuento_pesos = precio_sugerido - monto_credito
                 tasas_a_STR = str(tasas_cft[programa_seleccionado]*100).replace(".",",")
-                alicuota_a_STR = str(alicuota *100).replace(".",",")
+                alicuota_a_STR = str(round(alicuota *100,2)).replace(".",",")
                     
                 # Creamos lista de variables
                 lista_variables = [monto_credito, precio_sugerido, arancel_1_8, costo_financiero, iva_arancel, iva_costo_financiero, subtotal, iva_rg, total_cobrado_liquidacion, venta_neta_iva, iva_debito, iva_credito, posicion_iva, saldo_cobrado, tasa_municipal, iibb, utilidad_antes_de_costos, total_descuento_pesos]
