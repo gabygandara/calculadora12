@@ -356,16 +356,26 @@ with colA :
 
         # Agregar texto dentro del rectángulo
         c.drawString(text_x, text_y, texto)
-
+        
+        # ACLARACIÓN 
+        c.setFont("Helvetica-Bold", 10)
+        c.drawString(90, 555, "ACLARACIÓN")
+        c.setFont("Helvetica", 9)
+        c.drawString(90, 545, "El usuario reconoce y acepta que los datos generados son a título meramente informativo y orientativo.") 
+        c.drawString(90, 535, "La herramienta no apunta a establecer precios finales para ninguna operación sino brindar, de manera detallada,")
+        c.drawString(90, 525, "la información que un comercio puede necesitar para definir, por decisión propia,") 
+        c.drawString(90, 515, "los precios de los productos y servicios que comercializa a través de las promociones del programa Ahora.")
+        c.drawString(90, 505, "Asimismo, CAME no se responsabiliza por la información brindada por el sistema, su actualización o su falta de disponibilidad.")  
+        
         # Agrega una línea separadora
-        line_x1, line_y1 = 100, 280
-        line_x2, line_y2 = 520, 280
+        line_x1, line_y1 = 100, 210
+        line_x2, line_y2 = 520, 210
         # linea
         c.line(line_x1, line_y1, line_x2, line_y2)
 
         # TABLA 1
-        x1, y1 = 90, 310  # Esquina superior izquierda
-        x2, y2 = 400, 540  # Esquina inferior derecha
+        x1, y1 = 90, 470  # Esquina superior izquierda
+        x2, y2 = 400, 230  # Esquina inferior derecha
         
         # Dibuja el cuadrado
         c.rect(x1, y1, x2 - x1, y2 - y1)
@@ -380,7 +390,7 @@ with colA :
         line_spacing = 20
             
         c.setFont("Helvetica-Bold", 14)
-        c.drawString(90, 550, "Liquidación de pago")   
+        c.drawString(90, 480, "Liquidación de pago")   
         # Agrega las categorías y valores
         c.setFont("Helvetica", 12)    
         categories = [
@@ -425,15 +435,15 @@ with colA :
                 c.setFont("Helvetica", 12)
         
             # Dibuja la categoría y el valor
-            c.drawString(category_x, 520 - i * line_spacing, category)
-            c.drawString(value_x - c.stringWidth(value, "Helvetica-Bold" if i in bold_indices else "Helvetica", 12), 520 - i * line_spacing, value)
+            c.drawString(category_x, 450 - i * line_spacing, category)
+            c.drawString(value_x - c.stringWidth(value, "Helvetica-Bold" if i in bold_indices else "Helvetica", 12), 450 - i * line_spacing, value)
 
         # TABLA 2
 
 
             # TABLA 1
-        x1, y1 = 90, 240  # Esquina superior izquierda
-        x2, y2 = 400, 60  # Esquina inferior derecha
+        x1, y1 = 90, 180  # Esquina superior izquierda
+        x2, y2 = 400, 10  # Esquina inferior derecha
         
         # Dibuja el cuadrado
         c.rect(x1, y1, x2 - x1, y2 - y1)
@@ -448,7 +458,7 @@ with colA :
         line_spacing = 20
             
         c.setFont("Helvetica-Bold", 14)
-        c.drawString(90, 250, f"Cálculo de impuestos")
+        c.drawString(90, 190, f"Cálculo de impuestos")
         # Agrega las categorías y valores
         c.setFont("Helvetica", 12)    
         categories = [
@@ -487,8 +497,8 @@ with colA :
                 c.setFont("Helvetica", 12)
         
             # Dibuja la categoría y el valor
-            c.drawString(category_x, 220 - i * line_spacing, category)
-            c.drawString(value_x - c.stringWidth(value, "Helvetica-Bold" if i in bold_indices else "Helvetica", 12), 220 - i * line_spacing, value)
+            c.drawString(category_x, 160 - i * line_spacing, category)
+            c.drawString(value_x - c.stringWidth(value, "Helvetica-Bold" if i in bold_indices else "Helvetica", 12), 160 - i * line_spacing, value)
             
 
 
