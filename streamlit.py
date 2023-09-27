@@ -568,7 +568,7 @@ if aux == True:
 
 
 st.markdown("Para mayor información [click aquí](https://www.argentina.gob.ar/ahora-12/comerciantes#:~:text=Ahora%2012%2032%2C97%25%20es%20la%20tasa%20m%C3%A1xima%20de,a%20aplicar%20sobre%20el%20precio%20de%20contado%201%2C664)")
-
+st.write("El usuario reconoce y acepta que los datos generados son a título meramente informativo y orientativo. La herramienta no apunta a establecer precios finales para ninguna operación sino brindar, de manera detallada, la información que un comercio puede necesitar para definir, por decisión propia, los precios de los productos y servicios que comercializa a través de las promociones del programa Ahora. Asimismo, CAME no se responsabiliza por la información brindada por el sistema, su actualización o su falta de disponibilidad.")
 
 # Agrega CSS personalizado para el marcador en la parte inferior
 st.markdown(
