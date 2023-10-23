@@ -560,7 +560,7 @@ if aux == True :
     st.write(f"###### **Posición IVA: ${lista_variables[12]}**")   
     st.write(f"+ Tasa Municipal (1%): **${lista_variables[14]}**")     
     st.write(f"+ II.BB para {provincia_seleccionada} (Alícuota Gral: {alicuota_a_STR}%): **${lista_variables[15]}**")
-    st.write(f"##### **Utilidad Antes de Costos e IIGG**: ${lista_variables[16]}")
+    #st.write(f"##### **Utilidad Antes de Costos e IIGG**: ${lista_variables[16]}")
         
 st.write("---")
 
