@@ -52,11 +52,11 @@ st.set_page_config(
 
 # Creamos la tasa de interés
 tasas_cft = {"1 Cuota" : 0.0,
-         "Ahora 03" : 0.1024 ,
-         "Ahora 06" : 0.1887 ,
-         "Ahora 12" : 0.3297 , 
-         "Ahora 18" : 0.4380 ,
-         "Ahora 24"  : 0.5221}
+         "Ahora 03" : 0.1141 ,
+         "Ahora 06" : 0.2084 ,
+         "Ahora 12" : 0.3591 , 
+         "Ahora 18" : 0.4715 ,
+         "Ahora 24"  : 0.5566}
 # Aux = False
 aux = False
 
@@ -671,13 +671,3 @@ with col_centro:
 
 with colder :
     st.write("")
-
-# Marca de versión en la parte inferior con CSS personalizado
-st.markdown(
-    """
-    <div style="font-size: 6px; text-align: left;">
-        v1.1.3
-    </div>
-    """,
-    unsafe_allow_html=True
-)
