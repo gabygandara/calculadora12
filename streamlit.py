@@ -544,6 +544,7 @@ if aux == True :
 
 if aux == True : 
     st.write("---")
+    st.write(" **Coeficientes actualizados al 23/10/2023 por la resolución 1041/2023**")
     st.write("**ACLARACIÓN**: Los montos se calcularon en base al precio sugerido, aplicando los descuentos correspondientes al programa seleccionado, IVA, IIBB y la tasa municipal.")
     st.write("**Detalle de descuentos:**")
     st.write(f"+ Tasa del programa {programa_seleccionado} ({tasas_a_STR}%): **${lista_variables[3]}**")
