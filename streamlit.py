@@ -541,7 +541,8 @@ if aux == True :
     st.write(f"+ ##### Precio de contado: ${lista_variables[0]}")
     st.write(f"+ ##### Precio sugerido a cobrar: ${lista_variables[1]}")
     st.write(f"+ ##### Total de descuentos en pesos: ${lista_variables[17]}")
-
+    st.write("**ACLARACIÓN**: Los montos se calcularon en base al precio sugerido, aplicando los descuentos correspondientes al programa seleccionado, IVA, IIBB y la tasa municipal.")
+    
 if aux == True : 
     st.write("---")
     st.write(" **Coeficientes actualizados al 23/10/2023 por la resolución 1041/2023**")
@@ -553,7 +554,6 @@ if aux == True :
     st.write(f"###### **Subtotal: ${lista_variables[6]}**")   
     st.write(f"+ IVA RG 140/98 (3%): **${lista_variables[7]}**") 
     st.write(f"+ **Liquidación: ${lista_variables[8]}**") 
-    st.write("**ACLARACIÓN**: Los montos se calcularon en base al precio sugerido, aplicando los descuentos correspondientes al programa seleccionado, IVA, IIBB y la tasa municipal.")
     st.write("---")
     st.write(f"+ Venta neta de IVA: **${lista_variables[9]}**")     
     st.write(f"+ IVA Débito (sobre venta neta): **${lista_variables[10]}**")     
