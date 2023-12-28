@@ -392,7 +392,9 @@ with colA :
         c.setFont("Helvetica-Bold", 14)
         c.drawString(90, 480, "Liquidación de pago")   
         # Agrega las categorías y valores
-        c.setFont("Helvetica", 12)    
+        c.setFont("Helvetica", 12)  
+        if tasas_a_STR == "9,610000000000001":
+            tasas_a_STR = "9,61"
         categories = [
             "Venta a precio de contado:",
             f"Financiado en {programa_seleccionado}:",
@@ -547,6 +549,8 @@ if aux == True :
     st.write("---")
     st.write(" **Coeficientes actualizados al 23/10/2023 por la resolución 1041/2023**")
     st.write("**Detalle de descuentos:**")
+    if tasas_a_STR == "9,610000000000001":
+        tasas_a_STR = "9,61"
     st.write(f"+ Tasa del programa {programa_seleccionado} ({tasas_a_STR}%): **${lista_variables[3]}**")
     st.write(f"+ Arancel T.Cred (1,8%): **${lista_variables[2]}**")
     st.write(f"+ IVA (21%): **${lista_variables[4]}**")
