@@ -52,11 +52,11 @@ st.set_page_config(
 
 # Creamos la tasa de interés
 tasas_cft = {"1 Cuota" : 0.0,
-         "Ahora 03" : 0.1141 ,
-         "Ahora 06" : 0.2084 ,
-         "Ahora 12" : 0.3591 , 
-         "Ahora 18" : 0.4715 ,
-         "Ahora 24"  : 0.5566}
+         "Ahora 03" : 0.0961 ,
+         "Ahora 06" : 0.1778 ,
+         "Ahora 12" : 0.3131 , 
+         "Ahora 18" : 0.4186 ,
+         "Ahora 24"  : 0.5019}
 # Aux = False
 aux = False
 
