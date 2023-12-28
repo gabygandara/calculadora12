@@ -547,7 +547,7 @@ if aux == True :
     
 if aux == True : 
     st.write("---")
-    st.write(" **Coeficientes actualizados al 23/10/2023 por la resolución 1041/2023**")
+    st.write(" **Coeficientes actualizados al 28/12/2023 por la resolución 1041/2023**")
     st.write("**Detalle de descuentos:**")
     if tasas_a_STR == "9,610000000000001":
         tasas_a_STR = "9,61"
