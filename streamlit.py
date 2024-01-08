@@ -401,7 +401,7 @@ with colA :
             "Provincia:",
             "AFIP:",
             "Arancel 1,8%:",
-            f"Costo Financiero del programa ({tasas_a_STR}):",
+            f"Costo Financiero del programa ({tasas_a_STR}%):",
             "IVA Arancel (21%):",
             "IVA Costo Financiero (10,50%):",
             "Subtotal",
