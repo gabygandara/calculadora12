@@ -1,2 +1,2 @@
-# calculadora12
-Calculadora para el programa Ahora 12
+# Calculadora-Cuota-Simple
+Calculadora Cuota Simple
