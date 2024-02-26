@@ -769,8 +769,16 @@ if st.checkbox("Si usted tiene alguna consulta, haga click aquí"):
 
                 # Obtener la hora en formato hh:mm:ss
                 hora_actual = fecha_hora_actual.strftime("%H:%M:%S")        
-
-                consulta(fecha_actual, hora_actual, nombre_ingresado, apellido_ingresado, email_ingresado, repetir_email_ingresado ,asunto_ingresado, consulta_ingresada)
+                try:
+                    consulta(fecha_actual, hora_actual, nombre_ingresado, apellido_ingresado, email_ingresado, repetir_email_ingresado ,asunto_ingresado, consulta_ingresada)
+                # Si salta error, esperar dos segundos y volver a cargar    
+                except github.GithubException:
+                    try:
+                        time.sleep(2)
+                        consulta(fecha_actual, hora_actual, nombre_ingresado, apellido_ingresado, email_ingresado, repetir_email_ingresado ,asunto_ingresado, consulta_ingresada)
+                    except github.GithubException:
+                        pass
+                
 
 st.write("---")
 # Titulo para las redes con estilo personalizado
