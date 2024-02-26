@@ -716,13 +716,13 @@ if (st.session_state.submit_button == True):
 
             if aux == True and st.session_state.carga_inicial == False:
                 try:
-                    calculo(fecha_actual, hora_actual, lista_variables[0], lista_variables[1], st.session_state.programa_seleccionado, st.session_state.tipo_inscripcion, st.session_state.provincia_seleccionada)
+                    calculo(fecha_actual, hora_actual, lista_variables[0], lista_variables[1], st.session_state.programa_seleccionado, tipo_inscripcion, st.session_state.provincia_seleccionada)
                     st.session_state.carga_inicial = True
                 # Si salta error, esperar dos segundos y volver a cargar    
                 except github.GithubException:
                     try:
                         time.sleep(3)
-                        calculo(fecha_actual, hora_actual, lista_variables[0], lista_variables[1], st.session_state.programa_seleccionado, st.session_state.tipo_inscripcion, st.session_state.provincia_seleccionada)
+                        calculo(fecha_actual, hora_actual, lista_variables[0], lista_variables[1], st.session_state.programa_seleccionado, tipo_inscripcion, st.session_state.provincia_seleccionada)
                         st.session_state.carga_inicial = True
                     except github.GithubException:
                         pass       
