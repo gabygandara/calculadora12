@@ -654,15 +654,16 @@ if (st.session_state.submit_button == True):
                 submit_button = st.form_submit_button(label='Enviar')
                 # Verificar si el formulario se ha enviado
                 if submit_button:
-                    st.success("Calificación enviada exitosamente!")  
                     # Agregar st.write para verificar el valor de evaluation
                     try:
-                         calificacion(fecha_actual, hora_actual, evaluation)
+                        calificacion(fecha_actual, hora_actual, evaluation)
+                        st.success("Calificación enviada exitosamente!")
                     # Si salta error, esperar dos segundos y volver a cargar    
                     except github.GithubException:
                         try:
                             time.sleep(2)
                             calificacion(fecha_actual, hora_actual, evaluation)
+                            st.success("Calificación enviada exitosamente!")
                         except github.GithubException:
                             pass
                     
@@ -757,7 +758,6 @@ if st.checkbox("Si usted tiene alguna consulta, haga click aquí"):
             else:
                 # aca cargar la data
                 # Do something with the form data
-                st.success("Consulta enviada exitosamente!") 
                 # Establecer la zona horaria a Buenos Aires
                 zona_horaria = pytz.timezone('America/Argentina/Buenos_Aires')
 
@@ -771,11 +771,13 @@ if st.checkbox("Si usted tiene alguna consulta, haga click aquí"):
                 hora_actual = fecha_hora_actual.strftime("%H:%M:%S")        
                 try:
                     consulta(fecha_actual, hora_actual, nombre_ingresado, apellido_ingresado, email_ingresado, repetir_email_ingresado ,asunto_ingresado, consulta_ingresada)
+                    st.success("Consulta enviada exitosamente!") 
                 # Si salta error, esperar dos segundos y volver a cargar    
                 except github.GithubException:
                     try:
                         time.sleep(2)
                         consulta(fecha_actual, hora_actual, nombre_ingresado, apellido_ingresado, email_ingresado, repetir_email_ingresado ,asunto_ingresado, consulta_ingresada)
+                        st.success("Consulta enviada exitosamente!") 
                     except github.GithubException:
                         pass
                 
