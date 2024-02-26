@@ -656,7 +656,16 @@ if (st.session_state.submit_button == True):
                 if submit_button:
                     st.success("Calificación enviada exitosamente!")  
                     # Agregar st.write para verificar el valor de evaluation
-                    calificacion(fecha_actual, hora_actual, evaluation)
+                    try:
+                         calificacion(fecha_actual, hora_actual, evaluation)
+                    # Si salta error, esperar dos segundos y volver a cargar    
+                    except github.GithubException:
+                        try:
+                            time.sleep(2)
+                            calificacion(fecha_actual, hora_actual, evaluation)
+                        except github.GithubException:
+                            pass
+                    
                 
               
             if aux == True : 
