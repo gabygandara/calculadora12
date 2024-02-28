@@ -787,7 +787,7 @@ st.write("---")
 enlace_externo = "https://forms.gle/4Q4cq3XLPRdnX6q27"
 # Definir el código HTML y CSS para el botón personalizado
 # Definir el código HTML y CSS para el botón personalizado
-boton_html1 = f"""
+boton_html = f"""
     <style>
         .enlace-btn {{
             background-color: white; /* Color de fondo */
@@ -811,14 +811,14 @@ boton_html1 = f"""
 
 
 # Mostrar el botón personalizado
-st.markdown(boton_html1, unsafe_allow_html=True)
+st.markdown(boton_html, unsafe_allow_html=True)
 
 # Definir el código HTML y CSS para el botón personalizado
-boton_html2 = f"""
+boton_html = f"""
     <style>
         .enlace-btn {{
-            background-color: #005CA7; /* Color de fondo */
-            color: white; /* Color del texto */
+            background-color: white; /* Color de fondo */
+            color: #005CA7; /* Color del texto */
             padding: 10px 20px; /* Espaciado interno */
             text-align: center; /* Alineación del texto */
             text-decoration: none; /* Sin subrayado */
@@ -827,17 +827,17 @@ boton_html2 = f"""
             cursor: pointer; /* Tipo de cursor */
             border-radius: 5px; /* Bordes redondeados */
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
-            border: 2px solid white; /* Delineado blanco */
+            border: 2px solid #005CA7; /* Delineado azul */
         }}
         .enlace-btn:hover {{
-            color: white; /* Cambiar color del texto al pasar el ratón */
+            color: #005CA7; /* Cambiar color del texto al pasar el ratón */
         }}
     </style>
     <a class="enlace-btn" href="{enlace_externo}" target="_blank">Responder encuesta del programa</a>
 """
 
 # Mostrar el botón personalizado
-st.markdown(boton_html2, unsafe_allow_html=True)
+st.markdown(boton_html, unsafe_allow_html=True)
 
 # Titulo para las redes con estilo personalizado
 st.markdown(
