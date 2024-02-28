@@ -786,6 +786,7 @@ if st.checkbox("Si usted tiene alguna consulta, haga click aquí"):
 st.write("---")
 enlace_externo = "https://forms.gle/4Q4cq3XLPRdnX6q27"
 # Definir el código HTML y CSS para el botón personalizado
+# Definir el código HTML y CSS para el botón personalizado
 boton_html = f"""
     <style>
         .enlace-btn {{
@@ -801,9 +802,15 @@ boton_html = f"""
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
             border: 2px solid white; /* Delineado blanco */
         }}
+        .enlace-btn:hover {{
+            color: white; /* Cambiar color del texto al pasar el ratón */
+        }}
     </style>
-    <a class="enlace-btn" href="{enlace_externo}" target="_blank">Ir al enlace externo</a>
+    <a class="enlace-btn" href="{enlace_externo}" target="_blank">Responder encuesta del programa</a>
 """
+
+# Mostrar el botón personalizado
+st.markdown(boton_html, unsafe_allow_html=True)
 
 # Mostrar el botón personalizado
 st.markdown(boton_html, unsafe_allow_html=True)
