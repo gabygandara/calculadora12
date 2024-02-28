@@ -714,7 +714,8 @@ if (st.session_state.submit_button == True):
                             display: flex;
                             justify-content: center;
                             align-items: center;
-                            height: 100vh;
+                            height: 100%;
+                            margin: 0; /* Eliminar margen */
                         }}
                         .enlace-btn {{
                             background-color: white; /* Color de fondo */
