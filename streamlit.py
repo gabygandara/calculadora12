@@ -11,8 +11,6 @@ from github import Github
 import io
 import github
 import requests
-import geocoder
-import webbrowser
 
 # Configuramos la página
 st.set_page_config(
