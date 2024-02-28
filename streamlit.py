@@ -784,17 +784,29 @@ if st.checkbox("Si usted tiene alguna consulta, haga click aquí"):
                 
 
 st.write("---")
-from streamlit.components.v1 import html
-
-def abrir_enlace(url):
-    html_code = f'<a href="{url}" target="_blank">Enlace externo</a>'
-    return html_code
-    
 enlace_externo = "https://forms.gle/4Q4cq3XLPRdnX6q27"
-if st.button("Ir al enlace externo"):
-    st.markdown(abrir_enlace(enlace_externo), unsafe_allow_html=True)
+# Definir el código HTML y CSS para el botón
+boton_html = f"""
+    <style>
+        .enlace-btn {{
+            background-color: #4CAF50; /* Color de fondo */
+            color: white; /* Color del texto */
+            padding: 10px 20px; /* Espaciado interno */
+            text-align: center; /* Alineación del texto */
+            text-decoration: none; /* Sin subrayado */
+            display: inline-block;
+            font-size: 16px; /* Tamaño del texto */
+            cursor: pointer; /* Tipo de cursor */
+            border-radius: 5px; /* Bordes redondeados */
+        }}
+    </style>
+    <a class="enlace-btn" href="{enlace_externo}" target="_blank">Ir al enlace externo</a>
+"""
 
-    
+# Mostrar el botón personalizado
+st.markdown(boton_html, unsafe_allow_html=True)
+
+
 # Titulo para las redes con estilo personalizado
 st.markdown(
     """
