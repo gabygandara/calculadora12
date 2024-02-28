@@ -812,9 +812,6 @@ boton_html = f"""
 # Mostrar el botón personalizado
 st.markdown(boton_html, unsafe_allow_html=True)
 
-# Mostrar el botón personalizado
-st.markdown(boton_html, unsafe_allow_html=True)
-
 
 # Titulo para las redes con estilo personalizado
 st.markdown(
