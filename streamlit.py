@@ -792,7 +792,7 @@ def abrir_enlace(url):
     
 enlace_externo = "https://forms.gle/4Q4cq3XLPRdnX6q27"
 if st.button("Ir al enlace externo"):
-    st.markdown(abrir_enlace(enlace_externo), unsafe_allow_html=True
+    st.markdown(abrir_enlace(enlace_externo), unsafe_allow_html=True)
 
     
 # Titulo para las redes con estilo personalizado
