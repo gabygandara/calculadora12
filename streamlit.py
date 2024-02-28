@@ -787,7 +787,7 @@ st.write("---")
 enlace_externo = "https://forms.gle/4Q4cq3XLPRdnX6q27"
 # Definir el código HTML y CSS para el botón personalizado
 # Definir el código HTML y CSS para el botón personalizado
-boton_html = f"""
+boton_html1 = f"""
     <style>
         .enlace-btn {{
             background-color: white; /* Color de fondo */
@@ -806,15 +806,15 @@ boton_html = f"""
             color: #005CA7; /* Cambiar color del texto al pasar el ratón */
         }}
     </style>
-    <a class="enlace-btn" href="{enlace_externo}" target="_blank">Responder encuesta del programa2</a>
+    <a class="enlace-btn" href="{enlace_externo}" target="_blank">Responder encuesta del programa</a>
 """
 
 
 # Mostrar el botón personalizado
-st.markdown(boton_html, unsafe_allow_html=True)
+st.markdown(boton_html1, unsafe_allow_html=True)
 
 # Definir el código HTML y CSS para el botón personalizado
-boton_html = f"""
+boton_html2 = f"""
     <style>
         .enlace-btn {{
             background-color: #005CA7; /* Color de fondo */
@@ -837,7 +837,7 @@ boton_html = f"""
 """
 
 # Mostrar el botón personalizado
-st.markdown(boton_html, unsafe_allow_html=True)
+st.markdown(boton_html2, unsafe_allow_html=True)
 
 # Titulo para las redes con estilo personalizado
 st.markdown(
