@@ -784,13 +784,16 @@ if st.checkbox("Si usted tiene alguna consulta, haga click aquí"):
                 
 
 st.write("---")
+from streamlit.components.v1 import html
+
 def abrir_enlace(url):
-    webbrowser.open(url, new=2)
-# URL externo al que quieres redirigir
+    html_code = f'<a href="{url}" target="_blank">Enlace externo</a>'
+    return html_code
+    
 enlace_externo = "https://forms.gle/4Q4cq3XLPRdnX6q27"
-# Crear un botón en Streamlit
-if st.button("Responder encuesta del programa"):
-    abrir_enlace(enlace_externo)
+if st.button("Ir al enlace externo"):
+    st.markdown(abrir_enlace(enlace_externo), unsafe_allow_html=True
+
     
 # Titulo para las redes con estilo personalizado
 st.markdown(
