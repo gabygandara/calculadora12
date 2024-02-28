@@ -806,7 +806,7 @@ boton_html = f"""
             color: #005CA7; /* Cambiar color del texto al pasar el ratón */
         }}
     </style>
-    <a class="enlace-btn" href="{enlace_externo}" target="_blank">Responder encuesta del programa</a>
+    <a class="enlace-btn" href="{enlace_externo}" target="_blank">Responder encuesta del programa2</a>
 """
 
 
