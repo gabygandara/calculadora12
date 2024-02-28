@@ -708,7 +708,32 @@ if (st.session_state.submit_button == True):
                 st.download_button("Descargar PDF", pdf_buffer, file_name="Resumen precio sugerido.pdf",use_container_width=True)
             with col6:
                 st.write("")
-            
+                
+            enlace_externo = "https://forms.gle/4Q4cq3XLPRdnX6q27"
+            # Definir el código HTML y CSS para el botón personalizado
+            boton_html = f"""
+                <style>
+                    .enlace-btn {{
+                        background-color: white; /* Color de fondo */
+                        color: #005CA7; /* Color del texto */
+                        padding: 10px 20px; /* Espaciado interno */
+                        text-align: center; /* Alineación del texto */
+                        text-decoration: none; /* Sin subrayado */
+                        display: inline-block;
+                        font-size: 16px; /* Tamaño del texto */
+                        cursor: pointer; /* Tipo de cursor */
+                        border-radius: 5px; /* Bordes redondeados */
+                        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
+                        border: 2px solid #005CA7; /* Delineado azul */
+                    }}
+                    .enlace-btn:hover {{
+                        color: #005CA7; /* Cambiar color del texto al pasar el ratón */
+                    }}
+                </style>
+                <a class="enlace-btn" href="{enlace_externo}" target="_blank">Responder encuesta del programa</a>
+            """
+            # Mostrar el botón personalizado
+            st.markdown(boton_html, unsafe_allow_html=True)
             st.write("**Aclaración**")
             st.write("Por cuestiones metodológicas, el cálculo se basa en ingresos brutos por el 3,5% y Tasa municipal por 1%")
             st.write("El usuario reconoce y acepta que los datos generados son a título meramente informativo y orientativo. La herramienta no apunta a establecer precios finales para ninguna operación sino brindar, de manera detallada, la información que un comercio puede necesitar para definir, por decisión propia, los precios de los productos y servicios que comercializa a través de las promociones del programa Cuota Simple. Asimismo, CAME no se responsabiliza por la información brindada por el sistema, su actualización o su falta de disponibilidad.")
@@ -784,61 +809,6 @@ if st.checkbox("Si usted tiene alguna consulta, haga click aquí"):
                 
 
 st.write("---")
-enlace_externo = "https://forms.gle/4Q4cq3XLPRdnX6q27"
-# Definir el código HTML y CSS para el botón personalizado
-# Definir el código HTML y CSS para el botón personalizado
-boton_html = f"""
-    <style>
-        .enlace-btn {{
-            background-color: white; /* Color de fondo */
-            color: #005CA7; /* Color del texto */
-            padding: 10px 20px; /* Espaciado interno */
-            text-align: center; /* Alineación del texto */
-            text-decoration: none; /* Sin subrayado */
-            display: inline-block;
-            font-size: 16px; /* Tamaño del texto */
-            cursor: pointer; /* Tipo de cursor */
-            border-radius: 5px; /* Bordes redondeados */
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
-            border: 2px solid #005CA7; /* Delineado azul */
-        }}
-        .enlace-btn:hover {{
-            color: #005CA7; /* Cambiar color del texto al pasar el ratón */
-        }}
-    </style>
-    <a class="enlace-btn" href="{enlace_externo}" target="_blank">Responder encuesta del programa</a>
-"""
-
-
-# Mostrar el botón personalizado
-st.markdown(boton_html, unsafe_allow_html=True)
-
-# Definir el código HTML y CSS para el botón personalizado
-boton_html = f"""
-    <style>
-        .enlace-btn {{
-            background-color: white; /* Color de fondo */
-            color: #005CA7; /* Color del texto */
-            padding: 10px 20px; /* Espaciado interno */
-            text-align: center; /* Alineación del texto */
-            text-decoration: none; /* Sin subrayado */
-            display: inline-block;
-            font-size: 16px; /* Tamaño del texto */
-            cursor: pointer; /* Tipo de cursor */
-            border-radius: 5px; /* Bordes redondeados */
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
-            border: 2px solid #005CA7; /* Delineado azul */
-        }}
-        .enlace-btn:hover {{
-            color: #005CA7; /* Cambiar color del texto al pasar el ratón */
-        }}
-    </style>
-    <a class="enlace-btn" href="{enlace_externo}" target="_blank">Responder encuesta del programa</a>
-"""
-
-# Mostrar el botón personalizado
-st.markdown(boton_html, unsafe_allow_html=True)
-
 # Titulo para las redes con estilo personalizado
 st.markdown(
     """
