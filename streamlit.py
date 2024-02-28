@@ -710,6 +710,12 @@ if (st.session_state.submit_button == True):
                 # Definir el código HTML y CSS para el botón personalizado
                 boton_html = f"""
                     <style>
+                        .contenedor-btn {{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 100vh;
+                            }}
                         .enlace-btn {{
                             background-color: white; /* Color de fondo */
                             color: #005CA7; /* Color del texto */
