@@ -2,4 +2,3 @@ streamlit
 reportlab
 pandas
 pygithub==1.55
-webbrowser
