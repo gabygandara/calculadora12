@@ -707,15 +707,15 @@ if (st.session_state.submit_button == True):
                 # Botón de descarga
                 st.download_button("Descargar PDF", pdf_buffer, file_name="Resumen precio sugerido.pdf",use_container_width=True)
                 enlace_externo = "https://forms.gle/4Q4cq3XLPRdnX6q27"
-                # Definir el código HTML y CSS para el botón personalizado
+                # Definir el código HTML y CSS para el botón personalizado centrado
                 boton_html = f"""
                     <style>
                         .contenedor-btn {{
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        height: 100vh;
-                            }}
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            height: 100vh;
+                        }}
                         .enlace-btn {{
                             background-color: white; /* Color de fondo */
                             color: #005CA7; /* Color del texto */
@@ -733,8 +733,10 @@ if (st.session_state.submit_button == True):
                             color: #005CA7; /* Cambiar color del texto al pasar el ratón */
                         }}
                     </style>
-                    <a class="enlace-btn" href="{enlace_externo}" target="_blank">Responder encuesta del programa</a> 
-                            """
+                    <div class="contenedor-btn">
+                        <a class="enlace-btn" href="{enlace_externo}" target="_blank">Responder encuesta del programa</a>
+                    </div>
+                """
                            
                 # Mostrar el botón personalizado
                 st.markdown(boton_html, unsafe_allow_html=True)
