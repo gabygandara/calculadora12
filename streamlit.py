@@ -785,11 +785,11 @@ if st.checkbox("Si usted tiene alguna consulta, haga click aquí"):
 
 st.write("---")
 enlace_externo = "https://forms.gle/4Q4cq3XLPRdnX6q27"
-# Definir el código HTML y CSS para el botón
+# Definir el código HTML y CSS para el botón personalizado
 boton_html = f"""
     <style>
         .enlace-btn {{
-            background-color: #4CAF50; /* Color de fondo */
+            background-color: #005CA7; /* Color de fondo */
             color: white; /* Color del texto */
             padding: 10px 20px; /* Espaciado interno */
             text-align: center; /* Alineación del texto */
@@ -798,6 +798,8 @@ boton_html = f"""
             font-size: 16px; /* Tamaño del texto */
             cursor: pointer; /* Tipo de cursor */
             border-radius: 5px; /* Bordes redondeados */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
+            border: 2px solid white; /* Delineado blanco */
         }}
     </style>
     <a class="enlace-btn" href="{enlace_externo}" target="_blank">Ir al enlace externo</a>
