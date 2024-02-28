@@ -12,6 +12,7 @@ import io
 import github
 import requests
 import geocoder
+import webbrowser
 
 # Configuramos la página
 st.set_page_config(
@@ -783,6 +784,14 @@ if st.checkbox("Si usted tiene alguna consulta, haga click aquí"):
                 
 
 st.write("---")
+def abrir_enlace(url):
+    webbrowser.open(url, new=2)
+# URL externo al que quieres redirigir
+enlace_externo = "https://forms.gle/4Q4cq3XLPRdnX6q27"
+# Crear un botón en Streamlit
+if st.button("Responder encuesta del programa"):
+    abrir_enlace(enlace_externo)
+    
 # Titulo para las redes con estilo personalizado
 st.markdown(
     """
