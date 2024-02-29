@@ -273,29 +273,31 @@ if (st.session_state.submit_button == True):
     if (st.session_state.aux2 == True): 
         with st.spinner("Cargando . . ."): 
 
+            df = pd.read_csv("Datos/Datos.csv")
+            # Filtramos según los valores indicados
+            filtros = (df["Cuota Simple"] == st.session_state.programa_seleccionado) & (df["Provincia"] == st.session_state.provincia_seleccionada)
+            df = df[filtros]
+            tasa_iibb = df["Tasa IIBB"].iloc[0]
+            
             tasas_cft = {
                         "3 Cuotas" : 0.1076,
                         "6 Cuotas" : 0.1976 }
+            
             # PARA AVANZAR EL CÁLCULO
             if ("Responsable" in st.session_state.tipo_inscripcion) or (st.session_state.tipo_inscripcion == "Sociedad"):
                 st.session_state.tipo_inscripcion = "Responsable" 
                 # COEFICIENTES PARA SOCIEDAD - RI
-                coeficientes = {
-                        "3 Cuotas" : 1.1622 ,
-                        "6 Cuotas" : 1.3444 }  
+                coeficiente = df["IVA Resp, Insc."].iloc[0]
                     
             elif (st.session_state.tipo_inscripcion == "Monotributista"):
                 # COEFICIENTES PARA MONOTRIBUTISTA
-                coeficientes = {
-                        "3 Cuotas" : 1.1428 ,
-                        "6 Cuotas" : 1.2922 }      
+                coeficiente = df["Monotributo *"].iloc[0]
                       
             
             # OBTENEMOS LA TASA DEL PROGRAMA
             tasa_programa = tasas_cft[st.session_state.programa_seleccionado]
 
-            # Obtenemos el coeficiente
-            coeficiente = coeficientes[st.session_state.programa_seleccionado]
+    
                 
             # ---
             # LIQUIDACIÓN DE PAGO
@@ -336,7 +338,7 @@ if (st.session_state.submit_button == True):
 
             if "Monotributista" in st.session_state.tipo_inscripcion:
                 # INGRESOS BRUTOS MONOTRIBUTISTA
-                iibb = precio_sugerido * 0.035
+                iibb = precio_sugerido * tasa_iibb
                 # PRIMER CALCULO
                 venta_neta_iva = 0
 
@@ -357,7 +359,7 @@ if (st.session_state.submit_button == True):
                 venta_neta_iva = precio_sugerido / (1+ 0.21)
                 
                 # INGRESOS BRUTOS RESPONSABLE
-                iibb = venta_neta_iva * 0.035
+                iibb = venta_neta_iva * tasa_iibb
                 
                 # SEGUNDO CALCULO
                 iva_debito = venta_neta_iva * 0.21
