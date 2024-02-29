@@ -278,6 +278,7 @@ if (st.session_state.submit_button == True):
             filtros = (df["Cuota Simple"] == st.session_state.programa_seleccionado) & (df["Provincia"] == st.session_state.provincia_seleccionada)
             df = df[filtros]
             tasa_iibb = df["Tasa IIBB"].iloc[0]
+            tasa_iibb_str = str(round(tasa_iibb * 100,1)).replace(".",",") 
             
             tasas_cft = {
                         "3 Cuotas" : 0.1076,
@@ -570,7 +571,7 @@ if (st.session_state.submit_button == True):
                 "Posición IVA",
                 "Saldo cobrado",
                 "Tasa Municipal (1%)",
-                "IIBB",
+                f"IIBB ({tasa_iibb_str}%)",
                 "Utilidad Antes de Costos e IIGG"  
             ]
 
@@ -695,7 +696,7 @@ if (st.session_state.submit_button == True):
                 st.write(f"+ IVA Crédito (sobre costo financieros): **${lista_variables[11]}**") 
                 st.write(f"###### **Posición IVA: ${lista_variables[12]}**")   
                 st.write(f"+ Tasa Municipal (1%): **${lista_variables[14]}**")     
-                st.write(f"+ II.BB (Alícuota Gral: {alicuota_a_STR}%): **${lista_variables[15]}**")
+                st.write(f"+ II.BB (Alícuota para la provincia de {st.session_state.provincia_seleccionada}: {tasa_iibb_str}%): **${lista_variables[15]}**")
                 #st.write(f"##### **Utilidad Antes de Costos e IIGG**: ${lista_variables[16]}")
                     
             st.write("---") 
