@@ -746,7 +746,6 @@ if (st.session_state.submit_button == True):
                 st.write("")
                 
             st.write("**Aclaración**")
-            st.write("Por cuestiones metodológicas, el cálculo se basa en ingresos brutos por el 3,5% y Tasa municipal por 1%")
             st.write("El usuario reconoce y acepta que los datos generados son a título meramente informativo y orientativo. La herramienta no apunta a establecer precios finales para ninguna operación sino brindar, de manera detallada, la información que un comercio puede necesitar para definir, por decisión propia, los precios de los productos y servicios que comercializa a través de las promociones del programa Cuota Simple. Asimismo, CAME no se responsabiliza por la información brindada por el sistema, su actualización o su falta de disponibilidad.")
             st.markdown("Para mayor información [click aquí](https://www.argentina.gob.ar/economia/comercio/cuota-simple)")
             st.write("---")
