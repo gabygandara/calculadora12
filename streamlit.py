@@ -789,7 +789,7 @@ if st.checkbox("Si usted tiene alguna consulta, haga click aquí"):
         if boton_consulta:
             if email_ingresado.strip() != repetir_email_ingresado.strip():
                 st.error("Los correos electrónicos no coinciden. Por favor, ingréselos nuevamente.")
-            elif nombre_ingresado == "" or apellido_ingresado == "" or asunto_ingresado == "" or consulta_ingresada == "":
+            elif nombre_ingresado == "" or apellido_ingresado == "" or asunto_ingresado == "" or consulta_ingresada == "" or email_ingresado == "" or repetir_email_ingresado == "":
                 st.error("Complete los campos necesarios por favor.")
             else:
                 # aca cargar la data
