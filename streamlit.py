@@ -180,7 +180,7 @@ with col2 :
     
 with col3 :
     st.write("")
-if dar_de_baja_calcu == True:
+if dar_de_baja_calcu != True:
 
     # INPUT CALCULADORA
     with st.form(key='calculator_form'):
